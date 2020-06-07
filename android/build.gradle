@@ -1,0 +1,114 @@
+buildscript {
+
+  ext {
+    configs = [
+      android                  : [
+        minSdk    : 23,
+        targetSdk : 29,
+        compileSdk: 29,
+        buildTools: '29.0.2',
+      ],
+      javaCompatibility        : JavaVersion.VERSION_1_8,
+      kotlinJvmTarget          : "1.8",
+      testInstrumentationRunner: 'androidx.test.runner.AndroidJUnitRunner',
+    ]
+    versions = [
+      android_tools_build_lib           : '3.6.3',
+      android_support_lib               : "28.0.0",
+      androidx_appcompat_lib            : '1.0.2',
+      androidx_core_lib                 : '1.1.0',
+      androidx_constraintlayout         : '1.1.3',
+      androidx_lifecycle_lib            : '2.2.0',
+      androidx_navigation_lib           : '2.2.1',
+      androidx_recycleview_lib          : "1.1.0",
+      androidx_recycleview_selection_lib: "1.1.0-rc01",
+      androidx_room_lib                 : "2.2.5",
+      androidx_test_ext_lib             : '1.1.0',
+      androidx_test_espresso_lib        : '3.1.1',
+      google_auto_service_lib           : "1.0-rc3",
+      google_dagger_lib                 : '2.25.4',
+      google_gson_lib                   : '2.8.2',
+      google_matrial_lib                : '1.1.0',
+      jetbrains_kotlin_lib              : '1.3.71',
+      junit_lib                         : '4.12',
+      squareup_lib                      : "1.8.0",
+      squareup_retrofit2_lib            : '2.6.0',
+      apache_collections4_lib           : "4.1",
+      apache_lang3_lib                  : "3.5",
+      jiangyang5157_android_kit_lib     : '1.1.1',
+      jiangyang5157_core_lib            : '1.1.1',
+      jiangyang5157_kit_lib             : '1.1.2',
+      jiangyang5157_adapter_lib         : '1.0.0',
+      jiangyang5157_router_lib          : '1.0.1',
+    ]
+    libs = [
+      android_gradle_plugin           : "com.android.tools.build:gradle:${versions.android_tools_build_lib}",
+      kotlin_gradle_plugin            : "org.jetbrains.kotlin:kotlin-gradle-plugin:${versions.jetbrains_kotlin_lib}",
+      kotlin_stdlib_jdk8              : "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${versions.jetbrains_kotlin_lib}",
+      kotlin_junit                    : "org.jetbrains.kotlin:kotlin-test-junit:${versions.jetbrains_kotlin_lib}",
+      junit                           : "junit:junit:${versions.junit_lib}",
+      javapoet                        : "com.squareup:javapoet:${versions.squareup_lib}",
+      retrofit                        : "com.squareup.retrofit2:retrofit:${versions.squareup_retrofit2_lib}",
+      retrofit_gson                   : "com.squareup.retrofit2:converter-gson:${versions.squareup_retrofit2_lib}",
+      commons_collections             : "org.apache.commons:commons-collections4:${versions.apache_collections4_lib}",
+      commons_lang                    : "org.apache.commons:commons-lang3:${versions.apache_lang3_lib}",
+      support_design                  : "com.android.support:design:${versions.android_support_lib}",
+      androidx_appcompat              : "androidx.appcompat:appcompat:${versions.androidx_appcompat_lib}",
+      androidx_core_ktx               : "androidx.core:core-ktx:${versions.androidx_core_lib}",
+      androidx_constraintlayout       : "androidx.constraintlayout:constraintlayout:${versions.androidx_constraintlayout}",
+      androidx_junit                  : "androidx.test.ext:junit:${versions.androidx_test_ext_lib}",
+      androidx_espresso_core          : "androidx.test.espresso:espresso-core:${versions.androidx_test_espresso_lib}",
+      androidx_navigation_fragment_ktx: "androidx.navigation:navigation-fragment-ktx:${versions.androidx_navigation_lib}",
+      androidx_navigation_ui_ktx      : "androidx.navigation:navigation-ui-ktx:${versions.androidx_navigation_lib}",
+      androidx_lifecycle_vm_ktx       : "androidx.lifecycle:lifecycle-viewmodel-ktx:${versions.androidx_lifecycle_lib}",
+      androidx_lifecycle_ext          : "androidx.lifecycle:lifecycle-extensions:${versions.androidx_lifecycle_lib}",
+      androidx_lifecycle_compiler     : "androidx.lifecycle:lifecycle-compiler:${versions.androidx_lifecycle_lib}",
+      androidx_recycleview            : "androidx.recyclerview:recyclerview:${versions.androidx_recycleview_lib}",
+      androidx_recycleview_selection  : "androidx.recyclerview:recyclerview:${versions.androidx_recycleview_selection_lib}",
+      androidx_room                   : "androidx.room:room-runtime:${versions.androidx_room_lib}",
+      androidx_room_compiler          : "androidx.room:room-compiler:${versions.androidx_room_lib}",
+      dagger                          : "com.google.dagger:dagger:${versions.google_dagger_lib}",
+      dagger_compiler                 : "com.google.dagger:dagger-compiler:${versions.google_dagger_lib}",
+      dagger_android                  : "com.google.dagger:dagger-android:${versions.google_dagger_lib}",
+      dagger_android_support          : "com.google.dagger:dagger-android-support:${versions.google_dagger_lib}",
+      dagger_android_processor        : "com.google.dagger:dagger-android-processor:${versions.google_dagger_lib}",
+      material                        : "com.google.android.material:material:${versions.google_matrial_lib}",
+      gson                            : "com.google.code.gson:gson:${versions.google_gson_lib}",
+      auto_service                    : "com.google.auto.service:auto-service:${versions.google_auto_service_lib}",
+      kit                             : "com.gmail.jiangyang5157:kotlin-kit:${versions.jiangyang5157_kit_lib}",
+      android_kit                     : "com.gmail.jiangyang5157:kotlin-android-kit:${versions.jiangyang5157_android_kit_lib}",
+      core                            : "com.gmail.jiangyang5157:core:${versions.jiangyang5157_core_lib}",
+      adapter                         : "com.gmail.jiangyang5157:adapter:${versions.jiangyang5157_adapter_lib}",
+      router                          : "com.gmail.jiangyang5157:router:${versions.jiangyang5157_router_lib}",
+    ]
+  }
+
+  repositories {
+    google()
+    jcenter()
+  }
+
+  dependencies {
+    classpath "com.android.tools.build:gradle:${versions.android_tools_build_lib}"
+    classpath libs.kotlin_gradle_plugin
+  }
+}
+
+allprojects {
+  apply from: "$rootDir/ktlint.gradle"
+
+  repositories {
+    google()
+    jcenter()
+    mavenCentral()
+    maven { url mavenUrl }
+  }
+}
+
+task x(type: GradleBuild) {
+  tasks = ["ktlint", "lintDebug", "testDebugUnitTest"]
+}
+
+task clean(type: Delete) {
+  delete rootProject.buildDir
+}
