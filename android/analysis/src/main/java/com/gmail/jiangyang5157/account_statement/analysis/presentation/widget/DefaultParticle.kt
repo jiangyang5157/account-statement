@@ -9,6 +9,6 @@ open class DefaultParticle(override var position: Vector2i = Vector2i()) : Parti
     override var paint: Paint = Paint().apply { isAntiAlias = true }
 
     override fun onRender(t: Canvas) {
-        TODO("not implemented")
+        // TODO
     }
 }

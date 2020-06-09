@@ -38,7 +38,7 @@ class AnalysisWidget : RenderView, Renderable<Canvas> {
 
     private fun touch(x: Float, y: Float) {
         particle?.apply {
-            TODO("not implemented")
+            // TODO
         }
     }
 
