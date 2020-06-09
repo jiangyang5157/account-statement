@@ -8,12 +8,14 @@ import com.gmail.jiangyang5157.account_statement.analysis.parser.StringParser
 import com.gmail.jiangyang5157.kotlin_kit.model.Mapper
 import com.gmail.jiangyang5157.kotlin_kit.model.finance.Money
 import com.gmail.jiangyang5157.kotlin_kit.utils.IoUtils
+import com.gmail.jiangyang5157.kotlin_kit.utils.RegexUtils
 import timber.log.Timber
 import java.io.InputStream
 import java.util.*
 
 /**
  * 9th June, 2020:
+ *
  * Card,Type,Amount,Details,TransactionDate,ProcessedDate,ForeignCurrencyAmount,ConversionCharge
  */
 class AnzCreditTransaction : Transaction {
@@ -43,7 +45,7 @@ class AnzCreditParser : Mapper<InputStream, List<AnzCreditTransaction>> {
                         try {
                             when (index) {
                                 transaction.date.index -> transaction.date.value =
-                                    DateParser.map(value)
+                                    DateParser(RegexUtils.DATE_DMY).map(value)
                                 transaction.money.index -> transaction.money.value =
                                     MoneyParser.map(value)
                                 transaction.type.index -> transaction.type.value =
