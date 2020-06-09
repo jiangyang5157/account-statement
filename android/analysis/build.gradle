@@ -51,8 +51,10 @@ dependencies {
   implementation libs.dagger
   implementation libs.dagger_android
   implementation libs.dagger_android_support
+  implementation libs.timber
   implementation libs.retrofit
   implementation libs.retrofit_gson
+  implementation libs.render_view
   implementation libs.kit
 
   kapt libs.androidx_room_compiler
