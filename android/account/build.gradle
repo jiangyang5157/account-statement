@@ -54,6 +54,7 @@ dependencies {
   implementation libs.timber
   implementation libs.retrofit
   implementation libs.retrofit_gson
+  implementation libs.core
   implementation libs.kit
 
   kapt libs.androidx_room_compiler
