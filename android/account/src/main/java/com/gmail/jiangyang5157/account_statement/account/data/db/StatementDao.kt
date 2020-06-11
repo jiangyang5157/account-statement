@@ -21,6 +21,7 @@ interface StatementDao {
     @Update
     fun updateAccounts(accountEntity: List<AccountEntity>)
 
+    @Transaction
     @Query("SELECT * from accounts")
     fun findStatements(): LiveData<List<StatementEntity>>
 

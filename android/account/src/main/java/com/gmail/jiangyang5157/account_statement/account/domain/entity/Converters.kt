@@ -11,6 +11,7 @@ import java.util.*
 object Converters {
 
     @TypeConverter
+    @JvmStatic
     fun dateToString(src: Date?): String? {
         return src?.let {
             SimpleDateFormat(
@@ -21,6 +22,7 @@ object Converters {
     }
 
     @TypeConverter
+    @JvmStatic
     fun stringToDate(src: String?): Date? {
         return src?.let {
             SimpleDateFormat(
@@ -31,11 +33,13 @@ object Converters {
     }
 
     @TypeConverter
+    @JvmStatic
     fun moneyToString(src: Money?): String? {
         return src?.amount?.toString()
     }
 
     @TypeConverter
+    @JvmStatic
     fun stringToMoney(src: String?): Money? {
         return src?.let { Money(src.trim().toDouble()) }
     }

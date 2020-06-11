@@ -12,7 +12,8 @@ data class StatementEntity(
 
     @Relation(
         parentColumn = "name",
-        entityColumn = "accountName"
+        entityColumn = "accountName",
+        entity = TransactionEntity::class
     )
     @field:SerializedName("transactions")
     val transactions: List<TransactionEntity>
