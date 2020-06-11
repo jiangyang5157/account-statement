@@ -56,7 +56,6 @@ dependencies {
   implementation libs.retrofit_gson
   implementation libs.render_view
   implementation libs.kit
-  implementation project(":analysis-cvo")
 
   kapt libs.androidx_room_compiler
   kapt libs.androidx_lifecycle_compiler
