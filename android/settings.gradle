@@ -1,4 +1,5 @@
 rootProject.name='account-statement'
 include ':app'
+include ':analysis-cvo'
 include ':analysis'
 include ':account'
