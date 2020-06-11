@@ -4,6 +4,8 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.ForeignKey
 import androidx.room.ForeignKey.CASCADE
+import com.gmail.jiangyang5157.account_statement.account.domain.adapter.DateJsonAdapter
+import com.gmail.jiangyang5157.account_statement.account.domain.adapter.MoneyJsonAdapter
 import com.gmail.jiangyang5157.kotlin_kit.data.model.finance.Money
 import com.google.gson.annotations.JsonAdapter
 import com.google.gson.annotations.SerializedName

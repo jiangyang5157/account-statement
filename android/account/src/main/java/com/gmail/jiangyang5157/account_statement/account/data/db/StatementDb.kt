@@ -4,7 +4,8 @@ import androidx.room.Database
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import com.gmail.jiangyang5157.account_statement.account.domain.entity.AccountEntity
-import com.gmail.jiangyang5157.account_statement.account.domain.entity.Converters
+import com.gmail.jiangyang5157.account_statement.account.domain.adapter.DateStringConverter
+import com.gmail.jiangyang5157.account_statement.account.domain.adapter.MoneyStringConverter
 import com.gmail.jiangyang5157.account_statement.account.domain.entity.TransactionEntity
 
 @Database(
@@ -14,7 +15,12 @@ import com.gmail.jiangyang5157.account_statement.account.domain.entity.Transacti
     ],
     version = 1
 )
-@TypeConverters(value = [Converters::class])
+@TypeConverters(
+    value = [
+        DateStringConverter::class,
+        MoneyStringConverter::class
+    ]
+)
 abstract class StatementDb : RoomDatabase() {
 
     abstract fun statementDao(): StatementDao

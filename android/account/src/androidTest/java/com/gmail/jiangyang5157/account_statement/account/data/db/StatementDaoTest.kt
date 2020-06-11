@@ -7,7 +7,8 @@ import androidx.room.Room
 import androidx.test.core.app.ApplicationProvider
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.gmail.jiangyang5157.account_statement.account.domain.entity.AccountEntity
-import com.gmail.jiangyang5157.account_statement.account.domain.entity.Converters
+import com.gmail.jiangyang5157.account_statement.account.domain.adapter.DateStringConverter
+import com.gmail.jiangyang5157.account_statement.account.domain.adapter.MoneyStringConverter
 import com.gmail.jiangyang5157.account_statement.account.domain.entity.TransactionEntity
 import com.gmail.jiangyang5157.account_statement.account.ext.getOrAwaitValue
 import org.junit.*
@@ -70,8 +71,8 @@ class StatementDaoTest {
                 listOf(
                     TransactionEntity(
                         accountName = "FakeAccount",
-                        date = Converters.stringToDate("1/12/2019")!!,
-                        money = Converters.stringToMoney("-10")!!,
+                        date = DateStringConverter.stringToDate("1/12/2019")!!,
+                        money = MoneyStringConverter.stringToMoney("-10")!!,
                         description = "desc"
                     )
                 )
@@ -89,8 +90,8 @@ class StatementDaoTest {
             listOf(
                 TransactionEntity(
                     accountName = "FakeAccount",
-                    date = Converters.stringToDate("1/12/2019")!!,
-                    money = Converters.stringToMoney("-10")!!,
+                    date = DateStringConverter.stringToDate("1/12/2019")!!,
+                    money = MoneyStringConverter.stringToMoney("-10")!!,
                     description = "desc"
                 )
             )
@@ -110,14 +111,14 @@ class StatementDaoTest {
                 listOf(
                     TransactionEntity(
                         accountName = "FakeAccount",
-                        date = Converters.stringToDate("1/12/2019")!!,
-                        money = Converters.stringToMoney("-10")!!,
+                        date = DateStringConverter.stringToDate("1/12/2019")!!,
+                        money = MoneyStringConverter.stringToMoney("-10")!!,
                         description = "desc"
                     ),
                     TransactionEntity(
                         accountName = "FakeAccount",
-                        date = Converters.stringToDate("1/12/2019")!!,
-                        money = Converters.stringToMoney("-10")!!,
+                        date = DateStringConverter.stringToDate("1/12/2019")!!,
+                        money = MoneyStringConverter.stringToMoney("-10")!!,
                         description = "desc"
                     )
                 )
@@ -151,8 +152,8 @@ class StatementDaoTest {
             listOf(
                 TransactionEntity(
                     accountName = "FakeAccount",
-                    date = Converters.stringToDate("1/12/2019")!!,
-                    money = Converters.stringToMoney("-10")!!,
+                    date = DateStringConverter.stringToDate("1/12/2019")!!,
+                    money = MoneyStringConverter.stringToMoney("-10")!!,
                     description = "desc"
                 )
             )
@@ -161,8 +162,8 @@ class StatementDaoTest {
             listOf(
                 TransactionEntity(
                     accountName = "FakeAccount",
-                    date = Converters.stringToDate("1/12/2019")!!,
-                    money = Converters.stringToMoney("-10")!!,
+                    date = DateStringConverter.stringToDate("1/12/2019")!!,
+                    money = MoneyStringConverter.stringToMoney("-10")!!,
                     description = "desc2"
                 )
             )
@@ -171,8 +172,8 @@ class StatementDaoTest {
             listOf(
                 TransactionEntity(
                     accountName = "FakeAccount2",
-                    date = Converters.stringToDate("1/12/2019")!!,
-                    money = Converters.stringToMoney("-10")!!,
+                    date = DateStringConverter.stringToDate("1/12/2019")!!,
+                    money = MoneyStringConverter.stringToMoney("-10")!!,
                     description = "desc"
                 )
             )
@@ -240,8 +241,8 @@ class StatementDaoTest {
             listOf(
                 TransactionEntity(
                     accountName = "FakeAccount",
-                    date = Converters.stringToDate("1/12/2019")!!,
-                    money = Converters.stringToMoney("-10")!!,
+                    date = DateStringConverter.stringToDate("1/12/2019")!!,
+                    money = MoneyStringConverter.stringToMoney("-10")!!,
                     description = "desc"
                 )
             )
@@ -250,8 +251,8 @@ class StatementDaoTest {
             listOf(
                 TransactionEntity(
                     accountName = "FakeAccount",
-                    date = Converters.stringToDate("1/12/2019")!!,
-                    money = Converters.stringToMoney("-10")!!,
+                    date = DateStringConverter.stringToDate("1/12/2019")!!,
+                    money = MoneyStringConverter.stringToMoney("-10")!!,
                     description = "desc2"
                 )
             )
@@ -260,8 +261,8 @@ class StatementDaoTest {
             listOf(
                 TransactionEntity(
                     accountName = "FakeAccount2",
-                    date = Converters.stringToDate("1/12/2019")!!,
-                    money = Converters.stringToMoney("-10")!!,
+                    date = DateStringConverter.stringToDate("1/12/2019")!!,
+                    money = MoneyStringConverter.stringToMoney("-10")!!,
                     description = "desc"
                 )
             )

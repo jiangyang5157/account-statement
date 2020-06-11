@@ -1,5 +1,7 @@
 package com.gmail.jiangyang5157.account_statement.account.domain.entity
 
+import com.gmail.jiangyang5157.account_statement.account.domain.adapter.DateStringConverter
+import com.gmail.jiangyang5157.account_statement.account.domain.adapter.MoneyStringConverter
 import com.gmail.jiangyang5157.core.ext.fromJson
 import com.google.gson.GsonBuilder
 import org.junit.Assert
@@ -14,14 +16,14 @@ class StatementEntityTest {
             transactions = listOf(
                 TransactionEntity(
                     accountName = "FakeAccount",
-                    date = Converters.stringToDate("1/12/2019")!!,
-                    money = Converters.stringToMoney("-10")!!,
+                    date = DateStringConverter.stringToDate("1/12/2019")!!,
+                    money = MoneyStringConverter.stringToMoney("-10")!!,
                     description = "desc"
                 ),
                 TransactionEntity(
                     accountName = "FakeAccount",
-                    date = Converters.stringToDate("1/12/2019")!!,
-                    money = Converters.stringToMoney("10")!!,
+                    date = DateStringConverter.stringToDate("1/12/2019")!!,
+                    money = MoneyStringConverter.stringToMoney("10")!!,
                     description = "desc"
                 )
             )
@@ -59,14 +61,14 @@ class StatementEntityTest {
             transactions = listOf(
                 TransactionEntity(
                     accountName = "FakeAccount",
-                    date = Converters.stringToDate("1/12/2019")!!,
-                    money = Converters.stringToMoney("-10")!!,
+                    date = DateStringConverter.stringToDate("1/12/2019")!!,
+                    money = MoneyStringConverter.stringToMoney("-10")!!,
                     description = "desc"
                 ),
                 TransactionEntity(
                     accountName = "FakeAccount",
-                    date = Converters.stringToDate("1/12/2019")!!,
-                    money = Converters.stringToMoney("10")!!,
+                    date = DateStringConverter.stringToDate("1/12/2019")!!,
+                    money = MoneyStringConverter.stringToMoney("10")!!,
                     description = "desc"
                 )
             )
