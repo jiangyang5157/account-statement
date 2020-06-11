@@ -5,8 +5,8 @@ import com.gmail.jiangyang5157.account_statement.analysis.data.model.Transaction
 import com.gmail.jiangyang5157.account_statement.analysis.parser.MoneyParser
 import com.gmail.jiangyang5157.account_statement.analysis.parser.DateParser
 import com.gmail.jiangyang5157.account_statement.analysis.parser.StringParser
-import com.gmail.jiangyang5157.kotlin_kit.model.Mapper
-import com.gmail.jiangyang5157.kotlin_kit.model.finance.Money
+import com.gmail.jiangyang5157.kotlin_kit.data.model.Mapper
+import com.gmail.jiangyang5157.kotlin_kit.data.model.finance.Money
 import com.gmail.jiangyang5157.kotlin_kit.utils.IoUtils
 import com.gmail.jiangyang5157.kotlin_kit.utils.RegexUtils
 import timber.log.Timber

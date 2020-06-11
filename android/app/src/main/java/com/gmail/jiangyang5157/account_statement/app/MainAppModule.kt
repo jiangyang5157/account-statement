@@ -8,7 +8,7 @@ import com.gmail.jiangyang5157.account_statement.router.UriRoute
 import com.gmail.jiangyang5157.android.router.core.MultiRouter
 import com.gmail.jiangyang5157.android.router.fragment.FragmentRouter
 import com.gmail.jiangyang5157.core.util.ViewModelFactory
-import com.gmail.jiangyang5157.kotlin_kit.model.Key
+import com.gmail.jiangyang5157.kotlin_kit.data.model.Key
 import dagger.Binds
 import dagger.Module
 import dagger.Provides

@@ -1,7 +1,7 @@
 package com.gmail.jiangyang5157.account_statement.account.domain.entity
 
 import androidx.room.TypeConverter
-import com.gmail.jiangyang5157.kotlin_kit.model.finance.Money
+import com.gmail.jiangyang5157.kotlin_kit.data.model.finance.Money
 import com.gmail.jiangyang5157.kotlin_kit.utils.RegexUtils
 import com.google.gson.*
 import java.lang.reflect.Type

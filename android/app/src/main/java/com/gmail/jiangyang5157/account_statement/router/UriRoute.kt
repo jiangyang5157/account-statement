@@ -4,7 +4,7 @@ import android.net.Uri
 import com.gmail.jiangyang5157.android.router.core.DataRoute
 import com.gmail.jiangyang5157.android.router.core.KeyRoute
 import com.gmail.jiangyang5157.android.router.core.ParcelableRoute
-import com.gmail.jiangyang5157.kotlin_kit.model.Key
+import com.gmail.jiangyang5157.kotlin_kit.data.model.Key
 import kotlinx.android.parcel.Parcelize
 
 @Parcelize
