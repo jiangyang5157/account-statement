@@ -1,7 +1,7 @@
 package com.gmail.jiangyang5157.account_statement.analysis.parser.bank
 
-import com.gmail.jiangyang5157.account_statement.analysis.domain.entity.Field
-import com.gmail.jiangyang5157.account_statement.analysis.domain.entity.Transaction
+import com.gmail.jiangyang5157.account_statement.analysis.data.model.Field
+import com.gmail.jiangyang5157.account_statement.analysis.data.model.Transaction
 import com.gmail.jiangyang5157.account_statement.analysis.parser.MoneyParser
 import com.gmail.jiangyang5157.account_statement.analysis.parser.DateParser
 import com.gmail.jiangyang5157.account_statement.analysis.parser.StringParser
@@ -18,15 +18,28 @@ import java.util.*
  *
  * Type,Details,Particulars,Code,Reference,Amount,Date,ForeignCurrencyAmount,ConversionCharge
  */
-class AnzSavingTransaction : Transaction {
+class AnzSavingTransaction :
+    Transaction {
 
-    var type = Field<String>(0)
+    var type =
+        Field<String>(
+            0
+        )
 
-    var details = Field<String>(1)
+    var details =
+        Field<String>(
+            1
+        )
 
-    override var money = Field<Money>(5)
+    override var money =
+        Field<Money>(
+            5
+        )
 
-    override var date = Field<Date>(6)
+    override var date =
+        Field<Date>(
+            6
+        )
 
     override val description: String
         get() = "${type.value}, ${details.value}"
