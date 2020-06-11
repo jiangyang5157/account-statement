@@ -21,10 +21,22 @@ interface StatementDao {
     @Update
     fun updateAccounts(accountEntity: List<AccountEntity>)
 
+    @Query("SELECT * from accounts")
+    fun findAccounts(): LiveData<List<AccountEntity>>
+
+    @Query("SELECT * from accounts WHERE name = :name")
+    fun findAccountByName(name: String): LiveData<AccountEntity>
+
+    @Query("SELECT * from transactions")
+    fun findTransactions(): LiveData<List<TransactionEntity>>
+
+    @Query("SELECT * from transactions WHERE accountName = :accountName")
+    fun findTransactionsByAccountName(accountName: String): LiveData<List<TransactionEntity>>
+
     @Transaction
     @Query("SELECT * from accounts")
     fun findStatements(): LiveData<List<StatementEntity>>
 
-    @Query("SELECT * from accounts WHERE name = :name")
-    fun findStatementsByAccountName(name: String): LiveData<List<StatementEntity>>
+    @Query("SELECT * from accounts WHERE name = :accountName")
+    fun findStatementByAccountName(accountName: String): LiveData<StatementEntity>
 }

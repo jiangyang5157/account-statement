@@ -18,5 +18,5 @@ interface AccountRepository {
 
     fun getStatements(): LiveData<Resource<List<StatementEntity>>>
 
-    fun getStatementsByAccountName(name: String): LiveData<Resource<List<StatementEntity>>>
+    fun getStatementByAccountName(name: String): LiveData<Resource<StatementEntity>>
 }

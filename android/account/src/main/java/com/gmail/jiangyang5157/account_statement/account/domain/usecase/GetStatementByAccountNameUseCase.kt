@@ -6,11 +6,11 @@ import com.gmail.jiangyang5157.account_statement.account.domain.repository.Accou
 import com.gmail.jiangyang5157.core.data.Resource
 import javax.inject.Inject
 
-class GetStatementsByAccountNameUseCase @Inject constructor(
+class GetStatementByAccountNameUseCase @Inject constructor(
     private val accountRepository: AccountRepository
 ) {
 
-    operator fun invoke(name: String): LiveData<Resource<List<StatementEntity>>> {
-        return accountRepository.getStatementsByAccountName(name)
+    operator fun invoke(name: String): LiveData<Resource<StatementEntity>> {
+        return accountRepository.getStatementByAccountName(name)
     }
 }

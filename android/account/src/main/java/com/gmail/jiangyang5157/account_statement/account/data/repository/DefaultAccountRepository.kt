@@ -58,7 +58,7 @@ class DefaultAccountRepository @Inject constructor(
         }.asLiveData()
     }
 
-    override fun getStatementsByAccountName(name: String): LiveData<Resource<List<StatementEntity>>> {
-        return MutableLiveData(Resource.success(statementDao.findStatementsByAccountName(name).value))
+    override fun getStatementByAccountName(name: String): LiveData<Resource<StatementEntity>> {
+        return MutableLiveData(Resource.success(statementDao.findStatementByAccountName(name).value))
     }
 }
