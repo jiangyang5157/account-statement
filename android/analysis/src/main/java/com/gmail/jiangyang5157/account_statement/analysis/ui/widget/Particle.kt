@@ -1,4 +1,4 @@
-package com.gmail.jiangyang5157.account_statement.analysis.presentation.widget
+package com.gmail.jiangyang5157.account_statement.analysis.ui.widget
 
 import com.gmail.jiangyang5157.kotlin_kit.math.Vector2i
 import com.gmail.jiangyang5157.kotlin_kit.render.Particle

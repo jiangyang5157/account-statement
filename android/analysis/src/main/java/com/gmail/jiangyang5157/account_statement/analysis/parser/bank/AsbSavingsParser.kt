@@ -1,7 +1,7 @@
 package com.gmail.jiangyang5157.account_statement.analysis.parser.bank
 
-import com.gmail.jiangyang5157.account_statement.analysis.domain.model.Field
-import com.gmail.jiangyang5157.account_statement.analysis.domain.model.Transaction
+import com.gmail.jiangyang5157.account_statement.analysis.domain.entity.Field
+import com.gmail.jiangyang5157.account_statement.analysis.domain.entity.Transaction
 import com.gmail.jiangyang5157.account_statement.analysis.parser.MoneyParser
 import com.gmail.jiangyang5157.account_statement.analysis.parser.DateParser
 import com.gmail.jiangyang5157.account_statement.analysis.parser.StringParser

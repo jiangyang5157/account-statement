@@ -1,4 +1,4 @@
-package com.gmail.jiangyang5157.account_statement.analysis.domain.model
+package com.gmail.jiangyang5157.account_statement.analysis.domain.entity
 
 import com.gmail.jiangyang5157.kotlin_kit.model.finance.Money
 import java.util.*

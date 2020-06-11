@@ -1,4 +1,4 @@
-package com.gmail.jiangyang5157.account_statement.account.domain.repository
+package com.gmail.jiangyang5157.account_statement.account.domain.repo
 
 import androidx.lifecycle.LiveData
 import com.gmail.jiangyang5157.account_statement.account.domain.entity.AccountEntity

@@ -1,7 +1,7 @@
 package com.gmail.jiangyang5157.account_statement.account.domain.usecase
 
 import com.gmail.jiangyang5157.account_statement.account.domain.entity.AccountEntity
-import com.gmail.jiangyang5157.account_statement.account.domain.repository.AccountRepository
+import com.gmail.jiangyang5157.account_statement.account.domain.repo.AccountRepository
 import javax.inject.Inject
 
 class DeleteAccountsUseCase @Inject constructor(

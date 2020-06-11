@@ -1,4 +1,4 @@
-package com.gmail.jiangyang5157.account_statement.analysis.presentation.widget
+package com.gmail.jiangyang5157.account_statement.analysis.ui.widget
 
 import android.content.Context
 import android.graphics.Canvas

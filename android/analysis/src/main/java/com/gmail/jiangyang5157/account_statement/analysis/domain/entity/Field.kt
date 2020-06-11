@@ -1,4 +1,4 @@
-package com.gmail.jiangyang5157.account_statement.analysis.domain.model
+package com.gmail.jiangyang5157.account_statement.analysis.domain.entity
 
 import androidx.annotation.IntRange
 
