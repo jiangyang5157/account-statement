@@ -25,7 +25,6 @@ class DateJsonAdapter : JsonSerializer<Date>, JsonDeserializer<Date> {
     ): Date {
         return DateStringConverter.stringToDate(
             src?.asString
-        )
-            ?: throw IllegalArgumentException("Cannot deserialize $src to [Date]")
+        ) ?: throw IllegalArgumentException("Cannot deserialize $src to [Date]")
     }
 }

@@ -25,7 +25,6 @@ class MoneyJsonAdapter : JsonSerializer<Money>, JsonDeserializer<Money> {
     ): Money {
         return MoneyStringConverter.stringToMoney(
             src?.asString
-        )
-            ?: throw IllegalArgumentException("Cannot deserialize $src to [Money]")
+        ) ?: throw IllegalArgumentException("Cannot deserialize $src to [Money]")
     }
 }
