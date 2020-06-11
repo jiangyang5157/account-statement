@@ -14,8 +14,7 @@ import com.gmail.jiangyang5157.core.network.ApiSuccessResponse
 
 class StatementServiceTest {
 
-    @Rule
-    @JvmField
+    @get:Rule
     val instantExecutorRule = InstantTaskExecutorRule()
 
     private lateinit var statementService: StatementService
