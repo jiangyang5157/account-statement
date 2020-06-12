@@ -1,7 +1,7 @@
 package com.gmail.jiangyang5157.account_statement.account.data.api
 
 import androidx.lifecycle.LiveData
-import com.gmail.jiangyang5157.account_statement.account.domain.entity.StatementEntity
+import com.gmail.jiangyang5157.account_statement.account.domain.model.StatementEntity
 import com.gmail.jiangyang5157.core.network.ApiResponse
 import okhttp3.*
 import retrofit2.http.GET

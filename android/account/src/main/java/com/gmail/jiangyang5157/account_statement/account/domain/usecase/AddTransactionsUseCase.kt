@@ -1,6 +1,6 @@
 package com.gmail.jiangyang5157.account_statement.account.domain.usecase
 
-import com.gmail.jiangyang5157.account_statement.account.domain.entity.TransactionEntity
+import com.gmail.jiangyang5157.account_statement.account.domain.model.TransactionEntity
 import com.gmail.jiangyang5157.account_statement.account.domain.repo.AccountRepository
 import javax.inject.Inject
 

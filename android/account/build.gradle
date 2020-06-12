@@ -59,6 +59,7 @@ dependencies {
   implementation libs.timber
   implementation libs.retrofit
   implementation libs.retrofit_gson
+  implementation libs.render_view
   implementation libs.core
   implementation libs.kit
 

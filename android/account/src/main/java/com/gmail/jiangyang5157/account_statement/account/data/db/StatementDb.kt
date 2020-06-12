@@ -3,10 +3,10 @@ package com.gmail.jiangyang5157.account_statement.account.data.db
 import androidx.room.Database
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
-import com.gmail.jiangyang5157.account_statement.account.domain.entity.AccountEntity
+import com.gmail.jiangyang5157.account_statement.account.domain.model.AccountEntity
 import com.gmail.jiangyang5157.account_statement.account.domain.adapter.DateStringConverter
 import com.gmail.jiangyang5157.account_statement.account.domain.adapter.MoneyStringConverter
-import com.gmail.jiangyang5157.account_statement.account.domain.entity.TransactionEntity
+import com.gmail.jiangyang5157.account_statement.account.domain.model.TransactionEntity
 
 @Database(
     entities = [

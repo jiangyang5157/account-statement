@@ -4,9 +4,9 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.gmail.jiangyang5157.account_statement.account.data.api.StatementService
 import com.gmail.jiangyang5157.account_statement.account.data.db.StatementDao
-import com.gmail.jiangyang5157.account_statement.account.domain.entity.AccountEntity
-import com.gmail.jiangyang5157.account_statement.account.domain.entity.StatementEntity
-import com.gmail.jiangyang5157.account_statement.account.domain.entity.TransactionEntity
+import com.gmail.jiangyang5157.account_statement.account.domain.model.AccountEntity
+import com.gmail.jiangyang5157.account_statement.account.domain.model.StatementEntity
+import com.gmail.jiangyang5157.account_statement.account.domain.model.TransactionEntity
 import com.gmail.jiangyang5157.account_statement.account.domain.repo.AccountRepository
 import com.gmail.jiangyang5157.core.data.NetworkBoundResource
 import com.gmail.jiangyang5157.core.data.Resource

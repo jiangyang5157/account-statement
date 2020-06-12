@@ -6,10 +6,10 @@ import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.room.Room
 import androidx.test.core.app.ApplicationProvider
 import androidx.test.ext.junit.runners.AndroidJUnit4
-import com.gmail.jiangyang5157.account_statement.account.domain.entity.AccountEntity
+import com.gmail.jiangyang5157.account_statement.account.domain.model.AccountEntity
 import com.gmail.jiangyang5157.account_statement.account.domain.adapter.DateStringConverter
 import com.gmail.jiangyang5157.account_statement.account.domain.adapter.MoneyStringConverter
-import com.gmail.jiangyang5157.account_statement.account.domain.entity.TransactionEntity
+import com.gmail.jiangyang5157.account_statement.account.domain.model.TransactionEntity
 import com.gmail.jiangyang5157.account_statement.account.ext.getOrAwaitValue
 import org.junit.*
 import org.junit.runner.RunWith
@@ -42,7 +42,11 @@ class StatementDaoTest {
 
     @Test
     fun test_insertAccounts() {
-        db.statementDao().insertAccounts(listOf(AccountEntity("FakeAccount")))
+        db.statementDao().insertAccounts(listOf(
+            AccountEntity(
+                "FakeAccount"
+            )
+        ))
         Assert.assertEquals(
             "FakeAccount",
             db.statementDao().findAccountByName("FakeAccount").getOrAwaitValue().name
@@ -54,8 +58,12 @@ class StatementDaoTest {
         try {
             db.statementDao().insertAccounts(
                 listOf(
-                    AccountEntity("FakeAccount"),
-                    AccountEntity("FakeAccount")
+                    AccountEntity(
+                        "FakeAccount"
+                    ),
+                    AccountEntity(
+                        "FakeAccount"
+                    )
                 )
             )
             Assert.fail()
@@ -85,7 +93,11 @@ class StatementDaoTest {
 
     @Test
     fun test_insertTransaction_whereAccountExist() {
-        db.statementDao().insertAccounts(listOf(AccountEntity("FakeAccount")))
+        db.statementDao().insertAccounts(listOf(
+            AccountEntity(
+                "FakeAccount"
+            )
+        ))
         db.statementDao().insertTransactions(
             listOf(
                 TransactionEntity(
@@ -105,7 +117,11 @@ class StatementDaoTest {
 
     @Test
     fun test_insertTransaction_whereTransactionExist_abort() {
-        db.statementDao().insertAccounts(listOf(AccountEntity("FakeAccount")))
+        db.statementDao().insertAccounts(listOf(
+            AccountEntity(
+                "FakeAccount"
+            )
+        ))
         try {
             db.statementDao().insertTransactions(
                 listOf(
@@ -133,8 +149,12 @@ class StatementDaoTest {
     fun test_findAccounts() {
         db.statementDao().insertAccounts(
             listOf(
-                AccountEntity("FakeAccount"),
-                AccountEntity("FakeAccount2")
+                AccountEntity(
+                    "FakeAccount"
+                ),
+                AccountEntity(
+                    "FakeAccount2"
+                )
             )
         )
         Assert.assertEquals(2, db.statementDao().findAccounts().getOrAwaitValue().size)
@@ -144,8 +164,12 @@ class StatementDaoTest {
     fun test_findTransactions() {
         db.statementDao().insertAccounts(
             listOf(
-                AccountEntity("FakeAccount"),
-                AccountEntity("FakeAccount2")
+                AccountEntity(
+                    "FakeAccount"
+                ),
+                AccountEntity(
+                    "FakeAccount2"
+                )
             )
         )
         db.statementDao().insertTransactions(
@@ -193,8 +217,12 @@ class StatementDaoTest {
     fun test_findStatements() {
         db.statementDao().insertAccounts(
             listOf(
-                AccountEntity("FakeAccount"),
-                AccountEntity("FakeAccount2")
+                AccountEntity(
+                    "FakeAccount"
+                ),
+                AccountEntity(
+                    "FakeAccount2"
+                )
             )
         )
         Assert.assertEquals(2, db.statementDao().findStatements().getOrAwaitValue().size)
@@ -212,20 +240,36 @@ class StatementDaoTest {
 
     @Test
     fun test_deleteAccount() {
-        db.statementDao().insertAccounts(listOf(AccountEntity("FakeAccount")))
+        db.statementDao().insertAccounts(listOf(
+            AccountEntity(
+                "FakeAccount"
+            )
+        ))
         Assert.assertEquals(1, db.statementDao().findStatements().getOrAwaitValue().size)
 
-        db.statementDao().deleteAccounts(listOf(AccountEntity("FakeAccount")))
+        db.statementDao().deleteAccounts(listOf(
+            AccountEntity(
+                "FakeAccount"
+            )
+        ))
         Assert.assertEquals(0, db.statementDao().findStatements().getOrAwaitValue().size)
     }
 
     @Test
     fun test_deleteAccount_whereAccountNotExist_abort() {
-        db.statementDao().insertAccounts(listOf(AccountEntity("FakeAccount")))
+        db.statementDao().insertAccounts(listOf(
+            AccountEntity(
+                "FakeAccount"
+            )
+        ))
         Assert.assertEquals(1, db.statementDao().findStatements()
             .getOrAwaitValue().size)
 
-        db.statementDao().deleteAccounts(listOf(AccountEntity("FakeAccount11111111")))
+        db.statementDao().deleteAccounts(listOf(
+            AccountEntity(
+                "FakeAccount11111111"
+            )
+        ))
         Assert.assertEquals(1, db.statementDao().findStatements().getOrAwaitValue().size)
     }
 
@@ -233,8 +277,12 @@ class StatementDaoTest {
     fun test_deleteAccount_whereHasAssociatedTransaction() {
         db.statementDao().insertAccounts(
             listOf(
-                AccountEntity("FakeAccount"),
-                AccountEntity("FakeAccount2")
+                AccountEntity(
+                    "FakeAccount"
+                ),
+                AccountEntity(
+                    "FakeAccount2"
+                )
             )
         )
         db.statementDao().insertTransactions(
@@ -269,10 +317,18 @@ class StatementDaoTest {
         )
         Assert.assertEquals(3, db.statementDao().findTransactions().getOrAwaitValue().size)
 
-        db.statementDao().deleteAccounts(listOf(AccountEntity("FakeAccount")))
+        db.statementDao().deleteAccounts(listOf(
+            AccountEntity(
+                "FakeAccount"
+            )
+        ))
         Assert.assertEquals(1, db.statementDao().findTransactions().getOrAwaitValue().size)
 
-        db.statementDao().deleteAccounts(listOf(AccountEntity("FakeAccount2")))
+        db.statementDao().deleteAccounts(listOf(
+            AccountEntity(
+                "FakeAccount2"
+            )
+        ))
         Assert.assertEquals(0, db.statementDao().findStatements().getOrAwaitValue().size)
     }
 }

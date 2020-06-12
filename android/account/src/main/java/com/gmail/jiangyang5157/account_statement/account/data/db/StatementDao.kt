@@ -2,9 +2,9 @@ package com.gmail.jiangyang5157.account_statement.account.data.db
 
 import androidx.lifecycle.LiveData
 import androidx.room.*
-import com.gmail.jiangyang5157.account_statement.account.domain.entity.AccountEntity
-import com.gmail.jiangyang5157.account_statement.account.domain.entity.StatementEntity
-import com.gmail.jiangyang5157.account_statement.account.domain.entity.TransactionEntity
+import com.gmail.jiangyang5157.account_statement.account.domain.model.AccountEntity
+import com.gmail.jiangyang5157.account_statement.account.domain.model.StatementEntity
+import com.gmail.jiangyang5157.account_statement.account.domain.model.TransactionEntity
 
 @Dao
 interface StatementDao {

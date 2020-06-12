@@ -3,6 +3,7 @@ package com.gmail.jiangyang5157.account_statement.account.domain.adapter
 import androidx.room.TypeConverter
 import com.gmail.jiangyang5157.kotlin_kit.data.model.Mapper
 import com.gmail.jiangyang5157.kotlin_kit.utils.RegexUtils
+import java.text.ParseException
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -31,10 +32,19 @@ object DateStringConverter {
 
     fun stringToDate(src: String?, pattern: String): Date? {
         return src?.let {
-            SimpleDateFormat(
-                pattern,
-                Locale.getDefault()
-            ).parse(it.trim())
+            try {
+                SimpleDateFormat(
+                    pattern,
+                    Locale.getDefault()
+                ).parse(it.trim())
+            } catch (e: Exception) {
+                when (e) {
+                    is ParseException -> {
+                        null
+                    }
+                    else -> throw e
+                }
+            }
         }
     }
 }

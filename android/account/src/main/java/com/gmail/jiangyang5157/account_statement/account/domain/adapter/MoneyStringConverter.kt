@@ -14,6 +14,17 @@ object MoneyStringConverter {
     @TypeConverter
     @JvmStatic
     fun stringToMoney(src: String?): Money? {
-        return src?.let { Money(src.trim().toDouble()) }
+        return src?.let {
+            try {
+                return Money(it.trim().toDouble())
+            } catch (e: Exception) {
+                when (e) {
+                    is NumberFormatException -> {
+                        null
+                    }
+                    else -> throw e
+                }
+            }
+        }
     }
 }
