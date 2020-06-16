@@ -14,8 +14,6 @@ interface AccountRepository {
 
     fun deleteAccounts(accounts: List<AccountEntity>)
 
-    fun updateAccounts(accounts: List<AccountEntity>)
-
     fun getStatements(): LiveData<Resource<List<StatementEntity>>>
 
     fun getStatementByAccountName(name: String): LiveData<Resource<StatementEntity>>

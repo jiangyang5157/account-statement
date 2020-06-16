@@ -1,7 +1,7 @@
 package com.gmail.jiangyang5157.account_statement.app
 
 import androidx.lifecycle.ViewModelProvider
-import com.gmail.jiangyang5157.account_statement.AccountsFragment
+import com.gmail.jiangyang5157.account_statement.ui.accounts.AccountsFragment
 import com.gmail.jiangyang5157.account_statement.HomeActivity
 import com.gmail.jiangyang5157.account_statement.router.DefaultFragmentTransition
 import com.gmail.jiangyang5157.account_statement.router.UriRoute
@@ -47,4 +47,6 @@ abstract class MainAppInjection {
 
     @Binds
     abstract fun bindViewModelFactory(viewModelFactory: ViewModelFactory): ViewModelProvider.Factory
+
+
 }

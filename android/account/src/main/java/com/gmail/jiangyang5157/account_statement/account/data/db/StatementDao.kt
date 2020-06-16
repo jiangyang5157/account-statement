@@ -18,9 +18,6 @@ interface StatementDao {
     @Delete
     fun deleteAccounts(accountEntity: List<AccountEntity>)
 
-    @Update
-    fun updateAccounts(accountEntity: List<AccountEntity>)
-
     @Query("SELECT * from accounts")
     fun findAccounts(): LiveData<List<AccountEntity>>
 

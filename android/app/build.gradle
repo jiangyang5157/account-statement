@@ -54,6 +54,7 @@ dependencies {
   implementation libs.kit
   implementation libs.core
   implementation libs.adapter
+  implementation project(":account")
 
   kapt libs.dagger_compiler
   kapt libs.dagger_android_processor
