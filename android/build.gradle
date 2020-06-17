@@ -41,7 +41,7 @@ buildscript {
       jiangyang5157_adapter_lib         : '1.0.1',
       jiangyang5157_android_kit_lib     : '1.1.2',
       jiangyang5157_core_lib            : '1.1.3',
-      jiangyang5157_kit_lib             : '1.1.7',
+      jiangyang5157_kit_lib             : '1.1.8',
       jiangyang5157_render_view_lib     : '1.1.1',
       jiangyang5157_router_lib          : '1.0.2',
     ]
