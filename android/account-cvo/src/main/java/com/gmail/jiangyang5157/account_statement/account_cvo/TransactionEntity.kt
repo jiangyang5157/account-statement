@@ -52,7 +52,7 @@ data class TransactionEntity(
             typeOfSrc: Type?,
             context: JsonSerializationContext?
         ): JsonElement {
-            return MoneyDoubleTypeConverter().forward(money)?.let { JsonPrimitive(it) }
+            return MoneyDoubleConverter().forward(money)?.let { JsonPrimitive(it) }
                 ?: throw IllegalArgumentException("Cannot serialize $money to [JsonElement]")
         }
 
@@ -61,12 +61,12 @@ data class TransactionEntity(
             typeOfT: Type?,
             context: JsonDeserializationContext?
         ): Money {
-            return json?.asDouble?.let { MoneyDoubleTypeConverter().backward(it) }
-                ?: throw IllegalArgumentException("Cannot deserialize $json to [Money] as Double")
+            return json?.asDouble?.let { MoneyDoubleConverter().backward(it) }
+                ?: throw IllegalArgumentException("Cannot deserialize $json to [Money]")
         }
     }
 
-    class MoneyDoubleTypeConverter : Converter<Money, Double> {
+    class MoneyDoubleConverter : Converter<Money, Double> {
 
         @TypeConverter
         override fun backward(b: Double?): Money? = b?.let { Money(it) }
@@ -75,7 +75,7 @@ data class TransactionEntity(
         override fun forward(a: Money?): Double? = a?.amount?.toDouble()
     }
 
-    class DateLongTypeConverter : Converter<Date, Long> {
+    class DateLongConverter : Converter<Date, Long> {
 
         @TypeConverter
         override fun backward(b: Long?): Date? = b?.let { Date(it) }

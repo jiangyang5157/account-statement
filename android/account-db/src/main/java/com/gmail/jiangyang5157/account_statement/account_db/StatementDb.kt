@@ -15,8 +15,8 @@ import com.gmail.jiangyang5157.account_statement.account_cvo.TransactionEntity
 )
 @TypeConverters(
     value = [
-        TransactionEntity.MoneyDoubleTypeConverter::class,
-        TransactionEntity.DateLongTypeConverter::class
+        TransactionEntity.MoneyDoubleConverter::class,
+        TransactionEntity.DateLongConverter::class
     ]
 )
 abstract class StatementDb : RoomDatabase() {

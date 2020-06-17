@@ -1,11 +1,14 @@
-package com.gmail.jiangyang5157.account_statement.account.data.api
+package com.gmail.jiangyang5157.account_statement.account_service
 
 import androidx.lifecycle.LiveData
-import com.gmail.jiangyang5157.account_statement.account_cvo.StatementEntity
+import com.gmail.jiangyang5157.account_statement.account_service.dto.StatementDto
 import com.gmail.jiangyang5157.core.network.ApiResponse
 import okhttp3.*
 import retrofit2.http.GET
 
+/**
+ * No available service at this moment, using fake service to fit in
+ */
 interface StatementService {
 
     companion object {
@@ -13,7 +16,7 @@ interface StatementService {
     }
 
     @GET("get_account_statements.json")
-    fun fetchStatements(): LiveData<ApiResponse<List<StatementEntity>>>
+    fun fetchStatements(): LiveData<ApiResponse<List<StatementDto>>>
 }
 
 class StatementServiceInterceptor : Interceptor {
@@ -50,33 +53,33 @@ const val mock_get_account_statements = """
       "transactions": [
         {
           "accountName": "FakeAccount",
-          "date": "01/12/2019",
-          "money": "-10.00",
+          "date": "01/01/2020",
+          "money": -10.0,
           "description": "desc"
         },
         {
           "accountName": "FakeAccount",
-          "date": "01/12/2019",
-          "money": "10.00",
+          "date": "01/01/2020",
+          "money": 10.0,
           "description": "desc"
         }
       ]
     },
     {
       "account": {
-        "name": "FakeAccount2"
+        "name": "FakeAccount****"
       },
       "transactions": [
         {
-          "accountName": "FakeAccount2",
-          "date": "02/12/2019",
-          "money": "-10.00",
+          "accountName": "FakeAccount****",
+          "date": "02/01/2020",
+          "money": -10.0,
           "description": "desc"
         },
         {
-          "accountName": "FakeAccount2",
-          "date": "02/12/2019",
-          "money": "10.00",
+          "accountName": "FakeAccount****",
+          "date": "02/01/2020",
+          "money": 10.0,
           "description": "desc"
         }
       ]
