@@ -1,13 +1,14 @@
-package com.gmail.jiangyang5157.account_statement.account.data.repo
+package com.gmail.jiangyang5157.account_statement.account_repo
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.gmail.jiangyang5157.account_statement.account.data.api.StatementService
-import com.gmail.jiangyang5157.account_statement.account.data.db.StatementDao
-import com.gmail.jiangyang5157.account_statement.account.domain.repo.AccountRepository
 import com.gmail.jiangyang5157.account_statement.account_cvo.AccountEntity
 import com.gmail.jiangyang5157.account_statement.account_cvo.StatementEntity
 import com.gmail.jiangyang5157.account_statement.account_cvo.TransactionEntity
+import com.gmail.jiangyang5157.account_statement.account_db.StatementDao
+import com.gmail.jiangyang5157.account_statement.account_service.StatementService
+import com.gmail.jiangyang5157.account_statement.account_service.dto.StatementDto
+import com.gmail.jiangyang5157.account_statement.account_service.dto.StatementDtoConverter
 import com.gmail.jiangyang5157.core.data.NetworkBoundResource
 import com.gmail.jiangyang5157.core.data.Resource
 import com.gmail.jiangyang5157.core.network.ApiResponse
@@ -42,7 +43,7 @@ class DefaultAccountRepository @Inject constructor(
 
     override fun getStatements(): LiveData<Resource<List<StatementEntity>>> {
         return object :
-            NetworkBoundResource<List<StatementEntity>, List<StatementEntity>>(appExecutor) {
+            NetworkBoundResource<List<StatementEntity>, List<StatementDto>>(appExecutor) {
             override fun loadFromDb(): LiveData<List<StatementEntity>> {
                 return statementDao.findStatements()
             }
@@ -51,13 +52,16 @@ class DefaultAccountRepository @Inject constructor(
                 return data.isNullOrEmpty()
             }
 
-            override fun createCall(): LiveData<ApiResponse<List<StatementEntity>>> {
+            override fun createCall(): LiveData<ApiResponse<List<StatementDto>>> {
                 return statementService.fetchStatements()
             }
 
-            override fun saveCallResult(item: List<StatementEntity>) {
-                addAccounts(item.map { it.account })
-                addTransactions(item.flatMap { it.transactions })
+            override fun saveCallResult(item: List<StatementDto>) {
+                val statements: List<StatementEntity> = item.map {
+                    StatementDtoConverter().forward(it)!!
+                }
+                addAccounts(statements.map { it.account })
+                addTransactions(statements.flatMap { it.transactions })
             }
         }.asLiveData()
     }
