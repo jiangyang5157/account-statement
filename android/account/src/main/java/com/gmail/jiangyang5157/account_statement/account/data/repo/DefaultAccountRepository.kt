@@ -32,6 +32,10 @@ class DefaultAccountRepository @Inject constructor(
         statementDao.deleteAccounts(accounts)
     }
 
+    override fun deleteTransactions(transactions: List<TransactionEntity>) {
+        statementDao.deleteTransactions(transactions)
+    }
+
     override fun getStatements(): LiveData<Resource<List<StatementEntity>>> {
         return object :
             NetworkBoundResource<List<StatementEntity>, List<StatementEntity>>(appExecutor) {

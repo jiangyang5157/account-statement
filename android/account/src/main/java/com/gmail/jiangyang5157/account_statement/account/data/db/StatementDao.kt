@@ -10,13 +10,16 @@ import com.gmail.jiangyang5157.account_statement.account.domain.model.Transactio
 interface StatementDao {
 
     @Insert
-    fun insertAccounts(accountEntity: List<AccountEntity>)
+    fun insertAccounts(accounts: List<AccountEntity>)
 
     @Insert
-    fun insertTransactions(transactionEntity: List<TransactionEntity>)
+    fun insertTransactions(transactions: List<TransactionEntity>)
 
     @Delete
-    fun deleteAccounts(accountEntity: List<AccountEntity>)
+    fun deleteAccounts(accounts: List<AccountEntity>)
+
+    @Delete
+    fun deleteTransactions(transactions: List<TransactionEntity>)
 
     @Query("SELECT * from accounts")
     fun findAccounts(): LiveData<List<AccountEntity>>

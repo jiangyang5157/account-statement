@@ -53,21 +53,16 @@ dependencies {
   implementation libs.androidx_lifecycle_vm_ktx
   implementation libs.androidx_lifecycle_ext
   implementation libs.support_design
-  implementation libs.dagger
-  implementation libs.dagger_android
-  implementation libs.dagger_android_support
   implementation libs.timber
   implementation libs.retrofit
   implementation libs.retrofit_gson
   implementation libs.render_view
   implementation libs.core
   implementation libs.kit
+  implementation libs.adapter
 
   kapt libs.androidx_room_compiler
   kapt libs.androidx_lifecycle_compiler
-  kapt libs.dagger_compiler
-  kapt libs.dagger_android_processor
-  kapt libs.dagger_android_support
 
   testImplementation libs.junit
   testImplementation libs.androidx_core_testing

@@ -19,8 +19,10 @@ class AccountsFragment : Fragment(), RouterFragmentGuest<UriRoute> {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        // TODO: get statements and display
+
         fab.setOnClickListener {
-            // TODO add account into recycleview
+            // TODO: add statement
         }
     }
 }

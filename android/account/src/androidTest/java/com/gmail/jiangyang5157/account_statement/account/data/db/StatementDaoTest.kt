@@ -179,21 +179,13 @@ class StatementDaoTest {
                     date = DateStringConverter.stringToDate("1/12/2019")!!,
                     money = MoneyStringConverter.stringToMoney("-10")!!,
                     description = "desc"
-                )
-            )
-        )
-        db.statementDao().insertTransactions(
-            listOf(
+                ),
                 TransactionEntity(
                     accountName = "FakeAccount",
                     date = DateStringConverter.stringToDate("1/12/2019")!!,
                     money = MoneyStringConverter.stringToMoney("-10")!!,
                     description = "desc2"
-                )
-            )
-        )
-        db.statementDao().insertTransactions(
-            listOf(
+                ),
                 TransactionEntity(
                     accountName = "FakeAccount2",
                     date = DateStringConverter.stringToDate("1/12/2019")!!,
@@ -256,6 +248,65 @@ class StatementDaoTest {
     }
 
     @Test
+    fun test_deleteTransactions() {
+        db.statementDao().insertAccounts(
+            listOf(
+                AccountEntity(
+                    "FakeAccount"
+                ),
+                AccountEntity(
+                    "FakeAccount2"
+                )
+            )
+        )
+        db.statementDao().insertTransactions(
+            listOf(
+                TransactionEntity(
+                    accountName = "FakeAccount",
+                    date = DateStringConverter.stringToDate("1/12/2019")!!,
+                    money = MoneyStringConverter.stringToMoney("-10")!!,
+                    description = "desc"
+                ),
+                TransactionEntity(
+                    accountName = "FakeAccount",
+                    date = DateStringConverter.stringToDate("1/12/2019")!!,
+                    money = MoneyStringConverter.stringToMoney("-10")!!,
+                    description = "desc2"
+                ),
+                TransactionEntity(
+                    accountName = "FakeAccount2",
+                    date = DateStringConverter.stringToDate("1/12/2019")!!,
+                    money = MoneyStringConverter.stringToMoney("-10")!!,
+                    description = "desc"
+                )
+            )
+        )
+        Assert.assertEquals(3, db.statementDao().findTransactions().getOrAwaitValue().size)
+
+        db.statementDao().deleteTransactions(
+            listOf(
+                TransactionEntity(
+                    accountName = "FakeAccount",
+                    date = DateStringConverter.stringToDate("1/12/2019")!!,
+                    money = MoneyStringConverter.stringToMoney("-10")!!,
+                    description = "desc2"
+                ),
+                TransactionEntity(
+                    accountName = "FakeAccount2",
+                    date = DateStringConverter.stringToDate("1/12/2019")!!,
+                    money = MoneyStringConverter.stringToMoney("-10")!!,
+                    description = "desc"
+                )
+            )
+        )
+        Assert.assertEquals(1, db.statementDao().findTransactions().getOrAwaitValue().size)
+        Assert.assertEquals(
+            1,
+            db.statementDao().findTransactionsByAccountName("FakeAccount").getOrAwaitValue().size
+        )
+    }
+
+    @Test
     fun test_deleteAccount_whereAccountNotExist_abort() {
         db.statementDao().insertAccounts(listOf(
             AccountEntity(
@@ -292,21 +343,13 @@ class StatementDaoTest {
                     date = DateStringConverter.stringToDate("1/12/2019")!!,
                     money = MoneyStringConverter.stringToMoney("-10")!!,
                     description = "desc"
-                )
-            )
-        )
-        db.statementDao().insertTransactions(
-            listOf(
+                ),
                 TransactionEntity(
                     accountName = "FakeAccount",
                     date = DateStringConverter.stringToDate("1/12/2019")!!,
                     money = MoneyStringConverter.stringToMoney("-10")!!,
                     description = "desc2"
-                )
-            )
-        )
-        db.statementDao().insertTransactions(
-            listOf(
+                ),
                 TransactionEntity(
                     accountName = "FakeAccount2",
                     date = DateStringConverter.stringToDate("1/12/2019")!!,
