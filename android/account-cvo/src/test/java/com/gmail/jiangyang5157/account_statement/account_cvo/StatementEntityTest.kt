@@ -1,8 +1,9 @@
-package com.gmail.jiangyang5157.account_statement.account.domain.model
+package com.gmail.jiangyang5157.account_statement.account_cvo
 
-import com.gmail.jiangyang5157.account_statement.account.domain.adapter.DateStringConverter
-import com.gmail.jiangyang5157.account_statement.account.domain.adapter.MoneyStringConverter
+import com.gmail.jiangyang5157.account_statement.account_cvo.adapter.DateStringConverter
+import com.gmail.jiangyang5157.account_statement.account_cvo.adapter.MoneyStringConverter
 import com.gmail.jiangyang5157.core.ext.fromJson
+import com.gmail.jiangyang5157.kotlin_kit.utils.RegexUtils
 import com.google.gson.GsonBuilder
 import org.junit.Assert
 import org.junit.Test
@@ -14,19 +15,20 @@ class StatementEntityTest {
         val statement =
             StatementEntity(
                 account = AccountEntity(
-                    "FakeAccount"
+                    "FakeAccount",
+                    DateStringConverter(RegexUtils.DATE_MDYHMS).backward("Nov 15, 1994 12:45:26")!!
                 ),
                 transactions = listOf(
                     TransactionEntity(
                         accountName = "FakeAccount",
-                        date = DateStringConverter.stringToDate("1/12/2019")!!,
-                        money = MoneyStringConverter.stringToMoney("-10")!!,
+                        date = DateStringConverter(RegexUtils.DATE_DMY).backward("1/12/2019")!!,
+                        money = MoneyStringConverter().backward("-10")!!,
                         description = "desc"
                     ),
                     TransactionEntity(
                         accountName = "FakeAccount",
-                        date = DateStringConverter.stringToDate("1/12/2019")!!,
-                        money = MoneyStringConverter.stringToMoney("10")!!,
+                        date = DateStringConverter(RegexUtils.DATE_DMY).backward("1/12/2019")!!,
+                        money = MoneyStringConverter().backward("10")!!,
                         description = "desc"
                     )
                 )
@@ -34,7 +36,8 @@ class StatementEntityTest {
         val json = """
 {
   "account": {
-    "name": "FakeAccount"
+    "name": "FakeAccount",
+    "lastModifiedDate": "Nov 15, 1994 12:45:26"
   },
   "transactions": [
     {
@@ -62,19 +65,20 @@ class StatementEntityTest {
         val statement =
             StatementEntity(
                 account = AccountEntity(
-                    "FakeAccount"
+                    "FakeAccount",
+                    DateStringConverter(RegexUtils.DATE_MDYHMS).backward("Nov 15, 1994 12:45:26")!!
                 ),
                 transactions = listOf(
                     TransactionEntity(
                         accountName = "FakeAccount",
-                        date = DateStringConverter.stringToDate("1/12/2019")!!,
-                        money = MoneyStringConverter.stringToMoney("-10")!!,
+                        date = DateStringConverter(RegexUtils.DATE_DMY).backward("1/12/2019")!!,
+                        money = MoneyStringConverter().backward("-10")!!,
                         description = "desc"
                     ),
                     TransactionEntity(
                         accountName = "FakeAccount",
-                        date = DateStringConverter.stringToDate("1/12/2019")!!,
-                        money = MoneyStringConverter.stringToMoney("10")!!,
+                        date = DateStringConverter(RegexUtils.DATE_DMY).backward("1/12/2019")!!,
+                        money = MoneyStringConverter().backward("10")!!,
                         description = "desc"
                     )
                 )
@@ -82,7 +86,8 @@ class StatementEntityTest {
         val json = """
 {
   "account": {
-    "name": "FakeAccount"
+    "name": "FakeAccount",
+    "lastModifiedDate": "Nov 15, 1994 12:45:26"
   },
   "transactions": [
     {
