@@ -11,8 +11,8 @@ import com.gmail.jiangyang5157.android.router.fragment.FragmentRouter
 import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.HasAndroidInjector
-import javax.inject.Inject
 import kotlinx.android.synthetic.main.activity_home.*
+import javax.inject.Inject
 
 class HomeActivity : AppCompatActivity(), HasAndroidInjector,
     RouterFragmentActivityHost<UriRoute> {

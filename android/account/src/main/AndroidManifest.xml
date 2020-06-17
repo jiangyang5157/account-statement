@@ -1,2 +1,1 @@
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.gmail.jiangyang5157.account_statement.account" />
+<manifest package="com.gmail.jiangyang5157.account_statement.account" />

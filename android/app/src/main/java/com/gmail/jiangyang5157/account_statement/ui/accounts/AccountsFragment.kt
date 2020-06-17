@@ -1,7 +1,9 @@
 package com.gmail.jiangyang5157.account_statement.ui.accounts
 
 import android.os.Bundle
-import android.view.*
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.gmail.jiangyang5157.account_statement.R
 import com.gmail.jiangyang5157.account_statement.router.RouterFragmentGuest
