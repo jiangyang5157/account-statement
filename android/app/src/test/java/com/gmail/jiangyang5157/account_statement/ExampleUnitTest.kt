@@ -1,6 +1,6 @@
 package com.gmail.jiangyang5157.account_statement
 
-import org.junit.Assert.*
+import org.junit.Assert.assertEquals
 import org.junit.Test
 
 /**
