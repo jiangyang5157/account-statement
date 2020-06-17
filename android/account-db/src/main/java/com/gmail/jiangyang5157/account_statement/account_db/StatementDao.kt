@@ -1,4 +1,4 @@
-package com.gmail.jiangyang5157.account_statement.account.data.db
+package com.gmail.jiangyang5157.account_statement.account_db
 
 import androidx.lifecycle.LiveData
 import androidx.room.*

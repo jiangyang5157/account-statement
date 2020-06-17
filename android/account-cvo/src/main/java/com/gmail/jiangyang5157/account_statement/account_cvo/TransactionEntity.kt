@@ -4,6 +4,8 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.ForeignKey
 import androidx.room.ForeignKey.CASCADE
+import androidx.room.TypeConverter
+import com.gmail.jiangyang5157.kotlin_kit.data.model.Converter
 import com.gmail.jiangyang5157.kotlin_kit.data.model.finance.Money
 import com.google.gson.*
 import com.google.gson.annotations.JsonAdapter
@@ -50,7 +52,7 @@ data class TransactionEntity(
             typeOfSrc: Type?,
             context: JsonSerializationContext?
         ): JsonElement {
-            return money?.amount?.toDouble()?.let { JsonPrimitive(it) }
+            return MoneyDoubleTypeConverter().forward(money)?.let { JsonPrimitive(it) }
                 ?: throw IllegalArgumentException("Cannot serialize $money to [JsonElement]")
         }
 
@@ -59,8 +61,26 @@ data class TransactionEntity(
             typeOfT: Type?,
             context: JsonDeserializationContext?
         ): Money {
-            return json?.asDouble?.let { Money(it) }
+            return json?.asDouble?.let { MoneyDoubleTypeConverter().backward(it) }
                 ?: throw IllegalArgumentException("Cannot deserialize $json to [Money] as Double")
         }
+    }
+
+    class MoneyDoubleTypeConverter : Converter<Money, Double> {
+
+        @TypeConverter
+        override fun backward(b: Double?): Money? = b?.let { Money(it) }
+
+        @TypeConverter
+        override fun forward(a: Money?): Double? = a?.amount?.toDouble()
+    }
+
+    class DateLongTypeConverter : Converter<Date, Long> {
+
+        @TypeConverter
+        override fun backward(b: Long?): Date? = b?.let { Date(it) }
+
+        @TypeConverter
+        override fun forward(a: Date?): Long? = a?.time
     }
 }

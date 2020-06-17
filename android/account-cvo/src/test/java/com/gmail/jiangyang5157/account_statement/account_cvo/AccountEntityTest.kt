@@ -13,7 +13,7 @@ class AccountEntityTest {
         val account =
             AccountEntity(
                 "FakeAccount",
-                Date(1592391430000)
+                Date(1592391430000) // "Jun 17, 2020 10:57:10 PM"
             )
         val json = """
 {

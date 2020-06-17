@@ -43,15 +43,21 @@ dependencies {
   implementation fileTree(dir: 'libs', include: ['*.jar'])
   implementation libs.kotlin_stdlib_jdk8
   implementation libs.androidx_room
+  implementation libs.androidx_lifecycle_vm_ktx
+  implementation libs.androidx_lifecycle_ext
   implementation libs.core
   implementation libs.kit
   implementation libs.gson
+  implementation project(":account-cvo")
 
   kapt libs.androidx_room_compiler
+  kapt libs.androidx_lifecycle_compiler
 
   testImplementation libs.junit
 
   androidTestImplementation libs.androidx_junit
   androidTestImplementation libs.androidx_test_runner
   androidTestImplementation libs.androidx_test_rules
+  androidTestImplementation libs.androidx_core_testing
+  androidTestImplementation libs.core
 }
