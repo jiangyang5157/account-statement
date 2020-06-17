@@ -2,8 +2,8 @@ package com.gmail.jiangyang5157.account_statement.account.data.csv.adapter
 
 import com.gmail.jiangyang5157.account_statement.account.data.csv.model.CsvField
 import com.gmail.jiangyang5157.account_statement.account.data.csv.model.CsvTransaction
-import com.gmail.jiangyang5157.account_statement.account.domain.adapter.DateStringConverter
-import com.gmail.jiangyang5157.account_statement.account.domain.adapter.MoneyStringConverter
+import com.gmail.jiangyang5157.kotlin_kit.data.adapter.DateStringConverter
+import com.gmail.jiangyang5157.kotlin_kit.data.adapter.MoneyStringConverter
 import com.gmail.jiangyang5157.kotlin_kit.data.model.finance.Money
 import com.gmail.jiangyang5157.kotlin_kit.utils.RegexUtils
 import org.junit.Assert
@@ -19,13 +19,13 @@ class CsvTransactionEntityConverterTest {
             override var date: CsvField<Date>
                 get() = CsvField(
                     0,
-                    DateStringConverter.stringToDate("11/12/2015", RegexUtils.DATE_DMY)
+                    DateStringConverter(RegexUtils.DATE_DMY).backward("11/12/2015")
                 )
                 set(value) {}
             override var money: CsvField<Money>
                 get() = CsvField(
                     0,
-                    MoneyStringConverter.stringToMoney("1")
+                    MoneyStringConverter().backward("1")
                 )
                 set(value) {}
             override val description: String
@@ -54,7 +54,7 @@ class CsvTransactionEntityConverterTest {
                 override var money: CsvField<Money>
                     get() = CsvField(
                         0,
-                        MoneyStringConverter.stringToMoney("1")
+                        MoneyStringConverter().backward("1")
                     )
                     set(value) {}
                 override val description: String
@@ -65,7 +65,7 @@ class CsvTransactionEntityConverterTest {
                 override var date: CsvField<Date>
                     get() = CsvField(
                         0,
-                        DateStringConverter.stringToDate("11/12/2015", RegexUtils.DATE_DMY)
+                        DateStringConverter(RegexUtils.DATE_DMY).backward("11/12/2015")
                     )
                     set(value) {}
                 override var money: CsvField<Money>

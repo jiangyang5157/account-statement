@@ -1,18 +1,17 @@
-package com.gmail.jiangyang5157.account_statement.account_cvo.adapter
+package com.gmail.jiangyang5157.account_statement.account.domain.adapter
 
 import androidx.room.TypeConverter
+import com.gmail.jiangyang5157.kotlin_kit.data.adapter.DateLongConverter
 import java.util.*
 
-object DateLongTypeConverter {
+class DateLongTypeConverter {
 
     @TypeConverter
-    @JvmStatic
     fun dateToLong(src: Date?): Long? {
         return DateLongConverter().forward(src)
     }
 
     @TypeConverter
-    @JvmStatic
     fun longToDate(src: Long?): Date? {
         return DateLongConverter().backward(src)
     }

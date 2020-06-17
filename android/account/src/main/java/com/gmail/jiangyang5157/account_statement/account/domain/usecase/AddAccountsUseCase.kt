@@ -1,7 +1,7 @@
 package com.gmail.jiangyang5157.account_statement.account.domain.usecase
 
-import com.gmail.jiangyang5157.account_statement.account.domain.model.AccountEntity
 import com.gmail.jiangyang5157.account_statement.account.domain.repo.AccountRepository
+import com.gmail.jiangyang5157.account_statement.account_cvo.AccountEntity
 import javax.inject.Inject
 
 class AddAccountsUseCase @Inject constructor(
