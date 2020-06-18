@@ -45,10 +45,7 @@ dependencies {
   implementation libs.core
   implementation libs.kit
   implementation libs.gson
-  implementation project(":account-db")
-  implementation project(":account-service")
-
-  api project(":account-cvo")
+  implementation project(":account-cvo")
 
   testImplementation libs.junit
 
