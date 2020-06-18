@@ -46,8 +46,11 @@ dependencies {
   implementation libs.kit
   implementation libs.gson
   implementation libs.timber
+  implementation libs.render_view
+  implementation libs.adapter
   implementation project(":account-usecase")
   implementation project(":account-service")
+
   api project(":account-cvo")
 
   testImplementation libs.junit

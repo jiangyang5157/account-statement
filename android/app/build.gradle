@@ -48,8 +48,6 @@ dependencies {
   implementation libs.dagger
   implementation libs.dagger_android
   implementation libs.dagger_android_support
-  implementation libs.retrofit
-  implementation libs.retrofit_gson
   implementation libs.router
   implementation libs.kit
   implementation libs.core
