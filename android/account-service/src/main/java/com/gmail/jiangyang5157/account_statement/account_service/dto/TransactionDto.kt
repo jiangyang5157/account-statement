@@ -32,6 +32,7 @@ data class TransactionDto(
 
         private val pattern: String = RegexUtils.DATE_DMY
 
+        @Throws(IllegalArgumentException::class)
         override fun serialize(
             date: Date?,
             typeOfSrc: Type?,
@@ -41,6 +42,7 @@ data class TransactionDto(
                 ?: throw IllegalArgumentException("Cannot serialize $date to [JsonElement]")
         }
 
+        @Throws(IllegalArgumentException::class)
         override fun deserialize(
             json: JsonElement?,
             typeOfT: Type?,

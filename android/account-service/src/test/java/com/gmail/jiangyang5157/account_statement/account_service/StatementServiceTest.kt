@@ -23,9 +23,9 @@ class StatementServiceTest {
     private lateinit var statementService: StatementService
 
     @Before
-    fun init() {
+    fun initialize() {
         statementService = Retrofit.Builder()
-            .baseUrl(StatementService.baseUrl)
+            .baseUrl("https://www.google.com/")
             .client(
                 OkHttpClient.Builder()
                     .addInterceptor(StatementServiceInterceptor())

@@ -1,4 +1,4 @@
-apply plugin: 'com.android.application'
+apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
@@ -11,9 +11,9 @@ android {
     minSdkVersion configs.android.minSdk
     targetSdkVersion configs.android.targetSdk
     testInstrumentationRunner configs.testInstrumentationRunner
-    applicationId "com.gmail.jiangyang5157.account_statement"
     versionCode 1
     versionName "1.0"
+    consumerProguardFiles 'consumer-rules.pro'
   }
 
   compileOptions {
@@ -28,7 +28,7 @@ android {
   buildTypes {
     release {
       minifyEnabled false
-      proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+      proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
     }
   }
 
@@ -42,24 +42,15 @@ android {
 dependencies {
   implementation fileTree(dir: 'libs', include: ['*.jar'])
   implementation libs.kotlin_stdlib_jdk8
-  implementation libs.androidx_appcompat
-  implementation libs.androidx_constraintlayout
-  implementation libs.support_design
-  implementation libs.dagger
-  implementation libs.dagger_android
-  implementation libs.dagger_android_support
-  implementation libs.retrofit
-  implementation libs.retrofit_gson
-  implementation libs.router
-  implementation libs.kit
   implementation libs.core
-  implementation project(":feature-account")
-
-  kapt libs.dagger_compiler
-  kapt libs.dagger_android_processor
-  kapt libs.dagger_android_support
+  implementation libs.kit
+  implementation libs.gson
+  implementation project(":account-cvo")
+  implementation project(":account-db")
+  implementation project(":account-service")
 
   testImplementation libs.junit
 
   androidTestImplementation libs.androidx_junit
+  androidTestImplementation libs.androidx_test_runner
 }

@@ -3,20 +3,40 @@ package com.gmail.jiangyang5157.account_statement.account_service
 import androidx.lifecycle.LiveData
 import com.gmail.jiangyang5157.account_statement.account_service.dto.StatementDto
 import com.gmail.jiangyang5157.core.network.ApiResponse
+import com.gmail.jiangyang5157.core.network.LiveDataCallAdapterFactory
+import com.google.gson.GsonBuilder
 import okhttp3.*
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
 
-/**
- * No available service at this moment, using fake service to fit in
- */
 interface StatementService {
-
-    companion object {
-        const val baseUrl = "https://www.google.com/"
-    }
 
     @GET("get_account_statements.json")
     fun fetchStatements(): LiveData<ApiResponse<List<StatementDto>>>
+
+    class Builder {
+        /**
+         * No available service at this moment, using fake service to fit in
+         */
+        fun build(): StatementService {
+            return Retrofit.Builder()
+                .baseUrl("https://www.google.com/")
+                .client(
+                    OkHttpClient.Builder()
+                        .addInterceptor(StatementServiceInterceptor())
+                        .build()
+                )
+                .addCallAdapterFactory(LiveDataCallAdapterFactory())
+                .addConverterFactory(
+                    GsonConverterFactory.create(
+                        GsonBuilder().setLenient().create()
+                    )
+                )
+                .build()
+                .create(StatementService::class.java)
+        }
+    }
 }
 
 class StatementServiceInterceptor : Interceptor {

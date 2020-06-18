@@ -13,7 +13,7 @@ class TransactionDtoConverter : Converter<TransactionDto, TransactionEntity> {
                 it.money,
                 it.description
             )
-        } ?: throw IllegalArgumentException("Cannot convert $b to [TransactionDto]")
+        }
 
     override fun forward(a: TransactionDto?): TransactionEntity? =
         a?.let {
@@ -23,5 +23,5 @@ class TransactionDtoConverter : Converter<TransactionDto, TransactionEntity> {
                 it.money,
                 it.description
             )
-        } ?: throw IllegalArgumentException("Cannot convert $a to [TransactionEntity]")
+        }
 }

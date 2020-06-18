@@ -7,6 +7,7 @@ import com.gmail.jiangyang5157.account_statement.router.UriRoute
 import com.gmail.jiangyang5157.account_statement.ui.accounts.AccountsFragment
 import com.gmail.jiangyang5157.android.router.core.MultiRouter
 import com.gmail.jiangyang5157.android.router.fragment.FragmentRouter
+import com.gmail.jiangyang5157.core.util.AppExecutor
 import com.gmail.jiangyang5157.core.util.ViewModelFactory
 import com.gmail.jiangyang5157.kotlin_kit.data.model.Key
 import dagger.Binds
@@ -17,6 +18,12 @@ import javax.inject.Singleton
 
 @Module(includes = [MainAppInjection::class])
 class MainAppModule {
+
+    @Provides
+    @Singleton
+    fun provideAppExecutor(): AppExecutor {
+        return AppExecutor()
+    }
 
     @Provides
     @Singleton
@@ -47,6 +54,4 @@ abstract class MainAppInjection {
 
     @Binds
     abstract fun bindViewModelFactory(viewModelFactory: ViewModelFactory): ViewModelProvider.Factory
-
-
 }

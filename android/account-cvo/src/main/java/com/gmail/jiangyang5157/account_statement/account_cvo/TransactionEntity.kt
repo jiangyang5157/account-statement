@@ -47,6 +47,7 @@ data class TransactionEntity(
 ) {
     class MoneyDoubleJsonSerializer : JsonSerializer<Money>, JsonDeserializer<Money> {
 
+        @Throws(IllegalArgumentException::class)
         override fun serialize(
             money: Money?,
             typeOfSrc: Type?,
@@ -56,6 +57,7 @@ data class TransactionEntity(
                 ?: throw IllegalArgumentException("Cannot serialize $money to [JsonElement]")
         }
 
+        @Throws(IllegalArgumentException::class)
         override fun deserialize(
             json: JsonElement?,
             typeOfT: Type?,

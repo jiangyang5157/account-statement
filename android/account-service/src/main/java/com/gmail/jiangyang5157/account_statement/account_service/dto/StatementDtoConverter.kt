@@ -13,7 +13,7 @@ class StatementDtoConverter : Converter<StatementDto, StatementEntity> {
                     TransactionDtoConverter().backward(transaction)!!
                 }
             )
-        } ?: throw IllegalArgumentException("Cannot convert $b to [StatementDto]")
+        }
 
     override fun forward(a: StatementDto?): StatementEntity? =
         a?.let {
@@ -23,5 +23,5 @@ class StatementDtoConverter : Converter<StatementDto, StatementEntity> {
                     TransactionDtoConverter().forward(transaction)!!
                 }
             )
-        } ?: throw IllegalArgumentException("Cannot convert $a to [StatementEntity]")
+        }
 }

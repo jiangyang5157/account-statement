@@ -9,7 +9,7 @@ class AccountDtoConverter : Converter<AccountDto, AccountEntity> {
     override fun backward(b: AccountEntity?): AccountDto? =
         b?.let {
             AccountDto(it.name)
-        } ?: throw IllegalArgumentException("Cannot convert $b to [AccountDto]")
+        }
 
     override fun forward(a: AccountDto?): AccountEntity? =
         a?.let {
@@ -17,6 +17,6 @@ class AccountDtoConverter : Converter<AccountDto, AccountEntity> {
                 it.name,
                 Date()
             )
-        } ?: throw IllegalArgumentException("Cannot convert $a to [AccountEntity]")
+        }
 }
 

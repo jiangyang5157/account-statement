@@ -3,6 +3,5 @@ include ':app'
 include ':account-cvo'
 include ':account-db'
 include ':account-service'
-include ':account-repo'
-include ':bank'
-include ':account' // TODO
+include ':account-usecase'
+include ':feature-account'
