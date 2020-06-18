@@ -41,13 +41,13 @@ android {
 
 dependencies {
   implementation fileTree(dir: 'libs', include: ['*.jar'])
-  implementation libs.kotlin_stdlib_jdk8
-  implementation libs.core
-  implementation libs.kit
+  implementation libs.kotlin_jdk8
   implementation libs.gson
   implementation libs.timber
-  implementation libs.render_view
+  implementation libs.core
+  implementation libs.kit
   implementation libs.adapter
+  implementation libs.render_view
   implementation project(":account-usecase")
   implementation project(":account-service")
 
@@ -55,6 +55,6 @@ dependencies {
 
   testImplementation libs.junit
 
-  androidTestImplementation libs.androidx_junit
-  androidTestImplementation libs.androidx_test_runner
+  androidTestImplementation libs.android_junit
+  androidTestImplementation libs.test_runner
 }

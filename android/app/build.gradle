@@ -41,16 +41,15 @@ android {
 
 dependencies {
   implementation fileTree(dir: 'libs', include: ['*.jar'])
-  implementation libs.kotlin_stdlib_jdk8
-  implementation libs.androidx_appcompat
-  implementation libs.androidx_constraintlayout
-  implementation libs.support_design
-  implementation libs.dagger
-  implementation libs.dagger_android
-  implementation libs.dagger_android_support
+  implementation libs.kotlin_jdk8
+  implementation libs.appcompat
+  implementation libs.constraintlayout
   implementation libs.router
   implementation libs.kit
   implementation libs.core
+  implementation libs.dagger
+  implementation libs.dagger_android
+  implementation libs.dagger_android_support
   implementation project(":feature-account")
 
   kapt libs.dagger_compiler
@@ -59,5 +58,5 @@ dependencies {
 
   testImplementation libs.junit
 
-  androidTestImplementation libs.androidx_junit
+  androidTestImplementation libs.android_junit
 }
