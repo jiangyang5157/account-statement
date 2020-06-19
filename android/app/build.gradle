@@ -2,6 +2,7 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
+apply plugin: 'dagger.hilt.android.plugin'
 
 android {
   compileSdkVersion configs.android.compileSdk
@@ -43,20 +44,25 @@ dependencies {
   implementation fileTree(dir: 'libs', include: ['*.jar'])
   implementation libs.kotlin_jdk8
   implementation libs.appcompat
+  implementation libs.support_design
+  implementation libs.room
   implementation libs.constraintlayout
+  implementation libs.lifecycle_ext
+  implementation libs.navigation_fragment_ktx
+  implementation libs.navigation_ui_ktx
   implementation libs.router
   implementation libs.kit
   implementation libs.core
-  implementation libs.dagger
-  implementation libs.dagger_android
-  implementation libs.dagger_android_support
+  implementation libs.dagger_hilt
+  implementation libs.hilt_lifecycle_vm
   implementation project(":feature-account")
+  implementation project(":account-db") // TODO dep solution
 
-  kapt libs.dagger_compiler
-  kapt libs.dagger_android_processor
-  kapt libs.dagger_android_support
+  kapt libs.dagger_hilt_compiler
+  kapt libs.hilt_compiler
 
   testImplementation libs.junit
 
   androidTestImplementation libs.android_junit
+  androidTestImplementation libs.test_runner
 }

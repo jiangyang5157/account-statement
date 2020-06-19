@@ -43,7 +43,6 @@ dependencies {
   implementation fileTree(dir: 'libs', include: ['*.jar'])
   implementation libs.kotlin_jdk8
   implementation libs.room
-  implementation libs.lifecycle_vm_ktx
   implementation libs.lifecycle_ext
   implementation libs.core
   implementation libs.kit
@@ -51,7 +50,6 @@ dependencies {
   implementation project(":account-cvo")
 
   kapt libs.room_compiler
-  kapt libs.lifecycle_compiler
 
   testImplementation libs.junit
 

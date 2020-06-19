@@ -2,25 +2,20 @@ package com.gmail.jiangyang5157.account_statement
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import com.gmail.jiangyang5157.account_statement.account_db.StatementDb
 import com.gmail.jiangyang5157.account_statement.router.RouterFragmentActivityHost
 import com.gmail.jiangyang5157.account_statement.router.UriRoute
 import com.gmail.jiangyang5157.android.router.core.MultiRouter
 import com.gmail.jiangyang5157.android.router.core.clear
 import com.gmail.jiangyang5157.android.router.core.push
 import com.gmail.jiangyang5157.android.router.fragment.FragmentRouter
-import dagger.android.AndroidInjector
-import dagger.android.DispatchingAndroidInjector
-import dagger.android.HasAndroidInjector
 import kotlinx.android.synthetic.main.activity_home.*
 import javax.inject.Inject
 
-class HomeActivity : AppCompatActivity(), HasAndroidInjector,
-    RouterFragmentActivityHost<UriRoute> {
+class HomeActivity : AppCompatActivity(), RouterFragmentActivityHost<UriRoute> {
 
     @Inject
-    lateinit var androidInjector: DispatchingAndroidInjector<Any>
-
-    override fun androidInjector(): AndroidInjector<Any> = androidInjector
+    lateinit var statementDb: StatementDb
 
     @Inject
     lateinit var multiRouter: MultiRouter<String, UriRoute>
@@ -43,5 +38,11 @@ class HomeActivity : AppCompatActivity(), HasAndroidInjector,
 
     override fun onBackPressed() {
         router.popRetainRootImmediateOrFinish()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        // TODO close solution
+        statementDb.close()
     }
 }

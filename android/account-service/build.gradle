@@ -42,15 +42,12 @@ android {
 dependencies {
   implementation fileTree(dir: 'libs', include: ['*.jar'])
   implementation libs.kotlin_jdk8
-  implementation libs.lifecycle_vm_ktx
   implementation libs.lifecycle_ext
   implementation libs.core
   implementation libs.kit
   implementation libs.retrofit
   implementation libs.retrofit_gson
   implementation project(":account-cvo")
-
-  kapt libs.lifecycle_compiler
 
   testImplementation libs.junit
   testImplementation libs.core_testing

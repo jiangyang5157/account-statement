@@ -2,6 +2,7 @@ apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
+apply plugin: 'dagger.hilt.android.plugin'
 
 android {
   compileSdkVersion configs.android.compileSdk
@@ -42,18 +43,24 @@ android {
 dependencies {
   implementation fileTree(dir: 'libs', include: ['*.jar'])
   implementation libs.kotlin_jdk8
+  implementation libs.room
   implementation libs.gson
   implementation libs.timber
   implementation libs.core
   implementation libs.kit
   implementation libs.adapter
   implementation libs.render_view
-  implementation project(":account-usecase")
+  implementation libs.dagger_hilt
+  implementation libs.hilt_lifecycle_vm
   implementation project(":account-service")
+  implementation project(":account-db")
+  implementation project(":account-usecase")
 
   api project(":account-cvo")
 
   testImplementation libs.junit
+  kapt libs.dagger_hilt_compiler
+  kapt libs.hilt_compiler
 
   androidTestImplementation libs.android_junit
   androidTestImplementation libs.test_runner
