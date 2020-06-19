@@ -1,6 +1,6 @@
 package com.gmail.jiangyang5157.account_statement.feature_account
 
-import android.app.Application
+import android.content.Context
 import com.gmail.jiangyang5157.account_statement.account_db.StatementDao
 import com.gmail.jiangyang5157.account_statement.account_db.StatementDb
 import com.gmail.jiangyang5157.account_statement.account_service.StatementService
@@ -10,11 +10,10 @@ import dagger.Binds
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
-import dagger.hilt.android.components.ActivityComponent
 import dagger.hilt.android.components.ActivityRetainedComponent
 import dagger.hilt.android.components.ApplicationComponent
+import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.android.scopes.ActivityRetainedScoped
-import dagger.hilt.android.scopes.ActivityScoped
 import javax.inject.Singleton
 
 @InstallIn(ApplicationComponent::class)
@@ -28,18 +27,17 @@ object AccountServiceModule {
     }
 }
 
-@InstallIn(ActivityComponent::class)
+@InstallIn(ApplicationComponent::class)
 @Module
 object AccountDbModule {
 
-    @ActivityScoped
+    @Singleton
     @Provides
-    fun provideStatementDb(application: Application): StatementDb {
+    fun provideStatementDb(@ApplicationContext appContext: Context): StatementDb {
         // TODO close solution
-        return StatementDb.Builder().build(application.applicationContext)
+        return StatementDb.Builder().build(appContext)
     }
 
-    @ActivityScoped
     @Provides
     fun provideStatementDao(db: StatementDb): StatementDao {
         return db.statementDao()

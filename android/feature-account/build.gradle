@@ -46,17 +46,16 @@ dependencies {
   implementation libs.room
   implementation libs.gson
   implementation libs.timber
-  implementation libs.core
   implementation libs.kit
+  implementation libs.core
   implementation libs.adapter
   implementation libs.render_view
   implementation libs.dagger_hilt
   implementation libs.hilt_lifecycle_vm
-  implementation project(":account-service")
+  implementation project(":account-cvo")
   implementation project(":account-db")
+  implementation project(":account-service")
   implementation project(":account-usecase")
-
-  api project(":account-cvo")
 
   testImplementation libs.junit
   kapt libs.dagger_hilt_compiler

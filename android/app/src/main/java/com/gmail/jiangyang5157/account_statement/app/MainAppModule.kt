@@ -18,15 +18,15 @@ import javax.inject.Singleton
 @Module
 object MainAppModule {
 
-    @Provides
     @Singleton
+    @Provides
     fun provideAppExecutor(): AppExecutor {
         return AppExecutor()
     }
 
-    // TODO sep router
-    @Provides
+    // TODO sep solution
     @Singleton
+    @Provides
     fun provideRouter(): MultiRouter<String, UriRoute> = MultiRouter {
         when (it) {
             HomeActivity::class.java.name -> {
