@@ -12,13 +12,11 @@ import com.gmail.jiangyang5157.account_statement.router.RouterFragmentGuest
 import com.gmail.jiangyang5157.account_statement.router.UriRoute
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_accounts.*
-import javax.inject.Inject
 
 @AndroidEntryPoint
 class AccountsFragment : Fragment(), RouterFragmentGuest<UriRoute> {
 
-    @Inject
-    lateinit var accountsViewModel: AccountsViewModel by viewModels()
+    private val accountsViewModel: AccountsViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
