@@ -22,23 +22,33 @@ class DefaultStatementRepository @Inject constructor(
 ) : StatementRepository {
 
     override fun addAccounts(accounts: List<AccountEntity>) {
-        statementDao.insertAccounts(accounts)
+        appExecutor.diskIO.execute {
+            statementDao.insertAccounts(accounts)
+        }
     }
 
     override fun addTransactions(transactions: List<TransactionEntity>) {
-        statementDao.insertTransactions(transactions)
+        appExecutor.diskIO.execute {
+            statementDao.insertTransactions(transactions)
+        }
     }
 
     override fun deleteAccounts(accounts: List<AccountEntity>) {
-        statementDao.deleteAccounts(accounts)
+        appExecutor.diskIO.execute {
+            statementDao.deleteAccounts(accounts)
+        }
     }
 
     override fun deleteTransactions(transactions: List<TransactionEntity>) {
-        statementDao.deleteTransactions(transactions)
+        appExecutor.diskIO.execute {
+            statementDao.deleteTransactions(transactions)
+        }
     }
 
     override fun updateAccounts(accounts: List<AccountEntity>) {
-        statementDao.updateAccounts(accounts)
+        appExecutor.diskIO.execute {
+            statementDao.updateAccounts(accounts)
+        }
     }
 
     override fun getStatements(): LiveData<Resource<List<StatementEntity>>> {
