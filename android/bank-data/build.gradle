@@ -46,8 +46,8 @@ dependencies {
   implementation libs.lifecycle_ext
   implementation libs.retrofit
   implementation libs.retrofit_gson
-  implementation libs.core
   implementation libs.kit
+  implementation libs.core
   implementation project(":bank-domain")
 
   kapt libs.room_compiler

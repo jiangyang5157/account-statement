@@ -25,7 +25,6 @@ abstract class StatementDb : RoomDatabase() {
 
     abstract fun statementDao(): StatementDao
 
-    // TODO remove
     class Builder {
         fun build(applicationContext: Context): StatementDb {
             return Room.databaseBuilder(

@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <com.gmail.jiangyang5157.account_statement.feature_account.ui.AccountsRecycleView
+    <com.gmail.jiangyang5157.account_statement.bank_presentation.ui.AccountsRecycleView
         android:id="@+id/rv_accounts"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

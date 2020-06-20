@@ -2,6 +2,7 @@ apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
+apply plugin: 'dagger.hilt.android.plugin'
 
 android {
   compileSdkVersion configs.android.compileSdk
@@ -44,10 +45,19 @@ dependencies {
   implementation libs.kotlin_jdk8
   implementation libs.room
   implementation libs.gson
-  implementation libs.core
+  implementation libs.adapter
+  implementation libs.render_view
+  implementation libs.dagger_hilt
+  implementation libs.hilt_lifecycle_vm
+  implementation libs.timber
   implementation libs.kit
+  implementation libs.core
+  implementation project(":bank-domain")
+  implementation project(":bank-data")
 
   kapt libs.room_compiler
+  kapt libs.dagger_hilt_compiler
+  kapt libs.hilt_compiler
 
   testImplementation libs.junit
 

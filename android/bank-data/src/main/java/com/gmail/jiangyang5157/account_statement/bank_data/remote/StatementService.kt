@@ -15,7 +15,6 @@ interface StatementService {
     @GET("get_statements.json")
     fun fetchStatements(): LiveData<ApiResponse<List<StatementDto>>>
 
-    // TODO remove
     class Builder {
         /**
          * No available service at this moment, using fake service to fit in
