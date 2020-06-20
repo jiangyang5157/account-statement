@@ -2,9 +2,9 @@ package com.gmail.jiangyang5157.account_statement
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import com.gmail.jiangyang5157.account_statement.router.HomeRouter
 import com.gmail.jiangyang5157.account_statement.router.RouterFragmentActivityHost
 import com.gmail.jiangyang5157.account_statement.router.UriRoute
-import com.gmail.jiangyang5157.android.router.core.MultiRouter
 import com.gmail.jiangyang5157.android.router.core.clear
 import com.gmail.jiangyang5157.android.router.core.push
 import com.gmail.jiangyang5157.android.router.fragment.FragmentRouter
@@ -15,11 +15,9 @@ import javax.inject.Inject
 @AndroidEntryPoint
 class HomeActivity : AppCompatActivity(), RouterFragmentActivityHost<UriRoute> {
 
+    @HomeRouter
     @Inject
-    lateinit var multiRouter: MultiRouter<String, UriRoute>
-
-    override val router: FragmentRouter<UriRoute>
-        get() = multiRouter[HomeActivity::class.java.name] as FragmentRouter<UriRoute>
+    override lateinit var router: FragmentRouter<UriRoute>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
