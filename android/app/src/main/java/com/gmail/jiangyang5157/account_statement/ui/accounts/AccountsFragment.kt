@@ -7,8 +7,8 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.gmail.jiangyang5157.account_statement.R
-import com.gmail.jiangyang5157.account_statement.account_cvo.StatementEntity
 import com.gmail.jiangyang5157.account_statement.feature_account.ui.binding.AccountItem
 import com.gmail.jiangyang5157.account_statement.feature_account.vm.AccountsViewModel
 import com.gmail.jiangyang5157.account_statement.router.RouterFragmentGuest
@@ -32,16 +32,14 @@ class AccountsFragment : Fragment(), RouterFragmentGuest<UriRoute> {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // TODO: get statements and display
+        rv_accounts.layoutManager = LinearLayoutManager(context)
         rv_accounts.init()
-
-        fab.setOnClickListener {
-            // TODO: add statement
-            accountsViewModel.getStatements().observe(viewLifecycleOwner,
-                Observer { data ->
-                    when (data.status) {
-                        Status.SUCCESS -> {
-                            rv_accounts.addItems(data.data!!.map {
+        accountsViewModel.getStatements().observe(viewLifecycleOwner,
+            Observer { resource ->
+                when (resource.status) {
+                    Status.SUCCESS -> {
+                        resource.data?.run {
+                            rv_accounts.addItems(this.map {
                                 AccountItem(
                                     it.account.name,
                                     Date(),
@@ -49,9 +47,21 @@ class AccountsFragment : Fragment(), RouterFragmentGuest<UriRoute> {
                                 )
                             })
                         }
-                        else -> {}
+                    }
+                    else -> {
                     }
                 }
+            }
+        )
+
+        fab.setOnClickListener {
+            // TODO add statement flow
+            rv_accounts.addItem(
+                AccountItem(
+                    "new statement",
+                    Date(),
+                    0
+                )
             )
         }
     }
