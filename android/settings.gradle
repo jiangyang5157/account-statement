@@ -1,8 +1,10 @@
 rootProject.name='account-statement'
 include ':app'
-include ':bank'
-include ':account-cvo'
-include ':account-db'
-include ':account-service'
-include ':account-usecase'
-include ':feature-account'
+include ':bank-domain'
+include ':bank-data'
+include ':bank-presentation'
+include ':account-cvo' // TODO remove
+include ':account-db' // TODO remove
+include ':account-service' // TODO remove
+include ':account-usecase' // TODO remove
+include ':feature-account' // TODO remove
