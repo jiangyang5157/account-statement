@@ -1,5 +1,6 @@
 rootProject.name='account-statement'
 include ':app'
+include ':bank'
 include ':account-cvo'
 include ':account-db'
 include ':account-service'
