@@ -21,6 +21,7 @@ class StatementItemViewBinder :
         holder.tvName.text = item.statement.account.name
         holder.tvLastModifiedDate.text = item.statement.account.lastModifiedDate.toString()
         holder.tvTransactionCount.text = item.statement.transactions.size.toString()
+        holder.itemView.setOnClickListener(item.onClickListener)
     }
 
     override fun onCreateViewHolder(inflater: LayoutInflater, parent: ViewGroup): ViewHolder {

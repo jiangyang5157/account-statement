@@ -1,6 +1,7 @@
 package com.gmail.jiangyang5157.account_statement.ui.statement
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -44,7 +45,9 @@ class StatementsFragment : Fragment(), RouterFragmentGuest<UriRoute> {
                             rv_statements.addItems(this.map {
                                 StatementItem(
                                     it,
-                                    null
+                                    onClickListener = View.OnClickListener {
+                                        Log.d("####", "clicked")
+                                    }
                                 )
                             })
                         }

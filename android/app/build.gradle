@@ -43,7 +43,6 @@ android {
 dependencies {
   implementation fileTree(dir: 'libs', include: ['*.jar'])
   implementation libs.kotlin_jdk8
-  implementation libs.material
   implementation libs.appcompat
   implementation libs.fragment_ext
   implementation libs.support_design
