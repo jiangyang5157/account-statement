@@ -43,14 +43,21 @@ dependencies {
   implementation fileTree(dir: 'libs', include: ['*.jar'])
   implementation libs.kotlin_jdk8
   implementation libs.room
-  implementation libs.gson
+  implementation libs.lifecycle_ext
+  implementation libs.retrofit
+  implementation libs.retrofit_gson
   implementation libs.core
   implementation libs.kit
+  implementation project(":bank-domain")
 
   kapt libs.room_compiler
 
   testImplementation libs.junit
+  testImplementation libs.core_testing
+  testImplementation libs.core
 
   androidTestImplementation libs.android_junit
   androidTestImplementation libs.test_runner
+  androidTestImplementation libs.core_testing
+  androidTestImplementation libs.core
 }
