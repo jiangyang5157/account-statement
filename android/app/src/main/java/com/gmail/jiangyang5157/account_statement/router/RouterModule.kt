@@ -1,6 +1,6 @@
 package com.gmail.jiangyang5157.account_statement.router
 
-import com.gmail.jiangyang5157.account_statement.ui.accounts.AccountsFragment
+import com.gmail.jiangyang5157.account_statement.ui.statement.StatementsFragment
 import com.gmail.jiangyang5157.android.router.fragment.FragmentRouter
 import com.gmail.jiangyang5157.kotlin_kit.data.model.Key
 import dagger.Module
@@ -20,13 +20,13 @@ object RouterModule {
     @HomeRouter
     @ActivityScoped
     @Provides
-    fun provideHomeActivityRouter(): FragmentRouter<UriRoute> =
+    fun provideHomeRouter(): FragmentRouter<UriRoute> =
         FragmentRouter {
             transition {
                 register(DefaultFragmentTransition())
             }
             fragment {
-                map(Key("app://account-statement/accounts")) { AccountsFragment::class }
+                map(Key("app://account-statement/statements")) { StatementsFragment::class }
             }
         }
 }

@@ -48,7 +48,7 @@ dependencies {
   implementation libs.retrofit_gson
   implementation libs.kit
   implementation libs.core
-  implementation project(":bank-domain")
+  api project(":bank-domain")
 
   kapt libs.room_compiler
 

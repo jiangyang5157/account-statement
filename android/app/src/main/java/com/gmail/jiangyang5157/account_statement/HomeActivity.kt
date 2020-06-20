@@ -26,7 +26,7 @@ class HomeActivity : AppCompatActivity(), RouterFragmentActivityHost<UriRoute> {
 
         if (null == savedInstanceState) {
             router {
-                clear() push UriRoute("app://account-statement/accounts")
+                clear() push UriRoute("app://account-statement/statements")
             }
         }
         router.setup(savedInstanceState, R.id.content_router)

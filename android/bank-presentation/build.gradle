@@ -52,8 +52,7 @@ dependencies {
   implementation libs.timber
   implementation libs.kit
   implementation libs.core
-  implementation project(":bank-domain")
-  implementation project(":bank-data")
+  api project(":bank-data")
 
   kapt libs.room_compiler
   kapt libs.dagger_hilt_compiler

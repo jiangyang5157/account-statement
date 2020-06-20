@@ -1,4 +1,4 @@
-package com.gmail.jiangyang5157.account_statement.feature_account.ui
+package com.gmail.jiangyang5157.account_statement.bank_presentation.ui
 
 import android.content.Context
 import android.graphics.Canvas
@@ -12,7 +12,7 @@ import com.gmail.jiangyang5157.android.widget.RenderView
 import com.gmail.jiangyang5157.kotlin_kit.render.Renderable
 import timber.log.Timber
 
-class StatisticsWidget : RenderView, Renderable<Canvas> {
+class VisualizationWidget : RenderView, Renderable<Canvas> {
 
     // TODO
     private var particle: DefaultParticle? = null

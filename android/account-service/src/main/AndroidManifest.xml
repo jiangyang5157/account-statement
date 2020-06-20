@@ -1,6 +1,0 @@
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.gmail.jiangyang5157.account_statement.account_service">
-
-    <uses-permission android:name="android.permission.INTERNET" />
-
-</manifest>
