@@ -23,7 +23,6 @@ class HomeActivity : AppCompatActivity(), RouterFragmentActivityHost<UriRoute> {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
         setSupportActionBar(toolbar)
-        toolbar.setNavigationOnClickListener { router.popRetainRootImmediateOrFinish() }
 
         if (null == savedInstanceState) {
             router {

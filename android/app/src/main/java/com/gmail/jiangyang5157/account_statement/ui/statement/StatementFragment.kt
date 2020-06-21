@@ -2,6 +2,7 @@ package com.gmail.jiangyang5157.account_statement.ui.statement
 
 import android.os.Bundle
 import android.view.*
+import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import com.gmail.jiangyang5157.account_statement.R
 import com.gmail.jiangyang5157.account_statement.bank_domain.entity.TransactionEntity
@@ -70,6 +71,17 @@ class StatementFragment : Fragment(), RouterFragmentGuest<UriRoute> {
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.menu_statement, menu)
+
+        val searchView = menu.findItem(R.id.action_search).actionView as SearchView
+        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                return false
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                return true
+            }
+        })
         super.onCreateOptionsMenu(menu, inflater)
     }
 

@@ -53,8 +53,8 @@ class StatementsFragment : Fragment(), RouterFragmentGuest<UriRoute> {
                                         )
                                     }
                                 )
-                            }.sortedBy {
-                                it.statement.account.name
+                            }.sortedByDescending {
+                                it.statement.account.lastModifiedDate
                             })
                         }
                     }
