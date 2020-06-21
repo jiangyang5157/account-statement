@@ -78,7 +78,6 @@ class StatementsFragment : Fragment(), RouterFragmentGuest<UriRoute> {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.action_add -> {
-                rv_statements.getItems()
                 router push UriRoute(
                     "app://account-statement/add-statement" +
                         "?account-names=${Gson().toJson(statementItems.map {
