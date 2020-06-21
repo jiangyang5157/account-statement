@@ -48,6 +48,8 @@ class StatementsFragment : Fragment(), RouterFragmentGuest<UriRoute> {
                                         )
                                     }
                                 )
+                            }.sortedBy {
+                                it.statement.account.name
                             })
                         }
                     }

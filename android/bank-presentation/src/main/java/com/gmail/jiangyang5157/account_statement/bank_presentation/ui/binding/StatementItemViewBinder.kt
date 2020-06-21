@@ -21,9 +21,8 @@ class StatementItemViewBinder :
 
     override fun onBindViewHolder(holder: ViewHolder, item: StatementItem) {
         holder.tvName.text = item.statement.account.name
-        holder.tvLastModifiedDate.text =
-            "${TransactionDto.DateStringConverter(RegexUtils.DATE_DMY)
-                .forward(item.statement.account.lastModifiedDate)}"
+        holder.tvLastModifiedDate.text = "${TransactionDto.DateStringConverter(RegexUtils.DATE_DMY)
+            .forward(item.statement.account.lastModifiedDate)}"
         holder.tvTransactionCount.text =
             "Transactions: ${item.statement.transactions.size}"
         holder.itemView.setOnClickListener(item.onClickListener)

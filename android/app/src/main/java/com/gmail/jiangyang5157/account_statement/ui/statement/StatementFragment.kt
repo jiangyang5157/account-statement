@@ -10,6 +10,7 @@ import com.gmail.jiangyang5157.account_statement.bank_domain.entity.TransactionE
 import com.gmail.jiangyang5157.account_statement.bank_presentation.ui.binding.SpendItem
 import com.gmail.jiangyang5157.account_statement.router.RouterFragmentGuest
 import com.gmail.jiangyang5157.account_statement.router.UriRoute
+import com.gmail.jiangyang5157.android.router.core.push
 import com.gmail.jiangyang5157.android.router.core.route
 import com.gmail.jiangyang5157.core.ext.fromJson
 import com.gmail.jiangyang5157.kotlin_kit.data.model.finance.Money
@@ -46,7 +47,18 @@ class StatementFragment : Fragment(), RouterFragmentGuest<UriRoute> {
         }
 
         rv_spend.init()
-        rv_spend.addItems(map.map { SpendItem(it.key, it.value) }.sortedBy {
+        rv_spend.addItems(map.map { entry ->
+            SpendItem(
+                entry.key,
+                entry.value,
+                View.OnClickListener {
+                    router push UriRoute(
+                        "app://account-statement/transactions" +
+                            "?transactions=${Gson().toJson(transactions.filter { it.description == entry.key })}"
+                    )
+                }
+            )
+        }.sortedBy {
             it.spend.amount
         })
     }
