@@ -25,7 +25,6 @@ abstract class StatementRepositoryModule {
     abstract fun bindStatementRepository(repository: DefaultStatementRepository): StatementRepository
 }
 
-
 @InstallIn(ApplicationComponent::class)
 @Module
 object StatementDbModule {

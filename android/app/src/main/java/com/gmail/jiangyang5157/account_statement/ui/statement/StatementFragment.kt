@@ -27,6 +27,8 @@ class StatementFragment : Fragment(), RouterFragmentGuest<UriRoute> {
         } ?: emptyList()
     }
 
+    private val spendItems = mutableListOf<SpendItem>()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setHasOptionsMenu(true)
@@ -51,9 +53,7 @@ class StatementFragment : Fragment(), RouterFragmentGuest<UriRoute> {
                 previous + money
             } ?: let { money }
         }
-
-        rv_spend.init()
-        rv_spend.addItems(map.map { entry ->
+        spendItems.addAll(map.map { entry ->
             SpendItem(
                 entry.key,
                 entry.value,
@@ -64,7 +64,10 @@ class StatementFragment : Fragment(), RouterFragmentGuest<UriRoute> {
                     )
                 }
             )
-        }.sortedBy {
+        })
+
+        rv_spend.init()
+        rv_spend.addItems(spendItems.sortedBy {
             it.spend.amount
         })
     }
@@ -79,6 +82,15 @@ class StatementFragment : Fragment(), RouterFragmentGuest<UriRoute> {
             }
 
             override fun onQueryTextChange(newText: String?): Boolean {
+                rv_spend.updateItems(
+                    newText?.let { keyword ->
+                        spendItems.filter { it.description.contains(keyword, true) }.sortedBy {
+                            it.spend.amount
+                        }
+                    } ?: spendItems.sortedBy {
+                        it.spend.amount
+                    }
+                )
                 return true
             }
         })

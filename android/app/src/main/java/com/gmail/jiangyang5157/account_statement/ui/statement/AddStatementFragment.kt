@@ -19,7 +19,10 @@ import com.gmail.jiangyang5157.account_statement.bank_presentation.vm.StatementV
 import com.gmail.jiangyang5157.account_statement.router.RouterFragmentGuest
 import com.gmail.jiangyang5157.account_statement.router.UriRoute
 import com.gmail.jiangyang5157.android.router.core.pop
+import com.gmail.jiangyang5157.android.router.core.route
+import com.gmail.jiangyang5157.core.ext.fromJson
 import com.google.android.material.snackbar.Snackbar
+import com.google.gson.Gson
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_add_statement.*
 import java.io.FileNotFoundException
@@ -27,6 +30,13 @@ import java.util.*
 
 @AndroidEntryPoint
 class AddStatementFragment : Fragment(), RouterFragmentGuest<UriRoute> {
+
+    private val route: UriRoute by route()
+    private val accountNames by lazy {
+        route.query("account-names")?.let {
+            Gson().fromJson<List<String>>(it)
+        } ?: emptyList()
+    }
 
     private val statementViewModel: StatementViewModel by viewModels()
 
@@ -69,7 +79,6 @@ class AddStatementFragment : Fragment(), RouterFragmentGuest<UriRoute> {
         }
     }
 
-
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.menu_add_statement, menu)
         super.onCreateOptionsMenu(menu, inflater)
@@ -83,6 +92,13 @@ class AddStatementFragment : Fragment(), RouterFragmentGuest<UriRoute> {
                         Snackbar.make(
                             this.requireView(),
                             "Invalid account name: $text",
+                            Snackbar.LENGTH_SHORT
+                        ).show()
+                        return super.onOptionsItemSelected(item)
+                    } else if (accountNames.contains(text.toString())) {
+                        Snackbar.make(
+                            this.requireView(),
+                            "Duplicated account name: $text",
                             Snackbar.LENGTH_SHORT
                         ).show()
                         return super.onOptionsItemSelected(item)

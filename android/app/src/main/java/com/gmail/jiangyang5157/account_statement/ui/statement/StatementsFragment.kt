@@ -21,6 +21,8 @@ class StatementsFragment : Fragment(), RouterFragmentGuest<UriRoute> {
 
     private val statementViewModel: StatementViewModel by viewModels()
 
+    private val statementItems = mutableListOf<StatementItem>()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setHasOptionsMenu(true)
@@ -43,7 +45,8 @@ class StatementsFragment : Fragment(), RouterFragmentGuest<UriRoute> {
                 when (resource.status) {
                     Status.SUCCESS -> {
                         resource.data?.run {
-                            rv_statements.addItems(this.map { statement ->
+                            statementItems.clear()
+                            statementItems.addAll(this.map { statement ->
                                 StatementItem(
                                     statement,
                                     onClickListener = View.OnClickListener {
@@ -53,7 +56,9 @@ class StatementsFragment : Fragment(), RouterFragmentGuest<UriRoute> {
                                         )
                                     }
                                 )
-                            }.sortedByDescending {
+                            })
+
+                            rv_statements.addItems(statementItems.sortedByDescending {
                                 it.statement.account.lastModifiedDate
                             })
                         }
@@ -71,9 +76,15 @@ class StatementsFragment : Fragment(), RouterFragmentGuest<UriRoute> {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when(item.itemId) {
+        when (item.itemId) {
             R.id.action_add -> {
-                router push UriRoute("app://account-statement/add-statement")
+                rv_statements.getItems()
+                router push UriRoute(
+                    "app://account-statement/add-statement" +
+                        "?account-names=${Gson().toJson(statementItems.map {
+                            it.statement.account.name
+                        })}"
+                )
             }
         }
         return super.onOptionsItemSelected(item)
