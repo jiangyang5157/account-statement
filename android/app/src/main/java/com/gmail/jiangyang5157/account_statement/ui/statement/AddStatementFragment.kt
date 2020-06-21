@@ -3,9 +3,7 @@ package com.gmail.jiangyang5157.account_statement.ui.statement
 import android.database.sqlite.SQLiteConstraintException
 import android.net.Uri
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import android.widget.ArrayAdapter
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
@@ -32,6 +30,12 @@ class AddStatementFragment : Fragment(), RouterFragmentGuest<UriRoute> {
 
     private val statementViewModel: StatementViewModel by viewModels()
 
+    private val bankArray = arrayOf(
+        "ANZ Saving",
+        "ANZ Credit",
+        "ASB Saving"
+    )
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setHasOptionsMenu(true)
@@ -56,11 +60,6 @@ class AddStatementFragment : Fragment(), RouterFragmentGuest<UriRoute> {
             getContent.launch("text/*")
         }
 
-        val bankArray = arrayOf(
-            "ANZ Saving",
-            "ANZ Credit",
-            "ASB Saving"
-        )
         spinner_bank.adapter = ArrayAdapter(
             requireContext(),
             android.R.layout.simple_spinner_item,
@@ -68,27 +67,40 @@ class AddStatementFragment : Fragment(), RouterFragmentGuest<UriRoute> {
         ).also { adapter ->
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         }
+    }
 
-        btn_add.setOnClickListener {
-            val accountName = tiet_account_name.text.let { text ->
-                if (text.isNullOrEmpty()) {
-                    Snackbar.make(it, "Invalid account name: $text", Snackbar.LENGTH_SHORT).show()
-                    null
-                } else {
-                    text.toString()
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.menu_add_statement, menu)
+        super.onCreateOptionsMenu(menu, inflater)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.action_save -> {
+                val accountName = tiet_account_name.text.let { text ->
+                    if (text.isNullOrEmpty()) {
+                        Snackbar.make(
+                            this.requireView(),
+                            "Invalid account name: $text",
+                            Snackbar.LENGTH_SHORT
+                        ).show()
+                        return super.onOptionsItemSelected(item)
+                    } else {
+                        text.toString()
+                    }
                 }
-            }
-            val uri = Uri.parse(tv_file_uri.text.toString())
-            val inputStream = try {
-                requireContext().contentResolver.openInputStream(uri)
-            } catch (e: FileNotFoundException) {
-                Snackbar.make(it, "Invalid uri: $uri", Snackbar.LENGTH_SHORT).show()
-                null
-            }
-            if (accountName != null && inputStream != null) {
+                val uri = Uri.parse(tv_file_uri.text.toString())
+                val inputStream = try {
+                    requireContext().contentResolver.openInputStream(uri)
+                } catch (e: FileNotFoundException) {
+                    Snackbar.make(this.requireView(), "Invalid uri: $uri", Snackbar.LENGTH_SHORT)
+                        .show()
+                    return super.onOptionsItemSelected(item)
+                }
+
                 val account = AccountEntity(accountName, Date())
                 val transactions = mutableListOf<TransactionEntity>()
-
                 when (bankArray[spinner_bank.selectedItemPosition]) {
                     "ANZ Saving" -> {
                         AnzSavingsParser().parse(inputStream)?.map { transaction ->
@@ -125,9 +137,17 @@ class AddStatementFragment : Fragment(), RouterFragmentGuest<UriRoute> {
                     statementViewModel.addTransactions(transactions)
                     router.pop()
                 } catch (e: SQLiteConstraintException) {
-                    Snackbar.make(it, "Failed: ${e.message}", Snackbar.LENGTH_SHORT).show()
+                    Snackbar.make(
+                        this.requireView(),
+                        "Failed: ${e.message}",
+                        Snackbar.LENGTH_SHORT
+                    ).show()
                 }
             }
+            else -> {
+                return super.onOptionsItemSelected(item)
+            }
         }
+        return super.onOptionsItemSelected(item)
     }
 }

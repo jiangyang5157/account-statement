@@ -1,9 +1,7 @@
 package com.gmail.jiangyang5157.account_statement.ui.statement
 
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import androidx.fragment.app.Fragment
 import com.gmail.jiangyang5157.account_statement.R
 import com.gmail.jiangyang5157.account_statement.bank_domain.entity.TransactionEntity
@@ -68,5 +66,14 @@ class StatementFragment : Fragment(), RouterFragmentGuest<UriRoute> {
         }.sortedBy {
             it.spend.amount
         })
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.menu_statement, menu)
+        super.onCreateOptionsMenu(menu, inflater)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return super.onOptionsItemSelected(item)
     }
 }

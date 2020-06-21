@@ -1,15 +1,14 @@
 package com.gmail.jiangyang5157.account_statement.ui.statement
 
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import androidx.fragment.app.Fragment
 import com.gmail.jiangyang5157.account_statement.R
 import com.gmail.jiangyang5157.account_statement.bank_domain.entity.TransactionEntity
 import com.gmail.jiangyang5157.account_statement.bank_presentation.ui.binding.TransactionItem
 import com.gmail.jiangyang5157.account_statement.router.RouterFragmentGuest
 import com.gmail.jiangyang5157.account_statement.router.UriRoute
+import com.gmail.jiangyang5157.android.router.core.push
 import com.gmail.jiangyang5157.android.router.core.route
 import com.gmail.jiangyang5157.core.ext.fromJson
 import com.google.gson.Gson
@@ -48,5 +47,14 @@ class TransactionsFragment : Fragment(), RouterFragmentGuest<UriRoute> {
                 TransactionItem(it)
             }
         )
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.menu_transactions, menu)
+        super.onCreateOptionsMenu(menu, inflater)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return super.onOptionsItemSelected(item)
     }
 }

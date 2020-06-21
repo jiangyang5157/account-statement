@@ -2,7 +2,6 @@ package com.gmail.jiangyang5157.account_statement.ui.statement
 
 import android.os.Bundle
 import android.view.*
-import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
@@ -64,18 +63,19 @@ class StatementsFragment : Fragment(), RouterFragmentGuest<UriRoute> {
                 }
             }
         )
-
-        fab.setOnClickListener {
-            router push UriRoute("app://account-statement/add-statement")
-        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        inflater.inflate(R.menu.menu_search, menu)
+        inflater.inflate(R.menu.menu_statements, menu)
         super.onCreateOptionsMenu(menu, inflater)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when(item.itemId) {
+            R.id.action_add -> {
+                router push UriRoute("app://account-statement/add-statement")
+            }
+        }
         return super.onOptionsItemSelected(item)
     }
 }
