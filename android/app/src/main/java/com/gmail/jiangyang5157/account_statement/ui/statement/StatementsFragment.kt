@@ -1,9 +1,7 @@
 package com.gmail.jiangyang5157.account_statement.ui.statement
 
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
@@ -22,6 +20,12 @@ import kotlinx.android.synthetic.main.fragment_statements.*
 class StatementsFragment : Fragment(), RouterFragmentGuest<UriRoute> {
 
     private val statementViewModel: StatementViewModel by viewModels()
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setHasOptionsMenu(true)
+        requireActivity().title = getString(R.string.label_page_statements)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -62,5 +66,14 @@ class StatementsFragment : Fragment(), RouterFragmentGuest<UriRoute> {
         fab.setOnClickListener {
             router push UriRoute("app://account-statement/add-statement")
         }
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.menu_search, menu)
+        super.onCreateOptionsMenu(menu, inflater)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return super.onOptionsItemSelected(item)
     }
 }
