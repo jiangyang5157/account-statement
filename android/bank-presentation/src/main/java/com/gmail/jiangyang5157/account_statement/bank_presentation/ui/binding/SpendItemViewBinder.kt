@@ -19,15 +19,7 @@ class SpendItemViewBinder :
 
     override fun onBindViewHolder(holder: ViewHolder, item: SpendItem) {
         holder.tvDescription.text = item.description
-
-        val amount = item.spend.amount
-        if (amount.toDouble() > 0) {
-            holder.tvMoney.setTextColor(Color.BLACK)
-        } else {
-            holder.tvMoney.setTextColor(Color.RED)
-        }
-        holder.tvMoney.text = amount.toPlainString()
-
+        holder.tvMoney.text = item.spend.amount.toPlainString()
         holder.itemView.setOnClickListener(item.onClickListener)
     }
 

@@ -22,15 +22,7 @@ class TransactionItemViewBinder :
 
     override fun onBindViewHolder(holder: ViewHolder, item: TransactionItem) {
         holder.tvDescription.text = item.transaction.description
-
-        val amount = item.transaction.money.amount
-        if (amount.toDouble() > 0) {
-            holder.tvMoney.setTextColor(Color.BLACK)
-        } else {
-            holder.tvMoney.setTextColor(Color.RED)
-        }
-        holder.tvMoney.text = amount.toPlainString()
-
+        holder.tvMoney.text = item.transaction.money.amount.toPlainString()
         holder.tvDate.text = "${TransactionDto.DateStringConverter(RegexUtils.DATE_DMY)
             .forward(item.transaction.date)}"
     }
