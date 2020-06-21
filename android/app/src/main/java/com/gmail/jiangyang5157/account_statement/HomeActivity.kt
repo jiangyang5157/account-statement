@@ -9,6 +9,7 @@ import com.gmail.jiangyang5157.android.router.core.clear
 import com.gmail.jiangyang5157.android.router.core.push
 import com.gmail.jiangyang5157.android.router.fragment.FragmentRouter
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.android.synthetic.main.activity_home.*
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -21,6 +22,7 @@ class HomeActivity : AppCompatActivity(), RouterFragmentActivityHost<UriRoute> {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
+        setSupportActionBar(toolbar)
 
         if (null == savedInstanceState) {
             router {

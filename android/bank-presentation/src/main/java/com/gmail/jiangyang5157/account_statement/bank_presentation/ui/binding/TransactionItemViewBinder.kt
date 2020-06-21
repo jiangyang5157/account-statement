@@ -1,6 +1,5 @@
 package com.gmail.jiangyang5157.account_statement.bank_presentation.ui.binding
 
-import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
