@@ -43,6 +43,7 @@ android {
 dependencies {
   implementation fileTree(dir: 'libs', include: ['*.jar'])
   implementation libs.kotlin_jdk8
+  implementation libs.constraintlayout
   implementation libs.room
   implementation libs.gson
   implementation libs.adapter

@@ -8,27 +8,19 @@
     android:padding="4dp">
 
     <TextView
-        android:id="@+id/tv_account_name"
+        android:id="@+id/tv_description"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:text="account_name" />
+        tools:text="description" />
 
     <TextView
-        android:id="@+id/tv_account_last_modified_date"
+        android:id="@+id/tv_money"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:text="last_modified_time" />
-
-    <TextView
-        android:id="@+id/tv_transaction_count"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_account_name"
-        tools:text="transaction_count" />
+        tools:text="money" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

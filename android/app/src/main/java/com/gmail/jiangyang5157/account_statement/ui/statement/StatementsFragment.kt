@@ -14,6 +14,7 @@ import com.gmail.jiangyang5157.account_statement.router.RouterFragmentGuest
 import com.gmail.jiangyang5157.account_statement.router.UriRoute
 import com.gmail.jiangyang5157.android.router.core.push
 import com.gmail.jiangyang5157.core.data.Status
+import com.google.gson.Gson
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_statements.*
 
@@ -37,12 +38,14 @@ class StatementsFragment : Fragment(), RouterFragmentGuest<UriRoute> {
                 when (resource.status) {
                     Status.SUCCESS -> {
                         resource.data?.run {
-                            rv_statements.addItems(this.map {
+                            rv_statements.addItems(this.map { statement ->
                                 StatementItem(
-                                    it,
+                                    statement,
                                     onClickListener = View.OnClickListener {
-                                        router push UriRoute("app://account-statement/statement")
-
+                                        router push UriRoute(
+                                            "app://account-statement/statement" +
+                                                "?transactions=${Gson().toJson(statement.transactions)}"
+                                        )
                                     }
                                 )
                             })
