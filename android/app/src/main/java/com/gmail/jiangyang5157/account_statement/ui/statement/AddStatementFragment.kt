@@ -32,6 +32,11 @@ class AddStatementFragment : Fragment(), RouterFragmentGuest<UriRoute> {
 
     private val statementViewModel: StatementViewModel by viewModels()
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setHasOptionsMenu(true)
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -40,6 +45,8 @@ class AddStatementFragment : Fragment(), RouterFragmentGuest<UriRoute> {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        requireActivity().title = getString(R.string.label_page_add_statement)
 
         btn_file_browser.setOnClickListener {
             val getContent =

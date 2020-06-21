@@ -2,6 +2,7 @@ package com.gmail.jiangyang5157.account_statement.ui.statement
 
 import android.os.Bundle
 import android.view.*
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
@@ -24,7 +25,6 @@ class StatementsFragment : Fragment(), RouterFragmentGuest<UriRoute> {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setHasOptionsMenu(true)
-        requireActivity().title = getString(R.string.label_page_statements)
     }
 
     override fun onCreateView(
@@ -35,6 +35,8 @@ class StatementsFragment : Fragment(), RouterFragmentGuest<UriRoute> {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        requireActivity().title = getString(R.string.label_page_statements)
 
         rv_statements.init()
         statementViewModel.getStatements().observe(viewLifecycleOwner,

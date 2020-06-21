@@ -28,6 +28,11 @@ class StatementFragment : Fragment(), RouterFragmentGuest<UriRoute> {
         } ?: emptyList()
     }
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setHasOptionsMenu(true)
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -36,6 +41,8 @@ class StatementFragment : Fragment(), RouterFragmentGuest<UriRoute> {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        requireActivity().title = getString(R.string.label_page_statement)
 
         val map = hashMapOf<String, Money>()
         transactions.forEach {

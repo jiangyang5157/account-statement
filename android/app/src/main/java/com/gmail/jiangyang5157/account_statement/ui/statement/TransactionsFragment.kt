@@ -26,6 +26,11 @@ class TransactionsFragment : Fragment(), RouterFragmentGuest<UriRoute> {
         } ?: emptyList()
     }
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setHasOptionsMenu(true)
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -34,6 +39,8 @@ class TransactionsFragment : Fragment(), RouterFragmentGuest<UriRoute> {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        requireActivity().title = getString(R.string.label_page_transactions)
 
         rv_transactions.init()
         rv_transactions.addItems(
