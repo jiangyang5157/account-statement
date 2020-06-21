@@ -79,7 +79,7 @@ class AddStatementFragment : Fragment(), RouterFragmentGuest<UriRoute> {
         when (item.itemId) {
             R.id.action_save -> {
                 val accountName = tiet_account_name.text.let { text ->
-                    if (text.isNullOrEmpty()) {
+                    if (text == null || text.trim().isEmpty()) {
                         Snackbar.make(
                             this.requireView(),
                             "Invalid account name: $text",
