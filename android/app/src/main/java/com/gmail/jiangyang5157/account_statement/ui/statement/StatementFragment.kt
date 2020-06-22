@@ -54,6 +54,7 @@ class StatementFragment : Fragment(), RouterFragmentGuest<UriRoute> {
                 previous + money
             } ?: let { money }
         }
+        spendItems.clear()
         spendItems.addAll(map.map { entry ->
             SpendItem(
                 entry.key,

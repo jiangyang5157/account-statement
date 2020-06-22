@@ -117,12 +117,11 @@ class AddStatementFragment : Fragment(), RouterFragmentGuest<UriRoute> {
                     return super.onOptionsItemSelected(item)
                 }
 
-                val account = AccountEntity(accountName, Date())
                 val transactions = mutableListOf<TransactionEntity>()
                 when (bankArray[spinner_bank.selectedItemPosition]) {
                     "ANZ Saving" -> {
                         AnzSavingsParser().parse(inputStream)?.map { transaction ->
-                            CsvTransactionParser(account.name).parse(
+                            CsvTransactionParser(accountName).parse(
                                 transaction
                             )?.also { transition ->
                                 transactions.add(transition)
@@ -131,7 +130,7 @@ class AddStatementFragment : Fragment(), RouterFragmentGuest<UriRoute> {
                     }
                     "ANZ Credit" -> {
                         AnzCreditParser().parse(inputStream)?.map { transaction ->
-                            CsvTransactionParser(account.name).parse(
+                            CsvTransactionParser(accountName).parse(
                                 transaction
                             )?.also { transition ->
                                 transactions.add(transition)
@@ -140,7 +139,7 @@ class AddStatementFragment : Fragment(), RouterFragmentGuest<UriRoute> {
                     }
                     "ASB Saving" -> {
                         AsbSavingsParser().parse(inputStream)?.map { transaction ->
-                            CsvTransactionParser(account.name).parse(
+                            CsvTransactionParser(accountName).parse(
                                 transaction
                             )?.also { transition ->
                                 transactions.add(transition)
@@ -151,8 +150,7 @@ class AddStatementFragment : Fragment(), RouterFragmentGuest<UriRoute> {
                 }
 
                 try {
-                    statementViewModel.addAccounts(listOf(account))
-                    statementViewModel.addTransactions(transactions)
+                    statementViewModel.addStatement(accountName, transactions)
                     router.pop()
                 } catch (e: SQLiteConstraintException) {
                     Snackbar.make(

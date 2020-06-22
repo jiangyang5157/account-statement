@@ -44,6 +44,7 @@ class TransactionsFragment : Fragment(), RouterFragmentGuest<UriRoute> {
 
         (requireActivity() as AppCompatActivity).supportActionBar?.title = getString(R.string.label_page_transactions)
 
+        transactionItems.clear()
         transactionItems.addAll(transactions.map {
             TransactionItem(it)
         })
