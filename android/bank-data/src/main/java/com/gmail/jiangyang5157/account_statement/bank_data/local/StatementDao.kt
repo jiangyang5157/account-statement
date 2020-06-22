@@ -18,9 +18,6 @@ interface StatementDao {
     @Delete
     fun deleteAccounts(accounts: List<AccountEntity>)
 
-    @Delete
-    fun deleteTransactions(transactions: List<TransactionEntity>)
-
     @Update
     fun updateAccounts(accounts: List<AccountEntity>)
 

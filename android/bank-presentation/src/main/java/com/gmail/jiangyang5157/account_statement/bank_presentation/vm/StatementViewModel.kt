@@ -15,9 +15,9 @@ import java.util.*
 class StatementViewModel @ViewModelInject constructor(
     @Assisted private val savedStateHandle: SavedStateHandle,
     private val getStatementUseCase: GetStatementUseCase,
-    private val addAccountUseCase: AddAccountUseCase,
-    private val addTransactionUseCase: AddTransactionUseCase,
-    private val deleteAccountUseCase: DeleteAccountUseCase
+    private val deleteAccountUseCase: DeleteAccountUseCase,
+    private val addStatementUseCase: AddStatementUseCase,
+    private val mergeStatementUseCase: MergeStatementUseCase
 ) : ViewModel() {
 
     fun getStatements(): LiveData<Resource<List<StatementEntity>>> {
@@ -29,25 +29,10 @@ class StatementViewModel @ViewModelInject constructor(
     }
 
     fun addStatement(accountName: String, transactions: List<TransactionEntity>) {
-        addAccountUseCase(listOf(AccountEntity(accountName, Date())))
-        addTransactionUseCase(transactions)
+        addStatementUseCase(AccountEntity(accountName, Date()), transactions)
     }
 
     fun mergeStatements(accountName: String, statements: List<StatementEntity>) {
-        val accountsToBeDeleted = statements.distinctBy { it.account }.map { it.account }
-        val newAccount = AccountEntity(accountName, Date())
-        val mergedTransactions = statements.map { it.transactions }.flatMap { transitions ->
-            transitions.map {
-                TransactionEntity(
-                    accountName,
-                    it.date,
-                    it.money,
-                    it.description
-                )
-            }
-        }
-        deleteAccountUseCase.invoke(accountsToBeDeleted)
-        addAccountUseCase(listOf(newAccount))
-        addTransactionUseCase(mergedTransactions)
+        mergeStatementUseCase(AccountEntity(accountName, Date()), statements)
     }
 }

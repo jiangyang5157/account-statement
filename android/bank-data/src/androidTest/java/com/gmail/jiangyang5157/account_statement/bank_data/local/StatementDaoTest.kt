@@ -109,7 +109,7 @@ class StatementDaoTest {
     }
 
     @Test
-    fun test_insertTransaction_whereTransactionExist_abort() {
+    fun test_insertTransaction_whereTransactionExist() {
         val account = AccountEntity(
             "FakeAccount",
             Date(1592391430000)
@@ -121,11 +121,8 @@ class StatementDaoTest {
             description = "desc"
         )
         db.statementDao().insertAccounts(listOf(account))
-        try {
-            db.statementDao().insertTransactions(listOf(transaction, transaction))
-            Assert.fail()
-        } catch (e: SQLiteConstraintException) {
-        }
+        db.statementDao().insertTransactions(listOf(transaction, transaction))
+        Assert.assertEquals(2, db.statementDao().findTransactions().getOrAwaitValue().size)
     }
 
     @Test
@@ -228,50 +225,6 @@ class StatementDaoTest {
             )
         )
         Assert.assertEquals(0, db.statementDao().findStatements().getOrAwaitValue().size)
-    }
-
-    @Test
-    fun test_deleteTransactions() {
-        val account = AccountEntity(
-            "FakeAccount",
-            Date(1592391430000)
-        )
-        val account2 = AccountEntity(
-            "FakeAccount****",
-            Date(1592391430000)
-        )
-        val transaction = TransactionEntity(
-            accountName = "FakeAccount",
-            date = Date(),
-            money = Money(-10.0),
-            description = "desc"
-        )
-        val transaction2 = TransactionEntity(
-            accountName = "FakeAccount",
-            date = Date(),
-            money = Money(-10.0),
-            description = "desc****"
-        )
-        val transaction3 = TransactionEntity(
-            accountName = "FakeAccount****",
-            date = Date(),
-            money = Money(-10.0),
-            description = "desc"
-        )
-        db.statementDao().insertAccounts(listOf(account, account2))
-        db.statementDao().insertTransactions(listOf(transaction, transaction2, transaction3))
-        Assert.assertEquals(3, db.statementDao().findTransactions().getOrAwaitValue().size)
-
-        db.statementDao().deleteTransactions(listOf(transaction, transaction3))
-        Assert.assertEquals(1, db.statementDao().findTransactions().getOrAwaitValue().size)
-        Assert.assertEquals(
-            1,
-            db.statementDao().findTransactionsByAccountName("FakeAccount").getOrAwaitValue().size
-        )
-        Assert.assertEquals(
-            transaction2,
-            db.statementDao().findTransactionsByAccountName("FakeAccount").getOrAwaitValue()[0]
-        )
     }
 
     @Test

@@ -1,10 +1,7 @@
 package com.gmail.jiangyang5157.account_statement.bank_domain.entity
 
-import androidx.room.ColumnInfo
-import androidx.room.Entity
-import androidx.room.ForeignKey
+import androidx.room.*
 import androidx.room.ForeignKey.CASCADE
-import androidx.room.TypeConverter
 import com.gmail.jiangyang5157.kotlin_kit.data.model.Converter
 import com.gmail.jiangyang5157.kotlin_kit.data.model.finance.Money
 import com.google.gson.*
@@ -15,7 +12,6 @@ import java.util.*
 
 @Entity(
     tableName = "transactions",
-    primaryKeys = ["accountName", "date", "money", "description"],
     foreignKeys = [
         ForeignKey(
             entity = AccountEntity::class,
@@ -43,7 +39,10 @@ data class TransactionEntity(
 
     @ColumnInfo(name = "description")
     @field:SerializedName("description")
-    val description: String
+    val description: String,
+
+    @PrimaryKey(autoGenerate = true)
+    val id: Int = 0
 ) {
     class MoneyDoubleJsonSerializer : JsonSerializer<Money>, JsonDeserializer<Money> {
 

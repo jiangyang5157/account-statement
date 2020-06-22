@@ -10,7 +10,7 @@ class GetStatementByAccountNameUseCase @Inject constructor(
     private val statementRepository: StatementRepository
 ) {
 
-    operator fun invoke(name: String): LiveData<Resource<StatementEntity>> {
-        return statementRepository.getStatementByAccountName(name)
+    operator fun invoke(accountName: String): LiveData<Resource<StatementEntity>> {
+        return statementRepository.getStatementByAccountName(accountName)
     }
 }

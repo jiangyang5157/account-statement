@@ -16,9 +16,9 @@ interface StatementRepository {
 
     fun addTransactions(transactions: List<TransactionEntity>)
 
-    fun deleteTransactions(transactions: List<TransactionEntity>)
+    fun addStatement(account: AccountEntity, transactions: List<TransactionEntity>)
 
     fun getStatements(): LiveData<Resource<List<StatementEntity>>>
 
-    fun getStatementByAccountName(name: String): LiveData<Resource<StatementEntity>>
+    fun getStatementByAccountName(accountName: String): LiveData<Resource<StatementEntity>>
 }

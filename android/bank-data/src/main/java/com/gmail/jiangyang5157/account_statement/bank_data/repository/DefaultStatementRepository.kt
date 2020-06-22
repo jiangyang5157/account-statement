@@ -39,15 +39,16 @@ class DefaultStatementRepository @Inject constructor(
         }
     }
 
-    override fun deleteTransactions(transactions: List<TransactionEntity>) {
-        appExecutor.diskIO.execute {
-            statementDao.deleteTransactions(transactions)
-        }
-    }
-
     override fun updateAccounts(accounts: List<AccountEntity>) {
         appExecutor.diskIO.execute {
             statementDao.updateAccounts(accounts)
+        }
+    }
+
+    override fun addStatement(account: AccountEntity, transactions: List<TransactionEntity>) {
+        appExecutor.diskIO.execute {
+            statementDao.insertAccounts(listOf(account))
+            statementDao.insertTransactions(transactions)
         }
     }
 
