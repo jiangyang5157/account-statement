@@ -5,5 +5,6 @@ import com.gmail.jiangyang5157.account_statement.bank_domain.entity.StatementEnt
 
 data class StatementItem(
     val statement: StatementEntity,
+    var isSelected: Boolean = false,
     val onClickListener: View.OnClickListener? = null
 )

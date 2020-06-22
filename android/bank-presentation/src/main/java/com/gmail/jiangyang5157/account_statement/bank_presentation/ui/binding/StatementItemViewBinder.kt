@@ -1,5 +1,6 @@
 package com.gmail.jiangyang5157.account_statement.bank_presentation.ui.binding
 
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,12 +15,18 @@ class StatementItemViewBinder :
     ItemViewBinder<StatementItem, StatementItemViewBinder.ViewHolder>() {
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        val layoutContent: ViewGroup = itemView.findViewById(R.id.layout_statement_content)
         val tvName: TextView = itemView.findViewById(R.id.tv_account_name)
         val tvLastModifiedDate: TextView = itemView.findViewById(R.id.tv_account_last_modified_date)
         val tvTransactionCount: TextView = itemView.findViewById(R.id.tv_transaction_count)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, item: StatementItem) {
+        if (item.isSelected) {
+            holder.layoutContent.setBackgroundColor(Color.CYAN)
+        } else {
+            holder.layoutContent.background = null
+        }
         holder.tvName.text = item.statement.account.name
         holder.tvLastModifiedDate.text = "${TransactionDto.DateStringConverter(RegexUtils.DATE_DMY)
             .forward(item.statement.account.lastModifiedDate)}"

@@ -10,6 +10,7 @@ import com.gmail.jiangyang5157.account_statement.bank_domain.entity.StatementEnt
 import com.gmail.jiangyang5157.account_statement.bank_domain.entity.TransactionEntity
 import com.gmail.jiangyang5157.account_statement.bank_domain.interactor.AddAccountsUseCase
 import com.gmail.jiangyang5157.account_statement.bank_domain.interactor.AddTransactionsUseCase
+import com.gmail.jiangyang5157.account_statement.bank_domain.interactor.DeleteAccountsUseCase
 import com.gmail.jiangyang5157.account_statement.bank_domain.interactor.GetStatementsUseCase
 import com.gmail.jiangyang5157.core.data.Resource
 
@@ -17,7 +18,8 @@ class StatementViewModel @ViewModelInject constructor(
     @Assisted private val savedStateHandle: SavedStateHandle,
     private val getStatementsUseCase: GetStatementsUseCase,
     private val addAccountsUseCase: AddAccountsUseCase,
-    private val addTransactionsUseCase: AddTransactionsUseCase
+    private val addTransactionsUseCase: AddTransactionsUseCase,
+    private val deleteAccountsUseCase: DeleteAccountsUseCase
 ) : ViewModel() {
 
     fun getStatements(): LiveData<Resource<List<StatementEntity>>> {
@@ -30,5 +32,13 @@ class StatementViewModel @ViewModelInject constructor(
 
     fun addTransactions(transactions: List<TransactionEntity>) {
         return addTransactionsUseCase(transactions)
+    }
+
+    fun deleteAccounts(accounts: List<AccountEntity>) {
+        return deleteAccountsUseCase(accounts)
+    }
+
+    fun mergeStatements(statements: List<StatementEntity>) {
+        // TODO
     }
 }

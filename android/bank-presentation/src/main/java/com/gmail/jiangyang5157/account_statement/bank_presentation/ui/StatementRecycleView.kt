@@ -27,6 +27,41 @@ class StatementRecycleView : Widget, SimpleRecycleView {
     constructor(context: Context, attrs: AttributeSet?, @AttrRes defStyleAttr: Int) :
         super(context, attrs, defStyleAttr)
 
+    /**
+     * @return
+     * 1: new selected
+     * -1: new unselected
+     * 0: nothing changed
+     */
+    fun toggleStatementItemSelection(position: Int): Int {
+        return if (recycleViewAdapter.items.size > position) {
+            val item = recycleViewAdapter.items[position] as StatementItem
+            item.isSelected = !item.isSelected
+            recycleViewAdapter.notifyItemChanged(position)
+            if (item.isSelected) {
+                1
+            } else {
+                -1
+            }
+        } else {
+            0
+        }
+    }
+
+    fun clearSelectedStatementItems() {
+        recycleViewAdapter.items.forEach {
+            (it as StatementItem).isSelected = false
+        }
+        recycleViewAdapter.notifyDataSetChanged()
+    }
+
+    @Suppress("UNCHECKED_CAST")
+    fun getSelectedStatementItems(): List<StatementItem> {
+        return recycleViewAdapter.items.filter {
+            (it as StatementItem).isSelected
+        } as List<StatementItem>
+    }
+
     class Builder : Widget.Builder<StatementRecycleView> {
 
         override fun build(context: Context): StatementRecycleView {

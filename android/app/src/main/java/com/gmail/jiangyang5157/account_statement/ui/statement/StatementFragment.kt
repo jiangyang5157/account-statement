@@ -2,6 +2,7 @@ package com.gmail.jiangyang5157.account_statement.ui.statement
 
 import android.os.Bundle
 import android.view.*
+import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import com.gmail.jiangyang5157.account_statement.R
@@ -43,7 +44,7 @@ class StatementFragment : Fragment(), RouterFragmentGuest<UriRoute> {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        requireActivity().title = getString(R.string.label_page_statement)
+        (requireActivity() as AppCompatActivity).supportActionBar?.title = getString(R.string.label_page_statement)
 
         val map = hashMapOf<String, Money>()
         transactions.forEach {

@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.*
 import android.widget.ArrayAdapter
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.gmail.jiangyang5157.account_statement.R
@@ -60,7 +61,7 @@ class AddStatementFragment : Fragment(), RouterFragmentGuest<UriRoute> {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        requireActivity().title = getString(R.string.label_page_add_statement)
+        (requireActivity() as AppCompatActivity).supportActionBar?.title = getString(R.string.label_page_add_statement)
 
         btn_file_browser.setOnClickListener {
             val getContent =
@@ -86,7 +87,7 @@ class AddStatementFragment : Fragment(), RouterFragmentGuest<UriRoute> {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
-            R.id.action_save -> {
+            R.id.action_create -> {
                 val accountName = tiet_account_name.text.let { text ->
                     if (text == null || text.trim().isEmpty()) {
                         Snackbar.make(
@@ -159,11 +160,11 @@ class AddStatementFragment : Fragment(), RouterFragmentGuest<UriRoute> {
                         Snackbar.LENGTH_SHORT
                     ).show()
                 }
+                return true
             }
             else -> {
                 return super.onOptionsItemSelected(item)
             }
         }
-        return super.onOptionsItemSelected(item)
     }
 }

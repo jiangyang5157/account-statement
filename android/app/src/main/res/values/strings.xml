@@ -8,7 +8,10 @@
     <string name="label_page_transactions">Transactions</string>
 
     <string name="title_action_add">Add</string>
-    <string name="title_action_save">Save</string>
+    <string name="title_action_selection">Selection</string>
+    <string name="title_action_delete">Delete</string>
+    <string name="title_action_merge">Merge</string>
+    <string name="title_action_create">Create</string>
     <string name="title_action_search">Search</string>
 
 </resources>

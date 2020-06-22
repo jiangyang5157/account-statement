@@ -2,6 +2,7 @@ package com.gmail.jiangyang5157.account_statement.ui.statement
 
 import android.os.Bundle
 import android.view.*
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
@@ -23,6 +24,83 @@ class StatementsFragment : Fragment(), RouterFragmentGuest<UriRoute> {
 
     private val statementItems = mutableListOf<StatementItem>()
 
+    private lateinit var mergeMenuItem: MenuItem
+    private lateinit var deleteMenuItem: MenuItem
+    private lateinit var selectionMenuItem: MenuItem
+    private lateinit var addMenuItem: MenuItem
+
+    interface Mode {
+        fun setupView()
+        fun setupMenu()
+        fun onStatementItemClicked(position: Int)
+    }
+
+    private lateinit var defaultMode: Mode
+    private lateinit var selectionMode: Mode
+    private lateinit var currentMode: Mode
+
+    init {
+        defaultMode = object : Mode {
+
+            override fun setupView() {
+                (requireActivity() as AppCompatActivity).supportActionBar?.title =
+                    getString(R.string.label_page_statements)
+                (requireActivity() as AppCompatActivity).supportActionBar?.setDisplayShowHomeEnabled(
+                    false
+                )
+                (requireActivity() as AppCompatActivity).supportActionBar?.setDisplayHomeAsUpEnabled(
+                    false
+                )
+                (requireActivity() as AppCompatActivity).supportActionBar?.setHomeAsUpIndicator(null)
+            }
+
+            override fun setupMenu() {
+                mergeMenuItem.isVisible = false
+                deleteMenuItem.isVisible = false
+                selectionMenuItem.isVisible = true
+                addMenuItem.isVisible = true
+            }
+
+            override fun onStatementItemClicked(position: Int) {
+                router push UriRoute(
+                    "app://account-statement/statement" +
+                        "?transactions=${Gson().toJson(statementItems[position].statement.transactions)}"
+                )
+            }
+        }
+
+        selectionMode = object : Mode {
+
+            var selectionCount: Int = 0
+
+            override fun setupView() {
+                selectionCount = 0
+                (requireActivity() as AppCompatActivity).supportActionBar?.title = "$selectionCount"
+                (requireActivity() as AppCompatActivity).supportActionBar?.setDisplayShowHomeEnabled(
+                    true
+                )
+                (requireActivity() as AppCompatActivity).supportActionBar?.setDisplayHomeAsUpEnabled(
+                    true
+                )
+                (requireActivity() as AppCompatActivity).supportActionBar?.setHomeAsUpIndicator(
+                    android.R.drawable.ic_menu_close_clear_cancel
+                )
+            }
+
+            override fun setupMenu() {
+                selectionMenuItem.isVisible = false
+                mergeMenuItem.isVisible = true
+                deleteMenuItem.isVisible = true
+                addMenuItem.isVisible = false
+            }
+
+            override fun onStatementItemClicked(position: Int) {
+                selectionCount += rv_statements.toggleStatementItemSelection(position)
+                (requireActivity() as AppCompatActivity).supportActionBar?.title = "$selectionCount"
+            }
+        }
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setHasOptionsMenu(true)
@@ -37,7 +115,8 @@ class StatementsFragment : Fragment(), RouterFragmentGuest<UriRoute> {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        requireActivity().title = getString(R.string.label_page_statements)
+        currentMode = defaultMode
+        currentMode.setupView()
 
         rv_statements.init()
         statementViewModel.getStatements().observe(viewLifecycleOwner,
@@ -46,21 +125,17 @@ class StatementsFragment : Fragment(), RouterFragmentGuest<UriRoute> {
                     Status.SUCCESS -> {
                         resource.data?.run {
                             statementItems.clear()
-                            statementItems.addAll(this.map { statement ->
+                            statementItems.addAll(this.sortedByDescending {
+                                it.account.lastModifiedDate
+                            }.mapIndexed { index, statement ->
                                 StatementItem(
                                     statement,
                                     onClickListener = View.OnClickListener {
-                                        router push UriRoute(
-                                            "app://account-statement/statement" +
-                                                "?transactions=${Gson().toJson(statement.transactions)}"
-                                        )
+                                        currentMode.onStatementItemClicked(index)
                                     }
                                 )
                             })
-
-                            rv_statements.addItems(statementItems.sortedByDescending {
-                                it.statement.account.lastModifiedDate
-                            })
+                            rv_statements.addItems(statementItems)
                         }
                     }
                     else -> {
@@ -72,6 +147,11 @@ class StatementsFragment : Fragment(), RouterFragmentGuest<UriRoute> {
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.menu_statements, menu)
+        addMenuItem = menu.findItem(R.id.action_add)
+        selectionMenuItem = menu.findItem(R.id.action_selection)
+        deleteMenuItem = menu.findItem(R.id.action_delete)
+        mergeMenuItem = menu.findItem(R.id.action_merge)
+        currentMode.setupMenu()
         super.onCreateOptionsMenu(menu, inflater)
     }
 
@@ -84,8 +164,38 @@ class StatementsFragment : Fragment(), RouterFragmentGuest<UriRoute> {
                             it.statement.account.name
                         })}"
                 )
+                return true
+            }
+            R.id.action_selection -> {
+                currentMode = selectionMode
+                currentMode.setupView()
+                currentMode.setupMenu()
+                return true
+            }
+            R.id.action_delete -> {
+                val selection = rv_statements.getSelectedStatementItems()
+                statementViewModel.deleteAccounts(selection.map {
+                    it.statement.account
+                })
+                statementItems.removeAll(selection)
+                rv_statements.updateItems(statementItems)
+                return true
+            }
+            R.id.action_merge -> {
+                val selection = rv_statements.getSelectedStatementItems()
+                // TODO
+                return true
+            }
+            android.R.id.home -> {
+                rv_statements.clearSelectedStatementItems()
+                currentMode = defaultMode
+                currentMode.setupView()
+                currentMode.setupMenu()
+                return true
+            }
+            else -> {
+                return super.onOptionsItemSelected(item)
             }
         }
-        return super.onOptionsItemSelected(item)
     }
 }
