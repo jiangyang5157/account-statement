@@ -68,7 +68,7 @@ class StatementFragment : Fragment(), RouterFragmentGuest<UriRoute> {
         })
 
         rv_spend.init()
-        rv_spend.addItems(spendItems.sortedBy {
+        rv_spend.updateItems(spendItems.sortedBy {
             it.spend.amount
         })
     }

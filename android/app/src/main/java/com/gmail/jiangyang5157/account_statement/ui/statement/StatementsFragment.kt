@@ -1,6 +1,7 @@
 package com.gmail.jiangyang5157.account_statement.ui.statement
 
 import android.os.Bundle
+import android.util.Log
 import android.view.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
@@ -121,6 +122,7 @@ class StatementsFragment : Fragment(), RouterFragmentGuest<UriRoute> {
         rv_statements.init()
         statementViewModel.getStatements().observe(viewLifecycleOwner,
             Observer { resource ->
+                Log.d("####", "status=${resource.status}")
                 when (resource.status) {
                     Status.SUCCESS -> {
                         resource.data?.run {
@@ -135,7 +137,7 @@ class StatementsFragment : Fragment(), RouterFragmentGuest<UriRoute> {
                                     }
                                 )
                             })
-                            rv_statements.addItems(statementItems)
+                            rv_statements.updateItems(statementItems)
                         }
                     }
                     else -> {
@@ -177,8 +179,9 @@ class StatementsFragment : Fragment(), RouterFragmentGuest<UriRoute> {
                 statementViewModel.deleteAccounts(selection.map {
                     it.statement.account
                 })
-                statementItems.removeAll(selection)
-                rv_statements.updateItems(statementItems)
+                currentMode = defaultMode
+                currentMode.setupView()
+                currentMode.setupMenu()
                 return true
             }
             R.id.action_merge -> {

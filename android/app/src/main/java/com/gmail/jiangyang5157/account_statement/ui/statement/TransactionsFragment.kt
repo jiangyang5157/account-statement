@@ -49,7 +49,7 @@ class TransactionsFragment : Fragment(), RouterFragmentGuest<UriRoute> {
         })
 
         rv_transactions.init()
-        rv_transactions.addItems(
+        rv_transactions.updateItems(
             transactionItems.sortedBy {
                 it.transaction.money.amount
             }
