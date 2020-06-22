@@ -84,7 +84,7 @@ class StatementFragment : Fragment(), RouterFragmentGuest<UriRoute> {
             }
 
             override fun onQueryTextChange(newText: String?): Boolean {
-                rv_spend.updateItems(
+                rv_spend?.updateItems(
                     newText?.let { keyword ->
                         spendItems.filter { it.description.contains(keyword, true) }.sortedBy {
                             it.spend.amount

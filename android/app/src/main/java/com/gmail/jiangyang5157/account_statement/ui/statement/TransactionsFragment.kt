@@ -67,7 +67,7 @@ class TransactionsFragment : Fragment(), RouterFragmentGuest<UriRoute> {
             }
 
             override fun onQueryTextChange(newText: String?): Boolean {
-                rv_transactions.updateItems(
+                rv_transactions?.updateItems(
                     newText?.let { keyword ->
                         transactionItems.filter {
                             it.transaction.description.contains(
