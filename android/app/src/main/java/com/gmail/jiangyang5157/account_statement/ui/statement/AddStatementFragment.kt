@@ -97,7 +97,7 @@ class AddStatementFragment : Fragment(), RouterFragmentGuest<UriRoute> {
                             Snackbar.LENGTH_SHORT
                         ).show()
                         return super.onOptionsItemSelected(item)
-                    } else if (accountNames.contains(text.toString())) {
+                    } else if (accountNames.contains(text.trim().toString())) {
                         Snackbar.make(
                             this.requireView(),
                             "Duplicated account name: $text",
@@ -105,7 +105,7 @@ class AddStatementFragment : Fragment(), RouterFragmentGuest<UriRoute> {
                         ).show()
                         return super.onOptionsItemSelected(item)
                     } else {
-                        text.toString()
+                        text.trim().toString()
                     }
                 }
                 val uri = Uri.parse(tv_file_uri.text.toString())

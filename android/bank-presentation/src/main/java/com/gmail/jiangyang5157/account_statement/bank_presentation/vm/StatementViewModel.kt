@@ -14,30 +14,32 @@ import java.util.*
 
 class StatementViewModel @ViewModelInject constructor(
     @Assisted private val savedStateHandle: SavedStateHandle,
-    private val getStatementsUseCase: GetStatementsUseCase,
-    private val addAccountsUseCase: AddAccountsUseCase,
-    private val addTransactionsUseCase: AddTransactionsUseCase,
-    private val deleteAccountsUseCase: DeleteAccountsUseCase
+    private val getStatementUseCase: GetStatementUseCase,
+    private val addAccountUseCase: AddAccountUseCase,
+    private val addTransactionUseCase: AddTransactionUseCase,
+    private val deleteAccountUseCase: DeleteAccountUseCase,
+    private val deleteTransactionUseCase: DeleteTransactionUseCase
 ) : ViewModel() {
 
     fun getStatements(): LiveData<Resource<List<StatementEntity>>> {
-        return getStatementsUseCase()
+        return getStatementUseCase()
     }
 
     fun addAccounts(accounts: List<AccountEntity>) {
-        return addAccountsUseCase(accounts)
+        return addAccountUseCase(accounts)
     }
 
     fun addTransactions(transactions: List<TransactionEntity>) {
-        return addTransactionsUseCase(transactions)
+        return addTransactionUseCase(transactions)
     }
 
     fun deleteAccounts(accounts: List<AccountEntity>) {
-        return deleteAccountsUseCase(accounts)
+        return deleteAccountUseCase(accounts)
     }
 
     fun mergeStatements(name: String, statements: List<StatementEntity>) {
-        val accountToBeDeleted = statements.distinctBy { it.account }.map { it.account }
+        val accountsToBeDeleted = statements.distinctBy { it.account }.map { it.account }
+        val transactionsToBeDeleted = statements.flatMap { it.transactions }
         val newAccount = AccountEntity(name, Date())
         val mergedTransactions = statements.map { it.transactions }.flatMap { transitions ->
             transitions.map {
@@ -49,8 +51,9 @@ class StatementViewModel @ViewModelInject constructor(
                 )
             }
         }
-        deleteAccountsUseCase.invoke(accountToBeDeleted)
-        addAccountsUseCase(listOf(newAccount))
+//        deleteTransactionUseCase(transactionsToBeDeleted)
+//        deleteAccountUseCase.invoke(accountsToBeDeleted)
+        addAccountUseCase(listOf(newAccount))
         /*
         TODO
             android.database.sqlite.SQLiteConstraintException: UNIQUE constraint failed: transactions.accountName, transactions.date, transactions.money, transactions.description (code 1555 SQLITE_CONSTRAINT_PRIMARYKEY)
@@ -61,7 +64,7 @@ class StatementViewModel @ViewModelInject constructor(
             at androidx.sqlite.db.framework.FrameworkSQLiteStatement.executeInsert(FrameworkSQLiteStatement.java:51)
             at androidx.room.EntityInsertionAdapter.insert(EntityInsertionAdapter.java:97)
          */
-        addTransactionsUseCase(mergedTransactions)
+        addTransactionUseCase(mergedTransactions)
 
     }
 }

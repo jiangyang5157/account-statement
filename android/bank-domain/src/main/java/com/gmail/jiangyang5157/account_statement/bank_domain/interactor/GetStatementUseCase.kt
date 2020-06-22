@@ -6,7 +6,7 @@ import com.gmail.jiangyang5157.account_statement.bank_domain.repository.Statemen
 import com.gmail.jiangyang5157.core.data.Resource
 import javax.inject.Inject
 
-class GetStatementsUseCase @Inject constructor(
+class GetStatementUseCase @Inject constructor(
     private val statementRepository: StatementRepository
 ) {
 

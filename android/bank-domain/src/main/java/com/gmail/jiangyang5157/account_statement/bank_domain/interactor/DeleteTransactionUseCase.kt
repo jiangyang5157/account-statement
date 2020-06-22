@@ -4,11 +4,11 @@ import com.gmail.jiangyang5157.account_statement.bank_domain.entity.TransactionE
 import com.gmail.jiangyang5157.account_statement.bank_domain.repository.StatementRepository
 import javax.inject.Inject
 
-class AddTransactionsUseCase @Inject constructor(
+class DeleteTransactionUseCase @Inject constructor(
     private val statementRepository: StatementRepository
 ) {
 
     operator fun invoke(transactions: List<TransactionEntity>) {
-        statementRepository.addTransactions(transactions)
+        statementRepository.deleteTransactions(transactions)
     }
 }

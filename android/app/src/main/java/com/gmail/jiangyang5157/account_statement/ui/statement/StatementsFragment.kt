@@ -213,7 +213,7 @@ class StatementsFragment : Fragment(), RouterFragmentGuest<UriRoute> {
                                     ).show()
                                 }
                                 statementItems.map { it.statement.account.name }
-                                    .contains(newAccountName) -> {
+                                    .contains(newAccountName.trim()) -> {
                                     Snackbar.make(
                                         this.requireView(),
                                         "Duplicated account name: $newAccountName",
@@ -223,7 +223,7 @@ class StatementsFragment : Fragment(), RouterFragmentGuest<UriRoute> {
                                 else -> {
                                     rv_statements.clearSelectedStatementItems()
                                     statementViewModel.mergeStatements(
-                                        newAccountName,
+                                        newAccountName.trim(),
                                         selection.map {
                                             it.statement
                                         })

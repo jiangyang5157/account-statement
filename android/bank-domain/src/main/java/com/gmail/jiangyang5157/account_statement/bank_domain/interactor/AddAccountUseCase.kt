@@ -4,7 +4,7 @@ import com.gmail.jiangyang5157.account_statement.bank_domain.entity.AccountEntit
 import com.gmail.jiangyang5157.account_statement.bank_domain.repository.StatementRepository
 import javax.inject.Inject
 
-class AddAccountsUseCase @Inject constructor(
+class AddAccountUseCase @Inject constructor(
     private val statementRepository: StatementRepository
 ) {
 
