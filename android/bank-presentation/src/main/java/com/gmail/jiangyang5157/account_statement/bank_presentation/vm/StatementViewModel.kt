@@ -13,6 +13,7 @@ import com.gmail.jiangyang5157.account_statement.bank_domain.interactor.AddTrans
 import com.gmail.jiangyang5157.account_statement.bank_domain.interactor.DeleteAccountsUseCase
 import com.gmail.jiangyang5157.account_statement.bank_domain.interactor.GetStatementsUseCase
 import com.gmail.jiangyang5157.core.data.Resource
+import java.util.*
 
 class StatementViewModel @ViewModelInject constructor(
     @Assisted private val savedStateHandle: SavedStateHandle,
@@ -39,6 +40,24 @@ class StatementViewModel @ViewModelInject constructor(
     }
 
     fun mergeStatements(name: String, statements: List<StatementEntity>) {
-        // TODO
+        deleteAccountsUseCase.invoke(
+            statements.map { it.account }
+        )
+        addAccountsUseCase(
+            listOf(AccountEntity(name, Date()))
+        )
+        val data = statements.map { it.transactions }.flatMap { transitions ->
+            transitions.map {
+                TransactionEntity(
+                    name,
+                    it.date,
+                    it.money,
+                    it.description
+                )
+            }
+        }
+        addTransactionsUseCase(
+            data
+        )
     }
 }
