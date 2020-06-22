@@ -9,7 +9,7 @@
         android:id="@+id/til_account_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Account name"
+        android:hint="@string/hint_enter_account_name"
         app:layout_constraintTop_toTopOf="parent">
 
         <com.google.android.material.textfield.TextInputEditText

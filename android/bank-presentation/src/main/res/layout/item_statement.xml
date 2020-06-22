@@ -36,7 +36,6 @@
             app:layout_constraintTop_toTopOf="@id/tv_account_last_modified_date"
             tools:text="transaction_count" />
 
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </FrameLayout>

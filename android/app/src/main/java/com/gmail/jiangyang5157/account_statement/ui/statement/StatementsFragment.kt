@@ -1,8 +1,9 @@
 package com.gmail.jiangyang5157.account_statement.ui.statement
 
 import android.os.Bundle
-import android.util.Log
 import android.view.*
+import android.widget.EditText
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -14,6 +15,7 @@ import com.gmail.jiangyang5157.account_statement.router.RouterFragmentGuest
 import com.gmail.jiangyang5157.account_statement.router.UriRoute
 import com.gmail.jiangyang5157.android.router.core.push
 import com.gmail.jiangyang5157.core.data.Status
+import com.google.android.material.snackbar.Snackbar
 import com.google.gson.Gson
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_statements.*
@@ -122,7 +124,6 @@ class StatementsFragment : Fragment(), RouterFragmentGuest<UriRoute> {
         rv_statements.init()
         statementViewModel.getStatements().observe(viewLifecycleOwner,
             Observer { resource ->
-                Log.d("####", "status=${resource.status}")
                 when (resource.status) {
                     Status.SUCCESS -> {
                         resource.data?.run {
@@ -176,6 +177,7 @@ class StatementsFragment : Fragment(), RouterFragmentGuest<UriRoute> {
             }
             R.id.action_delete -> {
                 val selection = rv_statements.getSelectedStatementItems()
+                rv_statements.clearSelectedStatementItems()
                 statementViewModel.deleteAccounts(selection.map {
                     it.statement.account
                 })
@@ -186,7 +188,57 @@ class StatementsFragment : Fragment(), RouterFragmentGuest<UriRoute> {
             }
             R.id.action_merge -> {
                 val selection = rv_statements.getSelectedStatementItems()
-                // TODO
+                if (selection.size <= 1) {
+                    Snackbar.make(
+                        this.requireView(),
+                        "Merge at least 2 statements",
+                        Snackbar.LENGTH_SHORT
+                    ).show()
+                } else {
+                    val etAccountName = EditText(requireContext())
+                    etAccountName.hint = getString(R.string.hint_enter_account_name)
+                    etAccountName.setSingleLine()
+                    AlertDialog.Builder(requireContext())
+                        .setView(etAccountName)
+                        .setPositiveButton(
+                            getString(R.string.label_btn_confirm)
+                        ) { _, _ ->
+                            val newAccountName = etAccountName.text.toString()
+                            when {
+                                newAccountName.trim().isEmpty() -> {
+                                    Snackbar.make(
+                                        this.requireView(),
+                                        "Invalid account name: $newAccountName",
+                                        Snackbar.LENGTH_SHORT
+                                    ).show()
+                                }
+                                statementItems.map { it.statement.account.name }
+                                    .contains(newAccountName) -> {
+                                    Snackbar.make(
+                                        this.requireView(),
+                                        "Duplicated account name: $newAccountName",
+                                        Snackbar.LENGTH_SHORT
+                                    ).show()
+                                }
+                                else -> {
+                                    rv_statements.clearSelectedStatementItems()
+                                    statementViewModel.mergeStatements(
+                                        newAccountName,
+                                        selection.map {
+                                            it.statement
+                                        })
+                                    currentMode = defaultMode
+                                    currentMode.setupView()
+                                    currentMode.setupMenu()
+                                }
+                            }
+                        }
+                        .setNegativeButton(
+                            getString(R.string.label_btn_cancel)
+                        ) { dialog, _ -> dialog.cancel() }
+
+                        .show()
+                }
                 return true
             }
             android.R.id.home -> {

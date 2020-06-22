@@ -7,11 +7,16 @@
     <string name="label_page_statement">Statement</string>
     <string name="label_page_transactions">Transactions</string>
 
+    <string name="label_btn_confirm">Confirm</string>
+    <string name="label_btn_cancel">Cancel</string>
+
     <string name="title_action_add">Add</string>
     <string name="title_action_selection">Selection</string>
     <string name="title_action_delete">Delete</string>
     <string name="title_action_merge">Merge</string>
     <string name="title_action_create">Create</string>
     <string name="title_action_search">Search</string>
+
+    <string name="hint_enter_account_name">Enter account name</string>
 
 </resources>

@@ -38,7 +38,7 @@ class StatementViewModel @ViewModelInject constructor(
         return deleteAccountsUseCase(accounts)
     }
 
-    fun mergeStatements(statements: List<StatementEntity>) {
+    fun mergeStatements(name: String, statements: List<StatementEntity>) {
         // TODO
     }
 }

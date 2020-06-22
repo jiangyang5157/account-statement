@@ -61,7 +61,8 @@ class AddStatementFragment : Fragment(), RouterFragmentGuest<UriRoute> {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        (requireActivity() as AppCompatActivity).supportActionBar?.title = getString(R.string.label_page_add_statement)
+        (requireActivity() as AppCompatActivity).supportActionBar?.title =
+            getString(R.string.label_page_add_statement)
 
         btn_file_browser.setOnClickListener {
             val getContent =
