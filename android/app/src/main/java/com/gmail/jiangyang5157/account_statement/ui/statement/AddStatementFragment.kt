@@ -10,7 +10,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.gmail.jiangyang5157.account_statement.R
-import com.gmail.jiangyang5157.account_statement.bank_domain.entity.AccountEntity
 import com.gmail.jiangyang5157.account_statement.bank_domain.entity.TransactionEntity
 import com.gmail.jiangyang5157.account_statement.bank_presentation.parser.CsvTransactionParser
 import com.gmail.jiangyang5157.account_statement.bank_presentation.parser.anz.AnzCreditParser
@@ -27,7 +26,6 @@ import com.google.gson.Gson
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_add_statement.*
 import java.io.FileNotFoundException
-import java.util.*
 
 @AndroidEntryPoint
 class AddStatementFragment : Fragment(), RouterFragmentGuest<UriRoute> {
