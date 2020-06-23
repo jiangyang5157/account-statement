@@ -1,5 +1,6 @@
 package com.gmail.jiangyang5157.account_statement.ui.statement
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.*
 import androidx.appcompat.app.AppCompatActivity
@@ -14,8 +15,8 @@ import com.gmail.jiangyang5157.android.router.core.route
 import com.gmail.jiangyang5157.core.ext.fromJson
 import com.google.gson.Gson
 import dagger.hilt.android.AndroidEntryPoint
-import io.flutter.embedding.android.FlutterActivity
 import kotlinx.android.synthetic.main.fragment_transactions.*
+
 
 @AndroidEntryPoint
 class TransactionsFragment : Fragment(), RouterFragmentGuest<UriRoute> {
@@ -47,13 +48,17 @@ class TransactionsFragment : Fragment(), RouterFragmentGuest<UriRoute> {
             getString(R.string.label_page_transactions)
 
         transactionItems.clear()
-        transactionItems.addAll(transactions.map {
+        transactionItems.addAll(transactions.mapIndexed { index, transactionEntity ->
             TransactionItem(
-                it,
+                transactionEntity,
                 View.OnClickListener {
                     // TODO remove test code
                     startActivity(
-                        FlutterActivity.createDefaultIntent(requireContext())
+                        Intent(requireContext(), ChartFlutterActivity::class.java).apply {
+                            putExtras(Bundle().apply {
+                                putInt(ChartFlutterActivity.keyDataInt, index)
+                            })
+                        }
                     )
                 }
             )

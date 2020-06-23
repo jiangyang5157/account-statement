@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 void main() => runApp(MyApp());
 
@@ -19,17 +20,41 @@ class MyApp extends StatelessWidget {
 class MyHomePage extends StatefulWidget {
   MyHomePage({Key key, this.title}) : super(key: key);
   final String title;
+
   @override
   _MyHomePageState createState() => _MyHomePageState();
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  static const methodChannel =
+      const MethodChannel('com.gmail.jiangyang5157.account_statement/data');
+
   int _counter = 0;
+
+  Future<void> _initCounter() async {
+    int data;
+    try {
+      final int result = await methodChannel.invokeMethod('intChannel');
+      data = result;
+    } on PlatformException catch (e) {
+      data = 0;
+      print("_initCounter PlatformException $e");
+    }
+    setState(() {
+      _counter = data;
+    });
+  }
 
   void _incrementCounter() {
     setState(() {
       _counter++;
     });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _initCounter();
   }
 
   @override
