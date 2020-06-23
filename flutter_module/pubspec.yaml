@@ -19,19 +19,22 @@ dependencies:
   cupertino_icons: ^0.1.3
 
   # State management
-  provider: ^3.1.0+1
+#  provider: ^4.1.3
 
   # Simple direct Service Locator that allows to decouple the interface from a concrete implementation and to access the concrete implementation from everywhere in your App
-  get_it: ^3.0.3
+#  get_it: ^4.0.2
 
   # Value equality
-  equatable: ^0.4.0
+#  equatable: ^1.2.0
 
   # Functional programming things
-  dartz: ^0.8.6
+#  dartz: ^0.9.1
 
-  # Flutter routing library that adds flexible routing options.
-  fluro: ^1.5.1
+  # Flutter routing library that adds flexible routing options
+#  fluro: ^1.6.3
+
+  # Material Design data visualization library written natively in Dart
+#  charts_flutter: ^0.9.0
 
 dev_dependencies:
   flutter_test:
@@ -41,7 +44,7 @@ flutter:
   # The following line ensures that the Material Icons font is included with your application
   uses-material-design: true
 
-  # To add Flutter specific assets to your application, add an assets section,
+  # To add Flutter specific assets to your application, add an assets section
   assets:
     - res/values/strings.json
 
