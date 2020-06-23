@@ -24,6 +24,7 @@ class TransactionItemViewBinder :
         holder.tvMoney.text = item.transaction.money.amount.toPlainString()
         holder.tvDate.text = "${TransactionDto.DateStringConverter(RegexUtils.DATE_DMY)
             .forward(item.transaction.date)}"
+        holder.itemView.setOnClickListener(item.onClickListener)
     }
 
     override fun onCreateViewHolder(inflater: LayoutInflater, parent: ViewGroup): ViewHolder {

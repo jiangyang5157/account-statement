@@ -14,6 +14,7 @@ import com.gmail.jiangyang5157.android.router.core.route
 import com.gmail.jiangyang5157.core.ext.fromJson
 import com.google.gson.Gson
 import dagger.hilt.android.AndroidEntryPoint
+import io.flutter.embedding.android.FlutterActivity
 import kotlinx.android.synthetic.main.fragment_transactions.*
 
 @AndroidEntryPoint
@@ -42,11 +43,20 @@ class TransactionsFragment : Fragment(), RouterFragmentGuest<UriRoute> {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        (requireActivity() as AppCompatActivity).supportActionBar?.title = getString(R.string.label_page_transactions)
+        (requireActivity() as AppCompatActivity).supportActionBar?.title =
+            getString(R.string.label_page_transactions)
 
         transactionItems.clear()
         transactionItems.addAll(transactions.map {
-            TransactionItem(it)
+            TransactionItem(
+                it,
+                View.OnClickListener {
+                    // TODO remove test code
+                    startActivity(
+                        FlutterActivity.createDefaultIntent(requireContext())
+                    )
+                }
+            )
         })
 
         rv_transactions.init()
