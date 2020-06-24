@@ -1,8 +1,20 @@
+import 'package:account_statement/startup/app_page.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
+import 'package:provider/provider.dart';
+import 'core/injection.dart' as di;
 
-void main() => runApp(MyApp());
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+//  debugPaintSizeEnabled = true;
+  Provider.debugCheckInvalidValueType = null;
 
+  await di.init();
+  runApp(AppPage());
+}
+
+// TODO remove test page
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
@@ -36,6 +48,9 @@ class _MyHomePageState extends State<MyHomePage> {
     try {
       final int result = await methodChannel.invokeMethod('intChannel');
       data = result;
+    } on MissingPluginException catch (e) {
+      data = 0;
+      print("_initCounter MissingPluginException $e");
     } on PlatformException catch (e) {
       data = 0;
       print("_initCounter PlatformException $e");
