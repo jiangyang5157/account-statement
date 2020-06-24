@@ -190,7 +190,7 @@ class StatementsFragment : Fragment(), RouterFragmentGuest<UriRoute> {
                 val selection = rv_statements.getSelectedStatementItems()
                 if (selection.size <= 1) {
                     Snackbar.make(
-                        this.requireView(),
+                        requireView(),
                         "Merge at least 2 statements",
                         Snackbar.LENGTH_SHORT
                     ).show()
@@ -207,7 +207,7 @@ class StatementsFragment : Fragment(), RouterFragmentGuest<UriRoute> {
                             when {
                                 newAccountName.trim().isEmpty() -> {
                                     Snackbar.make(
-                                        this.requireView(),
+                                        requireView(),
                                         "Invalid account name: $newAccountName",
                                         Snackbar.LENGTH_SHORT
                                     ).show()
@@ -215,7 +215,7 @@ class StatementsFragment : Fragment(), RouterFragmentGuest<UriRoute> {
                                 statementItems.map { it.statement.account.name }
                                     .contains(newAccountName.trim()) -> {
                                     Snackbar.make(
-                                        this.requireView(),
+                                        requireView(),
                                         "Duplicated account name: $newAccountName",
                                         Snackbar.LENGTH_SHORT
                                     ).show()

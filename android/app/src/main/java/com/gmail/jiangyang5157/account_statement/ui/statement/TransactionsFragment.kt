@@ -17,7 +17,6 @@ import com.google.gson.Gson
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_transactions.*
 
-
 @AndroidEntryPoint
 class TransactionsFragment : Fragment(), RouterFragmentGuest<UriRoute> {
 
@@ -48,20 +47,8 @@ class TransactionsFragment : Fragment(), RouterFragmentGuest<UriRoute> {
             getString(R.string.label_page_transactions)
 
         transactionItems.clear()
-        transactionItems.addAll(transactions.mapIndexed { index, transactionEntity ->
-            TransactionItem(
-                transactionEntity,
-                View.OnClickListener {
-                    // TODO remove test code
-                    startActivity(
-                        Intent(requireContext(), ChartFlutterActivity::class.java).apply {
-                            putExtras(Bundle().apply {
-                                putInt(ChartFlutterActivity.keyDataInt, index)
-                            })
-                        }
-                    )
-                }
-            )
+        transactionItems.addAll(transactions.map { transactionEntity ->
+            TransactionItem(transactionEntity)
         })
 
         rv_transactions.init()
@@ -103,6 +90,20 @@ class TransactionsFragment : Fragment(), RouterFragmentGuest<UriRoute> {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return super.onOptionsItemSelected(item)
+        return when (item.itemId) {
+            R.id.action_visualize -> {
+                startActivity(
+                    Intent(requireContext(), ChartFlutterActivity::class.java).apply {
+                        putExtras(Bundle().apply {
+                            putInt(ChartFlutterActivity.keyDataInt, 456)
+                        })
+                    }
+                )
+                true
+            }
+            else -> {
+                super.onOptionsItemSelected(item)
+            }
+        }
     }
 }

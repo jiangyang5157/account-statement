@@ -1,5 +1,6 @@
 package com.gmail.jiangyang5157.account_statement.ui.statement
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.*
 import androidx.appcompat.app.AppCompatActivity
@@ -44,7 +45,8 @@ class StatementFragment : Fragment(), RouterFragmentGuest<UriRoute> {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        (requireActivity() as AppCompatActivity).supportActionBar?.title = getString(R.string.label_page_statement)
+        (requireActivity() as AppCompatActivity).supportActionBar?.title =
+            getString(R.string.label_page_statement)
 
         val map = hashMapOf<String, Money>()
         transactions.forEach {
@@ -100,6 +102,20 @@ class StatementFragment : Fragment(), RouterFragmentGuest<UriRoute> {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return super.onOptionsItemSelected(item)
+        return when (item.itemId) {
+            R.id.action_visualize -> {
+                startActivity(
+                    Intent(requireContext(), ChartFlutterActivity::class.java).apply {
+                        putExtras(Bundle().apply {
+                            putInt(ChartFlutterActivity.keyDataInt, 123)
+                        })
+                    }
+                )
+                true
+            }
+            else -> {
+                super.onOptionsItemSelected(item)
+            }
+        }
     }
 }

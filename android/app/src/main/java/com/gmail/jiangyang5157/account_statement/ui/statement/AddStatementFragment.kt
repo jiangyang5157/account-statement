@@ -87,64 +87,49 @@ class AddStatementFragment : Fragment(), RouterFragmentGuest<UriRoute> {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.action_create -> {
-                val accountName = tiet_account_name.text.let { text ->
-                    if (text == null || text.trim().isEmpty()) {
-                        Snackbar.make(
-                            this.requireView(),
-                            "Invalid account name: $text",
-                            Snackbar.LENGTH_SHORT
-                        ).show()
-                        return super.onOptionsItemSelected(item)
-                    } else if (accountNames.contains(text.trim().toString())) {
-                        Snackbar.make(
-                            this.requireView(),
-                            "Duplicated account name: $text",
-                            Snackbar.LENGTH_SHORT
-                        ).show()
-                        return super.onOptionsItemSelected(item)
-                    } else {
-                        text.trim().toString()
+                val accountName = tiet_account_name.text.toString().trim().let {
+                    when {
+                        it.isEmpty() -> {
+                            Snackbar.make(
+                                requireView(),
+                                "Invalid account name: $it",
+                                Snackbar.LENGTH_SHORT
+                            ).show()
+                            return super.onOptionsItemSelected(item)
+                        }
+                        accountNames.contains(it) -> {
+                            Snackbar.make(
+                                requireView(),
+                                "Duplicated account name: $it",
+                                Snackbar.LENGTH_SHORT
+                            ).show()
+                            return super.onOptionsItemSelected(item)
+                        }
+                        else -> {
+                            it
+                        }
                     }
                 }
                 val uri = Uri.parse(tv_file_uri.text.toString())
                 val inputStream = try {
                     requireContext().contentResolver.openInputStream(uri)
                 } catch (e: FileNotFoundException) {
-                    Snackbar.make(this.requireView(), "Invalid uri: $uri", Snackbar.LENGTH_SHORT)
-                        .show()
+                    Snackbar.make(requireView(), "Invalid uri: $uri", Snackbar.LENGTH_SHORT).show()
                     return super.onOptionsItemSelected(item)
                 }
 
                 val transactions = mutableListOf<TransactionEntity>()
                 when (bankArray[spinner_bank.selectedItemPosition]) {
-                    "ANZ Saving" -> {
-                        AnzSavingsParser().parse(inputStream)?.map { transaction ->
-                            CsvTransactionParser(accountName).parse(
-                                transaction
-                            )?.also { transition ->
-                                transactions.add(transition)
-                            }
-                        }
-                    }
-                    "ANZ Credit" -> {
-                        AnzCreditParser().parse(inputStream)?.map { transaction ->
-                            CsvTransactionParser(accountName).parse(
-                                transaction
-                            )?.also { transition ->
-                                transactions.add(transition)
-                            }
-                        }
-                    }
-                    "ASB Saving" -> {
-                        AsbSavingsParser().parse(inputStream)?.map { transaction ->
-                            CsvTransactionParser(accountName).parse(
-                                transaction
-                            )?.also { transition ->
-                                transactions.add(transition)
-                            }
-                        }
-                    }
+                    "ANZ Saving" -> AnzSavingsParser().parse(inputStream)
+                    "ANZ Credit" -> AnzCreditParser().parse(inputStream)
+                    "ASB Saving" -> AsbSavingsParser().parse(inputStream)
                     else -> throw RuntimeException()
+                }?.map { transaction ->
+                    CsvTransactionParser(accountName).parse(
+                        transaction
+                    )?.also { transition ->
+                        transactions.add(transition)
+                    }
                 }
 
                 try {
@@ -152,7 +137,7 @@ class AddStatementFragment : Fragment(), RouterFragmentGuest<UriRoute> {
                     router.pop()
                 } catch (e: SQLiteConstraintException) {
                     Snackbar.make(
-                        this.requireView(),
+                        requireView(),
                         "Failed: ${e.message}",
                         Snackbar.LENGTH_SHORT
                     ).show()
