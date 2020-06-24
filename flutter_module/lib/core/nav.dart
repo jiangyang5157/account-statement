@@ -3,7 +3,7 @@ import 'package:fluro/fluro.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-import '../main.dart';
+import '../test_page.dart';
 
 class Nav {
   Router _router;
@@ -16,9 +16,9 @@ class Nav {
           handlerFunc: (BuildContext context, Map<String, dynamic> params) {
         return SplashPage();
       }))
-      ..define('MyApp', handler: Handler(
+      ..define('TestPage', handler: Handler(
           handlerFunc: (BuildContext context, Map<String, dynamic> params) {
-        return MyHomePage();
+        return TestPage();
       }));
   }
 

@@ -28,7 +28,7 @@ class _SplashPageState extends State<SplashPage> {
   Future<void> _init() async {
     final failure = await locator<StartupViewModel>().setup();
     if (failure == null) {
-      locator<Nav>().router.navigateTo(context, 'MyApp',
+      locator<Nav>().router.navigateTo(context, 'TestPage',
           clearStack: true, transition: TransitionType.fadeIn);
     } else {
       locator<Nav>().exit();
