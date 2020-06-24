@@ -24,22 +24,22 @@
         android:id="@+id/layout_file"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
+        android:orientation="horizontal"
         app:layout_constraintTop_toBottomOf="@id/til_account_name">
 
         <Button
-            android:id="@+id/btn_file_browser"
+            android:id="@+id/btn_csv_file"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="file_browser" />
 
         <TextView
-            android:id="@+id/tv_file_uri"
+            android:id="@+id/tv_csv_file_uri"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tool:text="file_uri" />
+            tool:text="csv_file_uri" />
     </LinearLayout>
 
     <Spinner

@@ -62,10 +62,10 @@ class AddStatementFragment : Fragment(), RouterFragmentGuest<UriRoute> {
         (requireActivity() as AppCompatActivity).supportActionBar?.title =
             getString(R.string.label_page_add_statement)
 
-        btn_file_browser.setOnClickListener {
+        btn_csv_file.setOnClickListener {
             val getContent =
                 registerForActivityResult(ActivityResultContracts.GetContent()) { uri: Uri? ->
-                    tv_file_uri.text = uri.toString()
+                    tv_csv_file_uri.text = uri.toString()
                 }
             getContent.launch("text/*")
         }
@@ -110,7 +110,7 @@ class AddStatementFragment : Fragment(), RouterFragmentGuest<UriRoute> {
                         }
                     }
                 }
-                val uri = Uri.parse(tv_file_uri.text.toString())
+                val uri = Uri.parse(tv_csv_file_uri.text.toString())
                 val inputStream = try {
                     requireContext().contentResolver.openInputStream(uri)
                 } catch (e: FileNotFoundException) {

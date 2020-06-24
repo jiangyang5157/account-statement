@@ -15,7 +15,11 @@ class _TestPageState extends State<TestPage> {
       'com.gmail.jiangyang5157.account_statement/MethodChannel');
 
   int _counter = 0;
-  String _transactions;
+  String _transactions =
+  '''
+  [{"accountName":"asdasd","date":"Jun 2, 2020 12:00:00 AM","description":"Payment, Amp General Ins","id":402,"money":-1224.18},{"accountName":"asdasd","date":"Jun 2, 2020 12:00:00 AM","description":"Payment, Amp General Ins","id":418,"money":-1224.18},{"accountName":"asdasd","date":"Jun 2, 2020 12:00:00 AM","description":"Payment, Amp General Ins","id":434,"money":-1224.18}]
+  '''
+  ;
 
   Future<void> _initTransactions() async {
     try {
