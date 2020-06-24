@@ -41,22 +41,22 @@ class ThemeEntity extends Equatable {
     switch (type) {
       case ThemeType.Dark:
         return ThemeData.dark().copyWith(
+          primaryColor: Colors.deepOrange,
+          accentColor: Colors.deepOrangeAccent,
+          errorColor: Colors.deepOrangeAccent,
+          buttonTheme: ButtonTheme.of(context).copyWith(
+            textTheme: ButtonTextTheme.primary,
+            buttonColor: Colors.deepOrange,
+          ),
+        );
+      case ThemeType.Light:
+        return ThemeData.light().copyWith(
           primaryColor: Colors.green,
           accentColor: Colors.greenAccent,
           errorColor: Colors.greenAccent,
           buttonTheme: ButtonTheme.of(context).copyWith(
             textTheme: ButtonTextTheme.primary,
             buttonColor: Colors.green,
-          ),
-        );
-      case ThemeType.Light:
-        return ThemeData.light().copyWith(
-          primaryColor: Colors.blue,
-          accentColor: Colors.blueAccent,
-          errorColor: Colors.blueAccent,
-          buttonTheme: ButtonTheme.of(context).copyWith(
-            textTheme: ButtonTextTheme.primary,
-            buttonColor: Colors.blue,
           ),
         );
       default:

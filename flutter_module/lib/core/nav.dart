@@ -18,7 +18,7 @@ class Nav {
       }))
       ..define('MyApp', handler: Handler(
           handlerFunc: (BuildContext context, Map<String, dynamic> params) {
-        return MyApp();
+        return MyHomePage();
       }));
   }
 
