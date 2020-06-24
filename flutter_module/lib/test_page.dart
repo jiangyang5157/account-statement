@@ -25,10 +25,10 @@ class _TestPageState extends State<TestPage> {
       data = result;
     } on MissingPluginException catch (e) {
       data = 0;
-      print("_initCounter MissingPluginException $e");
+      print("#### _initCounter MissingPluginException $e");
     } on PlatformException catch (e) {
       data = 0;
-      print("_initCounter PlatformException $e");
+      print("#### _initCounter PlatformException $e");
     }
     setState(() {
       _counter = data;
