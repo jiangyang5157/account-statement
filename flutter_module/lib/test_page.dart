@@ -42,13 +42,21 @@ class _TestPageState extends State<TestPage> {
   }
 
   @override
+  void dispose() {
+    super.dispose();
+    print('#### _TestPageState - dispose');
+  }
+
+  @override
   void initState() {
     super.initState();
+    print('#### _TestPageState - initState');
     _initCounter();
   }
 
   @override
   Widget build(BuildContext context) {
+    print('#### _TestPageState - build');
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.title),
