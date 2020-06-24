@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -20,6 +22,7 @@ class _TestPageState extends State<TestPage> {
   [{"accountName":"asdasd","date":"Jun 2, 2020 12:00:00 AM","description":"Payment, Amp General Ins","id":402,"money":-1224.18},{"accountName":"asdasd","date":"Jun 2, 2020 12:00:00 AM","description":"Payment, Amp General Ins","id":418,"money":-1224.18},{"accountName":"asdasd","date":"Jun 2, 2020 12:00:00 AM","description":"Payment, Amp General Ins","id":434,"money":-1224.18}]
   '''
   ;
+  Map<String, dynamic> user;
 
   Future<void> _initTransactions() async {
     try {
@@ -33,6 +36,21 @@ class _TestPageState extends State<TestPage> {
     } on PlatformException catch (e) {
       print("#### _initCounter PlatformException $e");
     }
+    initUser();
+  }
+
+  void initUser() {
+    user = jsonDecode(
+//      _transactions
+      '''
+{
+  "name": "John Smith",
+  "email": "john@example.com"
+}
+      '''
+    );
+    print('##### Howdy, ${user['name']}!');
+    print('##### We sent the verification link to ${user['email']}.');
   }
 
   void _incrementCounter() {
