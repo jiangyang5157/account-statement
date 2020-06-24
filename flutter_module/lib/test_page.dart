@@ -5,6 +5,8 @@ import 'package:fluro/fluro.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+import 'chart/simple_time_series_chart.dart';
+
 class TestPage extends StatefulWidget {
   final String title = 'Flutter Demo Home Page';
 
@@ -62,6 +64,7 @@ class _TestPageState extends State<TestPage> {
         title: Text(widget.title),
       ),
       body: Center(
+//        child: SimpleTimeSeriesChart.withSampleData(),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
