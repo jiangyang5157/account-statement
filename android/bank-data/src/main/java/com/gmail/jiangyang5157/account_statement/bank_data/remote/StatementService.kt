@@ -16,9 +16,6 @@ interface StatementService {
     fun fetchStatements(): LiveData<ApiResponse<List<StatementDto>>>
 
     class Builder {
-        /**
-         * No available service at this moment, using fake service to fit in
-         */
         fun build(): StatementService {
             return Retrofit.Builder()
                 .baseUrl("https://www.google.com/")
@@ -39,6 +36,10 @@ interface StatementService {
     }
 }
 
+/**
+ * No available service at this moment, using fake service to fit in
+ * This interceptor returns [mock_get_statements] for [StatementService.fetchStatements] call.
+ */
 class StatementServiceInterceptor : Interceptor {
 
     override fun intercept(chain: Interceptor.Chain): Response {
