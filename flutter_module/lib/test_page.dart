@@ -1,7 +1,3 @@
-import 'package:account_statement/core/injection.dart';
-import 'package:account_statement/core/nav.dart';
-import 'package:account_statement/startup/startup_view_model.dart';
-import 'package:fluro/fluro.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 

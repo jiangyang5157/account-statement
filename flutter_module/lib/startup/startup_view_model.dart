@@ -1,4 +1,4 @@
-import 'package:account_statement/core/failures.dart';
+import 'package:account_statement/core/error/failures.dart';
 import 'package:flutter/material.dart';
 
 class StartupViewModel extends ChangeNotifier {
