@@ -11,26 +11,24 @@ class TestPage extends StatefulWidget {
 }
 
 class _TestPageState extends State<TestPage> {
-  static const methodChannel =
-      const MethodChannel('com.gmail.jiangyang5157.account_statement/data');
+  static const methodChannel = const MethodChannel(
+      'com.gmail.jiangyang5157.account_statement/MethodChannel');
 
   int _counter = 0;
+  String _transactions;
 
-  Future<void> _initCounter() async {
-    int data;
+  Future<void> _initTransactions() async {
     try {
-      final int result = await methodChannel.invokeMethod('intChannel');
-      data = result;
+      final String result =
+          await methodChannel.invokeMethod('transactionsChannel');
+      setState(() {
+        _transactions = result;
+      });
     } on MissingPluginException catch (e) {
-      data = 0;
       print("#### _initCounter MissingPluginException $e");
     } on PlatformException catch (e) {
-      data = 0;
       print("#### _initCounter PlatformException $e");
     }
-    setState(() {
-      _counter = data;
-    });
   }
 
   void _incrementCounter() {
@@ -49,7 +47,7 @@ class _TestPageState extends State<TestPage> {
   void initState() {
     super.initState();
     print('#### _TestPageState - initState');
-    _initCounter();
+    _initTransactions();
   }
 
   @override
@@ -71,6 +69,9 @@ class _TestPageState extends State<TestPage> {
               '$_counter',
               style: Theme.of(context).textTheme.headline4,
             ),
+            Text(
+              'Received transactions:\n$_transactions',
+            )
           ],
         ),
       ),

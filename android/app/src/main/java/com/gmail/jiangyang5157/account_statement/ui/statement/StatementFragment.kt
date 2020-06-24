@@ -107,7 +107,7 @@ class StatementFragment : Fragment(), RouterFragmentGuest<UriRoute> {
                 startActivity(
                     Intent(requireContext(), ChartFlutterActivity::class.java).apply {
                         putExtras(Bundle().apply {
-                            putInt(ChartFlutterActivity.keyDataInt, 123)
+                            putString(ChartFlutterActivity.keyTransactions, Gson().toJson(transactions))
                         })
                     }
                 )

@@ -10,18 +10,18 @@ class ChartFlutterActivity : FlutterActivity() {
 
     override fun configureFlutterEngine(@NonNull flutterEngine: FlutterEngine) {
         super.configureFlutterEngine(flutterEngine)
-        val dataInt = intent.extras?.getInt(keyDataInt, -1)
-        Log.d("####", "configureFlutterEngine ${flutterEngine}\ndataint=$dataInt")
+        val transactions = intent.extras?.getString(keyTransactions)
+        Log.d("####", "configureFlutterEngine ${flutterEngine}\ntransactions=$transactions")
 
         MethodChannel(
             flutterEngine.dartExecutor.binaryMessenger,
             methodChannel
         ).setMethodCallHandler { call, result ->
-            if (call.method == "intChannel") {
-                if (dataInt != null && dataInt >= 0) {
-                    result.success(dataInt)
+            if (call.method == "transactionsChannel") {
+                if (!transactions.isNullOrEmpty()) {
+                    result.success(transactions)
                 } else {
-                    result.error(dataInt.toString(), "dataInt is less than 0", dataInt)
+                    result.error(transactions, "Empty transactions", transactions)
                 }
             } else {
                 result.notImplemented()
@@ -30,7 +30,7 @@ class ChartFlutterActivity : FlutterActivity() {
     }
 
     companion object {
-        const val methodChannel = "com.gmail.jiangyang5157.account_statement/data"
-        const val keyDataInt = "keyDataInt"
+        const val methodChannel = "com.gmail.jiangyang5157.account_statement/MethodChannel"
+        const val keyTransactions = "keyTransactions"
     }
 }

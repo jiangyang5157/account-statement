@@ -13,6 +13,7 @@ class StartupViewModel extends ChangeNotifier {
   }
 
   Future<Failure> setup() async {
+    // initializing app...
     return null;
   }
 }

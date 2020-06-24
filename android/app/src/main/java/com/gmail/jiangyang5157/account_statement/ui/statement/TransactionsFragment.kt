@@ -95,7 +95,7 @@ class TransactionsFragment : Fragment(), RouterFragmentGuest<UriRoute> {
                 startActivity(
                     Intent(requireContext(), ChartFlutterActivity::class.java).apply {
                         putExtras(Bundle().apply {
-                            putInt(ChartFlutterActivity.keyDataInt, 456)
+                            putString(ChartFlutterActivity.keyTransactions, Gson().toJson(transactions))
                         })
                     }
                 )
