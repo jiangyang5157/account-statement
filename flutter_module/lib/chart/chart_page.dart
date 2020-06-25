@@ -1,9 +1,9 @@
 import 'dart:convert';
 
-import 'package:account_statement/chart/simple_time_series_chart.dart';
 import 'package:account_statement/chart/transaction_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:charts_flutter/flutter.dart' as charts;
 
 class ChartPage extends StatefulWidget {
   ChartPage({Key key}) : super(key: key);
@@ -16,7 +16,7 @@ class _ChartPageState extends State<ChartPage> {
   static const methodChannel = const MethodChannel(
       'com.gmail.jiangyang5157.account_statement/MethodChannel');
 
-  List<TransactionModel> _transactions = [];
+  List<charts.Series<TestSeries, DateTime>> _transactionSeries = [];
 
   Future<void> _initTransactions() async {
     String data;
@@ -34,14 +34,36 @@ class _ChartPageState extends State<ChartPage> {
 
     // TODO remove debug code
     data =
-        '''[{"accountName":"asdasd","date":"25/06/2020","description":"Payment, Amp General Ins","id":402,"money":-1224.18},{"accountName":"asdasd","date":"25/06/2020","description":"Payment, Amp General Ins","id":418,"money":-1224.18},{"accountName":"asdasd","date":"25/06/2020","description":"Payment, Amp General Ins","id":434,"money":-1224.18}]''';
+        '''[{"accountName":"asdasd","date":"25/06/2020","description":"Payment, Amp General Ins","id":402,"money":-1224.18},{"accountName":"asdasd","date":"24/06/2020","description":"Payment, Amp General Ins","id":418,"money":-1224.18},{"accountName":"asdasd","date":"26/06/2020","description":"Payment, Amp General Ins","id":434,"money":-1224.18}]''';
     if (data != null) {
       setState(() {
-        _transactions.clear();
+        List<TransactionModel> _transactions = [];
+
         List<dynamic> transactionItems = jsonDecode(data);
         transactionItems.forEach((element) {
           _transactions.add(TransactionModel.fromJson(element));
         });
+        _transactions.sort((a, b) => a.date.compareTo(b.date));
+
+//        _transactions.forEach((transaction) {});
+        print('####, _transactions size: ${_transactions.length}');
+        print('####, _transactions 0: ${_transactions[0].toJson()}');
+
+        final test = [
+          new TestSeries(new DateTime(2017, 9, 19), 5),
+          new TestSeries(new DateTime(2017, 9, 26), 25),
+          new TestSeries(new DateTime(2017, 10, 3), 100),
+          new TestSeries(new DateTime(2017, 10, 10), 75),
+        ];
+
+        _transactionSeries.clear();
+        _transactionSeries.add(new charts.Series<TestSeries, DateTime>(
+          id: 'Transactions',
+          colorFn: (_, __) => charts.MaterialPalette.blue.shadeDefault,
+          domainFn: (TestSeries transaction, _) => transaction.date,
+          measureFn: (TestSeries transaction, _) => transaction.money,
+          data: test,
+        ));
       });
     }
   }
@@ -67,8 +89,24 @@ class _ChartPageState extends State<ChartPage> {
         title: Text('Chart'),
       ),
       body: Center(
-        child: SimpleTimeSeriesChart.withSampleData(),
+        child: _buildChart(),
       ),
     );
   }
+
+  Widget _buildChart() {
+    if (_transactionSeries.isNotEmpty) {
+      return charts.TimeSeriesChart(_transactionSeries,
+          animate: true, dateTimeFactory: const charts.LocalDateTimeFactory());
+    } else {
+      return Container();
+    }
+  }
+}
+
+class TestSeries {
+  final DateTime date;
+  final int money;
+
+  TestSeries(this.date, this.money);
 }
