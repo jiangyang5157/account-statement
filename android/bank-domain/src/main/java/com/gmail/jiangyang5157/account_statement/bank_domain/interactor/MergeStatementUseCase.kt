@@ -11,7 +11,7 @@ class MergeStatementUseCase @Inject constructor(
 ) {
 
     operator fun invoke(account: AccountEntity, statements: List<StatementEntity>) {
-        val accountsToBeDeleted = statements.distinctBy { it.account }.map { it.account }
+//        val accountsToBeDeleted = statements.distinctBy { it.account }.map { it.account }
         val mergedTransactions = statements.map { it.transactions }.flatMap { transitions ->
             transitions.map {
                 TransactionEntity(
@@ -22,7 +22,7 @@ class MergeStatementUseCase @Inject constructor(
                 )
             }
         }
-        statementRepository.deleteAccounts(accountsToBeDeleted)
+//        statementRepository.deleteAccounts(accountsToBeDeleted)
         statementRepository.addStatement(account, mergedTransactions)
     }
 }
