@@ -43,7 +43,6 @@ class _ChartPageState extends State<ChartPage> {
           _transactions.add(TransactionModel.fromJson(element));
         });
       });
-      print('#### _transactions:\n${_transactions[0].toJson()}');
     }
   }
 
