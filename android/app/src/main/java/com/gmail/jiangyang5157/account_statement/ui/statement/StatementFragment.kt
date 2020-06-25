@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import com.gmail.jiangyang5157.account_statement.R
+import com.gmail.jiangyang5157.account_statement.bank_data.remote.dto.TransactionDto
 import com.gmail.jiangyang5157.account_statement.bank_domain.entity.TransactionEntity
 import com.gmail.jiangyang5157.account_statement.bank_presentation.ui.binding.SpendItem
 import com.gmail.jiangyang5157.account_statement.router.RouterFragmentGuest
@@ -107,7 +108,11 @@ class StatementFragment : Fragment(), RouterFragmentGuest<UriRoute> {
                 startActivity(
                     Intent(requireContext(), ChartFlutterActivity::class.java).apply {
                         putExtras(Bundle().apply {
-                            putString(ChartFlutterActivity.keyTransactions, Gson().toJson(transactions))
+                            putString(ChartFlutterActivity.keyTransactions, Gson().toJson(
+                                transactions.map {
+                                    TransactionDto.Converter().backward(it)
+                                }
+                            ))
                         })
                     }
                 )

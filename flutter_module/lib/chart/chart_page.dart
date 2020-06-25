@@ -34,7 +34,7 @@ class _ChartPageState extends State<ChartPage> {
 
     // TODO remove debug code
     data =
-        '''[{"accountName":"asdasd","date":"Jun 2, 2020 12:00:00 AM","description":"Payment, Amp General Ins","id":402,"money":-1224.18},{"accountName":"asdasd","date":"Jun 2, 2020 12:00:00 AM","description":"Payment, Amp General Ins","id":418,"money":-1224.18},{"accountName":"asdasd","date":"Jun 2, 2020 12:00:00 AM","description":"Payment, Amp General Ins","id":434,"money":-1224.18}]''';
+        '''[{"accountName":"asdasd","date":"25/06/2020","description":"Payment, Amp General Ins","id":402,"money":-1224.18},{"accountName":"asdasd","date":"25/06/2020","description":"Payment, Amp General Ins","id":418,"money":-1224.18},{"accountName":"asdasd","date":"25/06/2020","description":"Payment, Amp General Ins","id":434,"money":-1224.18}]''';
     if (data != null) {
       setState(() {
         _transactions.clear();

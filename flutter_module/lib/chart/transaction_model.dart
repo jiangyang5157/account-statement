@@ -1,22 +1,29 @@
+import 'package:intl/intl.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'transaction_model.g.dart';
 
-@JsonSerializable(explicitToJson: true)
+@JsonSerializable(nullable: false, explicitToJson: true)
 class TransactionModel {
-  @JsonKey(name: 'date', required: true)
+  @JsonKey(name: 'accountName')
   String accountName;
 
-  @JsonKey(name: 'date', required: true)
-  String date;
+  @JsonKey(name: 'date', fromJson: _fromJson, toJson: _toJson)
+  DateTime date;
 
-  @JsonKey(name: 'money', required: true)
+  @JsonKey(name: 'money')
   double money;
 
-  @JsonKey(name: 'description', defaultValue: "")
+  @JsonKey(name: 'description')
   String description;
 
   TransactionModel(this.accountName, this.date, this.money, this.description);
+
+  static DateFormat _dateFormat = new DateFormat("dd/MM/yyyy");
+
+  static DateTime _fromJson(String date) => _dateFormat.parse(date);
+
+  static String _toJson(DateTime date) => _dateFormat.format(date);
 
   /// A necessary factory constructor for creating a new User instance
   /// from a map. Pass the map to the generated `_$UserFromJson()` constructor.
