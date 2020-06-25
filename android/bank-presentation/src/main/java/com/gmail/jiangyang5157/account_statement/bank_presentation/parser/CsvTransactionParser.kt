@@ -12,7 +12,7 @@ class CsvTransactionParser(private val accountName: String) :
                     accountName = accountName,
                     date = it.date.value!!,
                     money = it.money.value!!,
-                    description = it.description
+                    description = it.description.removeSurrounding("\"", "\"")
                 )
             } else {
                 null

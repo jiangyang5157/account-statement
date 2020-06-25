@@ -23,7 +23,8 @@ class TransactionEntityTest {
   "accountName": "FakeAccount",
   "date": "Jun 17, 2020 10:57:10 PM",
   "money": -10.99,
-  "description": "desc"
+  "description": "desc",
+  "id": 0
 }
             """.trimIndent()
         Assert.assertEquals(
@@ -45,7 +46,8 @@ class TransactionEntityTest {
   "accountName": "FakeAccount",
   "date": "Jun 17, 2020 10:57:10 PM",
   "money": -10.99,
-  "description": "desc"
+  "description": "desc",
+  "id": 0
 }
             """.trimIndent()
         Assert.assertEquals(
@@ -67,7 +69,8 @@ class TransactionEntityTest {
   "accountName": "FakeAccount",
   "date": "Jun 17, 2020 10:57:10 PM",
   "money": -11.0,
-  "description": "desc"
+  "description": "desc",
+  "id": 0
 }
             """.trimIndent()
         Assert.assertEquals(

@@ -16,7 +16,7 @@ class _ChartPageState extends State<ChartPage> {
   static const methodChannel = const MethodChannel(
       'com.gmail.jiangyang5157.account_statement/MethodChannel');
 
-  List<charts.Series<TransactionModel, DateTime>> _transactionSeries = [];
+  List<charts.Series<MoneySeries, DateTime>> _moneySeries = [];
 
   Future<void> _initTransactions() async {
     String data;
@@ -32,12 +32,8 @@ class _ChartPageState extends State<ChartPage> {
       print("#### _initTransactions Exception $e");
     }
 
-    // TODO remove debug code
-    data ='''
-        [{"accountName":"asdasd","date":"25/06/2020","description":"Payment, Amp General Ins","id":402,"money":-1224.18},{"accountName":"asdasd","date":"24/06/2020","description":"Payment, Amp General Ins","id":418,"money":-1224.18},{"accountName":"asdasd","date":"26/06/2020","description":"Payment, Amp General Ins","id":434,"money":-1224.18}]
-        ''';
 //    data = '''
-//      [{"accountName":"asdasd","date":"01/05/2020","description":"\"EFTPOS\"","money":-16.71},{"accountName":"asdasd","date":"01/05/2020","description":"\"EFTPOS\"","money":-75.52},{"accountName":"asdasd","date":"01/05/2020","description":"\"CARD 8117 RBL HEAD OFF ICE LOAN TER AUCKLAND\"","money":-34.99},{"accountName":"asdasd","date":"02/05/2020","description":"\"\"","money":-3.5},{"accountName":"asdasd","date":"02/05/2020","description":"\"CARD 4298 PAK N SAVE S ILVERDALE SILVERDALE N\"","money":-41.75},{"accountName":"asdasd","date":"06/05/2020","description":"\"EFTPOS\"","money":-4.6},{"accountName":"asdasd","date":"06/05/2020","description":"\"EFTPOS\"","money":-12.68},{"accountName":"asdasd","date":"07/05/2020","description":"\"CARD 8117 TAI PING ALB ANY AUCKLAND\"","money":-53.0},{"accountName":"asdasd","date":"07/05/2020","description":"\"CARD 8117 TAI PING ALB ANY AUCKLAND\"","money":-2.4},{"accountName":"asdasd","date":"07/05/2020","description":"\"TO 12-3136- 0497064-00\"","money":-13.0},{"accountName":"asdasd","date":"08/05/2020","description":"\"EFTPOS\"","money":-9.0},{"accountName":"asdasd","date":"01/05/2020","description":"\"EFTPOS\"","money":-16.71},{"accountName":"asdasd","date":"01/05/2020","description":"\"EFTPOS\"","money":-75.52},{"accountName":"asdasd","date":"01/05/2020","description":"\"CARD 8117 RBL HEAD OFF ICE LOAN TER AUCKLAND\"","money":-34.99},{"accountName":"asdasd","date":"02/05/2020","description":"\"\"","money":-3.5},{"accountName":"asdasd","date":"02/05/2020","description":"\"CARD 4298 PAK N SAVE S ILVERDALE SILVERDALE N\"","money":-41.75},{"accountName":"asdasd","date":"06/05/2020","description":"\"EFTPOS\"","money":-4.6},{"accountName":"asdasd","date":"06/05/2020","description":"\"EFTPOS\"","money":-12.68},{"accountName":"asdasd","date":"07/05/2020","description":"\"CARD 8117 TAI PING ALB ANY AUCKLAND\"","money":-53.0},{"accountName":"asdasd","date":"07/05/2020","description":"\"CARD 8117 TAI PING ALB ANY AUCKLAND\"","money":-2.4},{"accountName":"asdasd","date":"07/05/2020","description":"\"TO 12-3136- 0497064-00\"","money":-13.0},{"accountName":"asdasd","date":"08/05/2020","description":"\"EFTPOS\"","money":-9.0},{"accountName":"asdasd","date":"07/06/2020","description":"Countdown Silverdale   Silverdale    Nzl","money":-71.43},{"accountName":"asdasd","date":"06/06/2020","description":"Hollywood Vape Limit   Auckland      Nz","money":-40.0},{"accountName":"asdasd","date":"05/06/2020","description":"Vodafone Prepay Visa M Auckland      Nz","money":-20.0},{"accountName":"asdasd","date":"03/06/2020","description":"Powershop              Wellington    Nz","money":-13.82},{"accountName":"asdasd","date":"02/06/2020","description":"Hollywood Bakery Silve Silverdale    Nzl","money":-10.5},{"accountName":"asdasd","date":"02/06/2020","description":"St Pierre\u0027S Silverdale Silverdale    Nzl","money":-31.9},{"accountName":"asdasd","date":"02/06/2020","description":"Vf Card Convenience    Auckland      Nz","money":-1.85},{"accountName":"asdasd","date":"02/06/2020","description":"Vodafone Fxdlne/Bband  Newton        Nz","money":-92.99},{"accountName":"asdasd","date":"01/06/2020","description":"Powershop              Wellington    Nz","money":-28.85},{"accountName":"asdasd","date":"31/05/2020","description":"Countdown Silverdale   Silverdale    Nzl","money":-3.0},{"accountName":"asdasd","date":"31/05/2020","description":"Countdown Silverdale   Silverdale    Nzl","money":-17.5},{"accountName":"asdasd","date":"30/05/2020","description":"Mi Oceania Limited     Auckland      Nz","money":-862.55},{"accountName":"asdasd","date":"30/05/2020","description":"Eshopworld             35318809114   Ie","money":-161.99},{"accountName":"asdasd","date":"28/05/2020","description":"Ting Tea               Auckland      Nzl","money":-9.0},{"accountName":"asdasd","date":"27/05/2020","description":"Gong Cha Westfield Alb Auckland      Nz","money":-6.29}]
+//      [{"accountName":"asdasd","date":"15/05/2020","description":"CARD 8117 ZHA ZHA TEA  AUCKLAND","money":-9.0},{"accountName":"asdasd","date":"15/05/2020","description":"EX 12-3059- 0004114-00","money":1000.0},{"accountName":"asdasd","date":"15/05/2020","description":"Yang","money":1000.0},{"accountName":"asdasd","date":"16/05/2020","description":"CARD 4298 GONG CHA WES TFIELD ALBAN AUCKLAND","money":-6.29},{"accountName":"asdasd","date":"16/05/2020","description":"CARD 4298 BRISCOES ALB ANY ALBANY","money":-36.0},{"accountName":"asdasd","date":"17/05/2020","description":"CARD 4298 GONG CHA WES TFIELD ALBAN AUCKLAND","money":-12.07},{"accountName":"asdasd","date":"17/05/2020","description":"CARD 4298 JAPAN HOME M ART AUCKLAND","money":-92.5},{"accountName":"asdasd","date":"18/05/2020","description":"CARD 8117 PAK N SAVE S ILVERDALE SILVERDALE N","money":-50.56},{"accountName":"asdasd","date":"20/05/2020","description":"NZD 9.00 ZHA ZHA TEA  AUCKLAND","money":-9.0},{"accountName":"asdasd","date":"20/05/2020","description":"EFTPOS","money":-16.48},{"accountName":"asdasd","date":"20/05/2020","description":"CARD 4298 TAI PING ALB ANY AUCKLAND","money":-78.27},{"accountName":"asdasd","date":"21/05/2020","description":"CARD 4298 GONG CHA WES TFIELD ALBAN AUCKLAND","money":-6.29},{"accountName":"asdasd","date":"22/05/2020","description":"CARD 4298 NEW WORLD AL BANY ALBANY NZ","money":-64.5},{"accountName":"asdasd","date":"23/05/2020","description":"CARD 4298 GONG CHA WES TFIELD ALBAN AUCKLAND","money":-6.29},{"accountName":"asdasd","date":"24/05/2020","description":"CARD 4298 GONGCHA QUEE N ST AUCKLAND","money":-6.29},{"accountName":"asdasd","date":"24/05/2020","description":"EFTPOS","money":-26.0},{"accountName":"asdasd","date":"24/05/2020","description":"CARD 4298 H\u0026M  AUCKLAND","money":-99.98},{"accountName":"asdasd","date":"24/05/2020","description":"CARD 4298 TWL 191 SILV ERDALE SILVERDALE","money":-19.29},{"accountName":"asdasd","date":"26/05/2020","description":"CARD 4298 SIERRA CAFE SILVERDALE SILVERDALE","money":-16.5},{"accountName":"asdasd","date":"26/05/2020","description":"CARD 8117 ZHA ZHA TEA  AUCKLAND","money":-9.8},{"accountName":"asdasd","date":"26/05/2020","description":"CARD 4298 COUNTDOWN SI LVERDALE SILVERDALE","money":-31.06},{"accountName":"asdasd","date":"07/06/2020","description":"Countdown Silverdale   Silverdale    Nzl","money":-71.43},{"accountName":"asdasd","date":"06/06/2020","description":"Hollywood Vape Limit   Auckland      Nz","money":-40.0},{"accountName":"asdasd","date":"05/06/2020","description":"Vodafone Prepay Visa M Auckland      Nz","money":-20.0},{"accountName":"asdasd","date":"03/06/2020","description":"Powershop              Wellington    Nz","money":-13.82},{"accountName":"asdasd","date":"02/06/2020","description":"Hollywood Bakery Silve Silverdale    Nzl","money":-10.5},{"accountName":"asdasd","date":"02/06/2020","description":"St Pierre\u0027S Silverdale Silverdale    Nzl","money":-31.9},{"accountName":"asdasd","date":"02/06/2020","description":"Vf Card Convenience    Auckland      Nz","money":-1.85},{"accountName":"asdasd","date":"02/06/2020","description":"Vodafone Fxdlne/Bband  Newton        Nz","money":-92.99},{"accountName":"asdasd","date":"01/06/2020","description":"Powershop              Wellington    Nz","money":-28.85},{"accountName":"asdasd","date":"31/05/2020","description":"Countdown Silverdale   Silverdale    Nzl","money":-3.0},{"accountName":"asdasd","date":"31/05/2020","description":"Countdown Silverdale   Silverdale    Nzl","money":-17.5},{"accountName":"asdasd","date":"30/05/2020","description":"Mi Oceania Limited     Auckland      Nz","money":-862.55},{"accountName":"asdasd","date":"30/05/2020","description":"Eshopworld             35318809114   Ie","money":-161.99},{"accountName":"asdasd","date":"28/05/2020","description":"Ting Tea               Auckland      Nzl","money":-9.0}]
 //      ''';
     if (data != null) {
       setState(() {
@@ -49,18 +45,23 @@ class _ChartPageState extends State<ChartPage> {
         });
         _transactions.sort((a, b) => a.date.compareTo(b.date));
 
-//        _transactions.forEach((transaction) {});
-        print('####, _transactions size: ${_transactions.length}');
-        print('####, _transactions 0: ${_transactions[0].toJson()}');
+        List<MoneySeries> moneySeriesData = [];
+        for (int i = 0; i < _transactions.length; i++) {
+          TransactionModel t = _transactions[i];
+          if (i == 0) {
+            moneySeriesData.add(MoneySeries(t.date, t.money));
+          } else {
+            moneySeriesData
+                .add(MoneySeries(t.date, _transactions[i - 1].money + t.money));
+          }
+        }
 
-        _transactionSeries.clear();
-        _transactionSeries.add(new charts.Series<TransactionModel, DateTime>(
-          id: 'Transactions',
-          colorFn: (_, __) => charts.MaterialPalette.blue.shadeDefault,
-          domainFn: (TransactionModel transaction, _) => transaction.date,
-          measureFn: (TransactionModel transaction, _) => transaction.money,
-          data: _transactions,
-        ));
+        _moneySeries.clear();
+        _moneySeries.add(new charts.Series<MoneySeries, DateTime>(
+            id: 'MoneySeries',
+            domainFn: (MoneySeries it, _) => it.date,
+            measureFn: (MoneySeries it, _) => it.sum,
+            data: moneySeriesData));
       });
     }
   }
@@ -92,11 +93,18 @@ class _ChartPageState extends State<ChartPage> {
   }
 
   Widget _buildChart() {
-    if (_transactionSeries.isNotEmpty) {
-      return charts.TimeSeriesChart(_transactionSeries,
+    if (_moneySeries.isNotEmpty) {
+      return charts.TimeSeriesChart(_moneySeries,
           animate: true, dateTimeFactory: const charts.LocalDateTimeFactory());
     } else {
       return Container();
     }
   }
+}
+
+class MoneySeries {
+  final DateTime date;
+  final double sum;
+
+  MoneySeries(this.date, this.sum);
 }

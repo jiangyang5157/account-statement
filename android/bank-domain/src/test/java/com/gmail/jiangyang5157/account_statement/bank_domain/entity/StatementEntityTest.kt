@@ -43,13 +43,15 @@ class StatementEntityTest {
       "accountName": "FakeAccount",
       "date": "Jun 17, 2020 10:57:10 PM",
       "money": -10.99,
-      "description": "desc"
+      "description": "desc",
+      "id": 0
     },
     {
       "accountName": "FakeAccount",
       "date": "Jun 17, 2020 10:57:10 PM",
       "money": 10.99,
-      "description": "desc"
+      "description": "desc",
+      "id": 0
     }
   ]
 }

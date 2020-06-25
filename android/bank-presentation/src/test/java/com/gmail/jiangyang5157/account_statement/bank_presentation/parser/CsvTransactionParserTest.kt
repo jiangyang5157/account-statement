@@ -37,6 +37,34 @@ class CsvTransactionParserTest {
     }
 
     @Test
+    fun test_desc_withSurrounding() {
+        val accountName = "FakeAccount"
+        val csvTransaction = object : CsvTransaction {
+            override var date: CsvField<Date>
+                get() = CsvField(
+                    0,
+                    Date()
+                )
+                set(value) {}
+            override var money: CsvField<Money>
+                get() = CsvField(
+                    0,
+                    TransactionEntity.MoneyDoubleConverter().backward(1.0)
+                )
+                set(value) {}
+            override val description: String
+                get() = "\"desc\""
+
+        }
+        val transactionEntity =
+            CsvTransactionParser(accountName).parse(csvTransaction)
+        Assert.assertNotNull(transactionEntity)
+        Assert.assertEquals(accountName, transactionEntity?.accountName)
+        Assert.assertEquals(csvTransaction.date.value, transactionEntity?.date)
+        Assert.assertEquals("desc", transactionEntity?.description)
+    }
+
+    @Test
     fun test_invalid() {
         val accountName = "FakeAccount"
         val invalid = listOf(
