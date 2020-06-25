@@ -8,7 +8,7 @@ class TransactionModel {
   @JsonKey(name: 'accountName')
   String accountName;
 
-  @JsonKey(name: 'date', fromJson: _fromJson, toJson: _toJson)
+  @JsonKey(name: 'date', fromJson: _dateFromJson, toJson: _dateToJson)
   DateTime date;
 
   @JsonKey(name: 'money')
@@ -21,9 +21,9 @@ class TransactionModel {
 
   static DateFormat _dateFormat = new DateFormat("dd/MM/yyyy");
 
-  static DateTime _fromJson(String date) => _dateFormat.parse(date);
+  static DateTime _dateFromJson(String date) => _dateFormat.parse(date);
 
-  static String _toJson(DateTime date) => _dateFormat.format(date);
+  static String _dateToJson(DateTime date) => _dateFormat.format(date);
 
   /// A necessary factory constructor for creating a new User instance
   /// from a map. Pass the map to the generated `_$UserFromJson()` constructor.

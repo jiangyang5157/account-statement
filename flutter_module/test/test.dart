@@ -24,4 +24,17 @@ void main() {
     print(
         "####, parse by default: ${new DateFormat().parse("June 25, 2020 1:59:27 PM")}");
   });
+
+  test('Expected remove quotes from string', () {
+    print(
+        "####, my string: ${"my string".replaceAll(new RegExp(r'[^\w\s]+'), '')}");
+    print(
+        "####, \"my string\": ${"\"my string\"".replaceAll(new RegExp(r'[^\w\s]+'), '')}");
+    print(
+        "####, \'my string\': ${"\'my string\'".replaceAll(new RegExp(r'[^\w\s]+'), '')}");
+    print(
+        "####, \"\"my string\"\": ${"\"\"my string\"\"".replaceAll(new RegExp(r'[^\w\s]+'), '')}");
+    print(
+        "####, \"-\"my string\"-\": ${"\"-\"my string\"-\"".replaceAll(new RegExp(r'[^\w\s]+'), '')}");
+  });
 }

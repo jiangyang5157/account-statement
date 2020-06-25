@@ -9,7 +9,7 @@ part of 'transaction_model.dart';
 TransactionModel _$TransactionModelFromJson(Map<String, dynamic> json) {
   return TransactionModel(
     json['accountName'] as String,
-    TransactionModel._fromJson(json['date'] as String),
+    TransactionModel._dateFromJson(json['date'] as String),
     (json['money'] as num).toDouble(),
     json['description'] as String,
   );
@@ -18,7 +18,7 @@ TransactionModel _$TransactionModelFromJson(Map<String, dynamic> json) {
 Map<String, dynamic> _$TransactionModelToJson(TransactionModel instance) =>
     <String, dynamic>{
       'accountName': instance.accountName,
-      'date': TransactionModel._toJson(instance.date),
+      'date': TransactionModel._dateToJson(instance.date),
       'money': instance.money,
       'description': instance.description,
     };
