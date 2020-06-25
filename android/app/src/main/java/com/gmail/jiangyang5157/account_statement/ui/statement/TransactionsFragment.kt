@@ -96,6 +96,7 @@ class TransactionsFragment : Fragment(), RouterFragmentGuest<UriRoute> {
                 startActivity(
                     Intent(requireContext(), ChartFlutterActivity::class.java).apply {
                         putExtras(Bundle().apply {
+                            // TODO: RuntimeException: android.os.TransactionTooLargeException: data parcel size 536808 bytes
                             putString(ChartFlutterActivity.keyTransactions, Gson().toJson(
                                 transactions.map {
                                     TransactionDto.Converter().backward(it)
