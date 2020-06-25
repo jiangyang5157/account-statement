@@ -2,9 +2,9 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'transaction_model.g.dart';
 
-@JsonSerializable()
+@JsonSerializable(explicitToJson: true)
 class TransactionModel {
-  @JsonKey(name: 'accountName')
+  @JsonKey(name: 'date', required: true)
   String accountName;
 
   @JsonKey(name: 'date', required: true)

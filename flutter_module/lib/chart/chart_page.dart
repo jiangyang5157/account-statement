@@ -16,29 +16,34 @@ class _ChartPageState extends State<ChartPage> {
   static const methodChannel = const MethodChannel(
       'com.gmail.jiangyang5157.account_statement/MethodChannel');
 
-  List<TransactionModel> _transactions;
+  List<TransactionModel> _transactions = [];
 
   Future<void> _initTransactions() async {
+    String data;
     try {
       final String result =
           await methodChannel.invokeMethod('transactionsChannel');
-      setState(() {
-        _transactions = jsonDecode(result);
-      });
+      data = result;
     } on MissingPluginException catch (e) {
-      print("#### _initCounter MissingPluginException $e");
+      print("#### _initTransactions MissingPluginException $e");
     } on PlatformException catch (e) {
-      print("#### _initCounter PlatformException $e");
+      print("#### _initTransactions PlatformException $e");
+    } on Exception catch (e) {
+      print("#### _initTransactions Exception $e");
     }
 
-    TransactionModel transaction = jsonDecode('''"a"={"accountName":"asdasd","date":"Jun 2, 2020 12:00:00 AM","description":"Payment, Amp General Ins","id":402,"money":-1224.18}''');
-    print('#####, Decoded transaction: $transaction');
-    print('#####, Encode transaction: ${jsonEncode(transaction)}');
-
-//    _transactions = jsonDecode(
-//        '''[{"accountName":"asdasd","date":"Jun 2, 2020 12:00:00 AM","description":"Payment, Amp General Ins","id":402,"money":-1224.18},{"accountName":"asdasd","date":"Jun 2, 2020 12:00:00 AM","description":"Payment, Amp General Ins","id":418,"money":-1224.18},{"accountName":"asdasd","date":"Jun 2, 2020 12:00:00 AM","description":"Payment, Amp General Ins","id":434,"money":-1224.18}]''');
-//    print('#####, jsonDecode [0]: ${_transactions[0]}');
-//    print('#####, jsonEncode [0]: ${jsonEncode(_transactions[0])}');
+    // TODO remove debug code
+    data =
+        '''[{"accountName":"asdasd","date":"Jun 2, 2020 12:00:00 AM","description":"Payment, Amp General Ins","id":402,"money":-1224.18},{"accountName":"asdasd","date":"Jun 2, 2020 12:00:00 AM","description":"Payment, Amp General Ins","id":418,"money":-1224.18},{"accountName":"asdasd","date":"Jun 2, 2020 12:00:00 AM","description":"Payment, Amp General Ins","id":434,"money":-1224.18}]''';
+    if (data != null) {
+      setState(() {
+        _transactions.clear();
+        List<dynamic> transactionItems = jsonDecode(data);
+        transactionItems.forEach((element) {
+          _transactions.add(TransactionModel.fromJson(element));
+        });
+      });
+    }
   }
 
   @override
