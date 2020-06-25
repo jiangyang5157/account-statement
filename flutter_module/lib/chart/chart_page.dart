@@ -16,9 +16,9 @@ class _ChartPageState extends State<ChartPage> {
   static const methodChannel = const MethodChannel(
       'com.gmail.jiangyang5157.account_statement/MethodChannel');
 
-  List<charts.Series<MoneySeries, DateTime>> _moneySeries = [];
+  List<charts.Series<MoneySeries, DateTime>> _moneySeries;
 
-  Future<void> _initTransactions() async {
+  Future<void> _init() async {
     String data;
     try {
       final String result =
@@ -41,9 +41,8 @@ class _ChartPageState extends State<ChartPage> {
     if (data != null) {
       setState(() {
         List<TransactionModel> _transactions = [];
-
-        List<dynamic> transactionItems = jsonDecode(data);
-        transactionItems.forEach((element) {
+        List<dynamic> transactionJsonList = jsonDecode(data);
+        transactionJsonList.forEach((element) {
           _transactions.add(TransactionModel.fromJson(element));
         });
         _transactions.sort((a, b) => a.date.compareTo(b.date));
@@ -59,7 +58,7 @@ class _ChartPageState extends State<ChartPage> {
           }
         }
 
-        _moneySeries.clear();
+        _moneySeries = [];
         _moneySeries.add(new charts.Series<MoneySeries, DateTime>(
             id: 'MoneySeries',
             domainFn: (MoneySeries it, _) => it.date,
@@ -79,7 +78,7 @@ class _ChartPageState extends State<ChartPage> {
   void initState() {
     super.initState();
     print('#### _ChartPageState - initState');
-    _initTransactions();
+    _init();
   }
 
   @override
@@ -96,7 +95,7 @@ class _ChartPageState extends State<ChartPage> {
   }
 
   Widget _buildChart() {
-    if (_moneySeries.isNotEmpty) {
+    if (_moneySeries != null && _moneySeries.isNotEmpty) {
       return charts.TimeSeriesChart(_moneySeries,
           animate: true, dateTimeFactory: const charts.LocalDateTimeFactory());
     } else {
