@@ -24,6 +24,9 @@ dependencies:
   # Value equality
   equatable: ^1.2.0
 
+  # Classes and helper functions that support JSON code generation via the `json_serializable` package
+  json_annotation: ^3.0.1
+
   # Flutter routing library that adds flexible routing options
   fluro: ^1.6.3
 
@@ -45,6 +48,13 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
+
+  # Automatically generate code for converting to and from JSON by annotating Dart classes.
+  json_serializable: ^3.3.0
+
+  # The build_runner package provides a concrete way of generating files using Dart code, outside of tools like pub.
+  # Unlike pub serve/build, files are always generated directly on disk, and rebuilds are incremental - inspired by tools such as Bazel.
+  build_runner: ^1.10.0
 
 flutter:
   # The following line ensures that the Material Icons font is included with your application
