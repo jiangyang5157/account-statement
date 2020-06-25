@@ -5,8 +5,7 @@ import 'core/injection.dart' as di;
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  debugPaintSizeEnabled = true;
-
+//  debugPaintSizeEnabled = true;
   await di.init();
   runApp(AppPage());
 }
