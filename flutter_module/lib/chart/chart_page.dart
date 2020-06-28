@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:account_statement/chart/transaction_model.dart';
+import 'package:account_statement/core/string_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:charts_flutter/flutter.dart' as charts;
@@ -86,7 +87,7 @@ class _ChartPageState extends State<ChartPage> {
     print('#### _ChartPageState - build');
     return Scaffold(
       appBar: AppBar(
-        title: Text('Chart'),
+        title: Text(string(context, 'title_chart')),
       ),
       body: Center(
         child: _buildChart(),
