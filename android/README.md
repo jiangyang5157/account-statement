@@ -1,4 +1,4 @@
-# FCF: Example Flutter Module
+# Account Statement
 An example of using flutter page for visualization data.
 
 Source:
@@ -20,9 +20,9 @@ Android:
 - [Router](https://github.com/jiangyang5157/kotlin-android/tree/master/router)
 - MVVM & Data flow
 
-###### [PNG](https://auk-tfs.nzlabs.net/tfs/DefaultCollection/Auckland_PD/_git/FCF_Yang?path=/android/example-flutter-module/assets/data_flow.png)
+###### [PNG](https://github.com/jiangyang5157/account-statement/blob/master/android/app/assets/data-flow.png)
 
-<img src="https://auk-tfs.nzlabs.net/tfs/DefaultCollection/13ad62b8-a977-4115-bdd2-4bc9a106fb80/_apis/git/repositories/e1493d3b-cfa2-4f6b-976c-b9018765c9b3/Items?path=%2Fandroid%2Fexample-flutter-module%2Fassets%2Fdata_flow.png&versionDescriptor%5BversionOptions%5D=0&versionDescriptor%5BversionType%5D=0&versionDescriptor%5Bversion%5D=master&download=false&resolveLfs=true&%24format=octetStream&api-version=5.0-preview.1"/>
+<img src="https://github.com/jiangyang5157/account-statement/blob/master/android/app/assets/data-flow.png"/>
 
   - ViewModel: managing data in the UI lifecycle (eg: provide livedata/flowdata to UI)
   - UseCase: manipulate data sources from repository for different individual business logic 
@@ -43,6 +43,6 @@ Android:
 
 ## Demo:
 
-###### [GIF](https://auk-tfs.nzlabs.net/tfs/DefaultCollection/Auckland_PD/_git/FCF_Yang?path=/android/example-flutter-module/assets/demo.gif)
+###### [GIF](https://github.com/jiangyang5157/account-statement/blob/master/android/app/assets/demo.gif)
 
-<img src="https://auk-tfs.nzlabs.net/tfs/DefaultCollection/13ad62b8-a977-4115-bdd2-4bc9a106fb80/_apis/git/repositories/e1493d3b-cfa2-4f6b-976c-b9018765c9b3/Items?path=%2Fandroid%2Fexample-flutter-module%2Fassets%2Fdemo.gif&versionDescriptor%5BversionOptions%5D=0&versionDescriptor%5BversionType%5D=0&versionDescriptor%5Bversion%5D=master&download=false&resolveLfs=true&%24format=octetStream&api-version=5.0-preview.1" width=320/>
+<img src="https://github.com/jiangyang5157/account-statement/blob/master/android/app/assets/demo.gif" width=320/>
