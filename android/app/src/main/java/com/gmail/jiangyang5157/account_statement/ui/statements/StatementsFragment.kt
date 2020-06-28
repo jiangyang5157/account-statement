@@ -1,4 +1,4 @@
-package com.gmail.jiangyang5157.account_statement.ui.statement
+package com.gmail.jiangyang5157.account_statement.ui.statements
 
 import android.os.Bundle
 import android.view.*
@@ -43,7 +43,8 @@ class StatementsFragment : Fragment(), RouterFragmentGuest<UriRoute> {
     private lateinit var currentMode: Mode
 
     init {
-        defaultMode = object : Mode {
+        defaultMode = object :
+            Mode {
 
             override fun setupView() {
                 (requireActivity() as AppCompatActivity).supportActionBar?.title =
@@ -72,7 +73,8 @@ class StatementsFragment : Fragment(), RouterFragmentGuest<UriRoute> {
             }
         }
 
-        selectionMode = object : Mode {
+        selectionMode = object :
+            Mode {
 
             var selectionCount: Int = 0
 

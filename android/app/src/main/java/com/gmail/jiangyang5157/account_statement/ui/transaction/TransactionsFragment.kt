@@ -1,4 +1,4 @@
-package com.gmail.jiangyang5157.account_statement.ui.statement
+package com.gmail.jiangyang5157.account_statement.ui.transaction
 
 import android.content.Intent
 import android.os.Bundle
@@ -12,6 +12,7 @@ import com.gmail.jiangyang5157.account_statement.bank_domain.entity.TransactionE
 import com.gmail.jiangyang5157.account_statement.bank_presentation.ui.binding.TransactionItem
 import com.gmail.jiangyang5157.account_statement.router.RouterFragmentGuest
 import com.gmail.jiangyang5157.account_statement.router.UriRoute
+import com.gmail.jiangyang5157.account_statement.ui.chart.ChartFlutterActivity
 import com.gmail.jiangyang5157.android.router.core.route
 import com.gmail.jiangyang5157.core.ext.fromJson
 import com.google.gson.Gson
@@ -97,7 +98,8 @@ class TransactionsFragment : Fragment(), RouterFragmentGuest<UriRoute> {
                     Intent(requireContext(), ChartFlutterActivity::class.java).apply {
                         putExtras(Bundle().apply {
                             // TODO: RuntimeException: android.os.TransactionTooLargeException: data parcel size 536808 bytes
-                            putString(ChartFlutterActivity.keyTransactions, Gson().toJson(
+                            putString(
+                                ChartFlutterActivity.keyTransactions, Gson().toJson(
                                 transactions.map {
                                     TransactionDto.Converter().backward(it)
                                 }

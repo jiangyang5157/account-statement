@@ -2,8 +2,8 @@ package com.gmail.jiangyang5157.account_statement.router
 
 import com.gmail.jiangyang5157.account_statement.ui.statement.AddStatementFragment
 import com.gmail.jiangyang5157.account_statement.ui.statement.StatementFragment
-import com.gmail.jiangyang5157.account_statement.ui.statement.StatementsFragment
-import com.gmail.jiangyang5157.account_statement.ui.statement.TransactionsFragment
+import com.gmail.jiangyang5157.account_statement.ui.statements.StatementsFragment
+import com.gmail.jiangyang5157.account_statement.ui.transaction.TransactionsFragment
 import com.gmail.jiangyang5157.android.router.fragment.FragmentRouter
 import com.gmail.jiangyang5157.kotlin_kit.data.model.Key
 import dagger.Module
