@@ -1,18 +1,18 @@
-package com.gmail.jiangyang5157.account_statement.bank_presentation.ui
+package com.gmail.jiangyang5157.account_statement.bank_presentation.ui.statement
 
 import android.content.Context
 import android.util.AttributeSet
 import androidx.annotation.AttrRes
-import com.gmail.jiangyang5157.account_statement.bank_presentation.ui.binding.TransactionItem
-import com.gmail.jiangyang5157.account_statement.bank_presentation.ui.binding.TransactionItemViewBinder
+import com.gmail.jiangyang5157.account_statement.bank_presentation.ui.binding.SpendItem
+import com.gmail.jiangyang5157.account_statement.bank_presentation.ui.binding.SpendItemViewBinder
 import com.gmail.jiangyang5157.adapter.multitype.MultiTypeAdapter
 import com.gmail.jiangyang5157.adapter.multitype.SimpleRecycleViewAdapter
 import com.gmail.jiangyang5157.adapter.ui.SimpleRecycleView
 
-class TransactionRecycleView : SimpleRecycleView {
+class StatementRecycleView : SimpleRecycleView {
 
     override val recycleViewAdapter: SimpleRecycleViewAdapter = MultiTypeAdapter()
-        .register(TransactionItem::class.java, TransactionItemViewBinder())
+        .register(SpendItem::class.java, SpendItemViewBinder())
 
     constructor(context: Context) :
         super(context)

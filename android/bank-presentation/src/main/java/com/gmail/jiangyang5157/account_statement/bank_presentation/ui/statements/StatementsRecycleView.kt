@@ -1,4 +1,4 @@
-package com.gmail.jiangyang5157.account_statement.bank_presentation.ui
+package com.gmail.jiangyang5157.account_statement.bank_presentation.ui.statements
 
 import android.content.Context
 import android.util.AttributeSet
@@ -9,7 +9,7 @@ import com.gmail.jiangyang5157.adapter.multitype.MultiTypeAdapter
 import com.gmail.jiangyang5157.adapter.multitype.SimpleRecycleViewAdapter
 import com.gmail.jiangyang5157.adapter.ui.SimpleRecycleView
 
-class StatementRecycleView : SimpleRecycleView {
+class StatementsRecycleView : SimpleRecycleView {
 
     override val recycleViewAdapter: SimpleRecycleViewAdapter = MultiTypeAdapter()
         .register(StatementItem::class.java, StatementItemViewBinder())
