@@ -4,6 +4,11 @@ import com.gmail.jiangyang5157.account_statement.bank_domain.entity.AccountEntit
 import com.google.gson.annotations.SerializedName
 import java.util.*
 
+/**
+ * AccountDto is service model
+ *
+ * [AccountDto.Converter] account model between [AccountDto] and [AccountEntity]
+ */
 data class AccountDto(
 
     @field:SerializedName("name")

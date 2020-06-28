@@ -11,6 +11,11 @@ import java.text.ParseException
 import java.text.SimpleDateFormat
 import java.util.*
 
+/**
+ * TransactionDto is service model
+ *
+ * [TransactionDto.Converter] account model between [TransactionDto] and [TransactionEntity]
+ */
 data class TransactionDto(
 
     @field:SerializedName("accountName")

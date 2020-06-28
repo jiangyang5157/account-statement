@@ -3,6 +3,11 @@ package com.gmail.jiangyang5157.account_statement.bank_data.remote.dto
 import com.gmail.jiangyang5157.account_statement.bank_domain.entity.StatementEntity
 import com.google.gson.annotations.SerializedName
 
+/**
+ * StatementDto is service model
+ *
+ * [StatementDto.Converter] account model between [StatementDto] and [StatementEntity]
+ */
 data class StatementDto(
 
     @field:SerializedName("account")

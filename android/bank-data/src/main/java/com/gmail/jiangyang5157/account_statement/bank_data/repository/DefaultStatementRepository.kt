@@ -52,6 +52,9 @@ class DefaultStatementRepository @Inject constructor(
         }
     }
 
+    /**
+     * Demonstration of dealing with remote data [StatementDto] and local data [StatementEntity]
+     */
     override fun getStatements(): LiveData<Resource<List<StatementEntity>>> {
         return object :
             NetworkBoundResource<List<StatementEntity>, List<StatementDto>>(appExecutor) {
