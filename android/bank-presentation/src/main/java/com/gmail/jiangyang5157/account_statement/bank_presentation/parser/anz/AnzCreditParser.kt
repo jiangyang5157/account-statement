@@ -71,5 +71,4 @@ class AnzCreditParser : Parser<InputStream, List<AnzCreditTransaction>> {
     companion object {
         const val TAG = "AnzCreditParser"
     }
-
 }
