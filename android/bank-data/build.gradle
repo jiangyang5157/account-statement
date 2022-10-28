@@ -47,17 +47,17 @@ dependencies {
   implementation libs.retrofit
   implementation libs.retrofit_gson
   implementation libs.kit
-  implementation libs.core
+  implementation libs.common
   api project(":bank-domain")
 
   kapt libs.room_compiler
 
   testImplementation libs.junit
   testImplementation libs.core_testing
-  testImplementation libs.core
+  testImplementation libs.common
 
   androidTestImplementation libs.android_junit
   androidTestImplementation libs.test_runner
   androidTestImplementation libs.core_testing
-  androidTestImplementation libs.core
+  androidTestImplementation libs.common
 }

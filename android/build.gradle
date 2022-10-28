@@ -13,47 +13,43 @@ buildscript {
       testInstrumentationRunner: 'androidx.test.runner.AndroidJUnitRunner',
     ]
     versions = [
-      android_tools_build_lib                : '3.6.3',
-      android_support_lib                    : '28.0.0',
+      android_tools_build_lib      : '3.6.3',
+      android_support_lib          : '28.0.0',
 
-      androidx_appcompat_lib                 : '1.0.2',
-      androidx_fragment_lib                  : '1.3.0-alpha06',
-      androidx_arch_core_lib                 : '2.1.0',
-      androidx_biometric_lib                 : '1.0.1',
-      androidx_constraintlayout_lib          : '1.1.3',
-      androidx_core_lib                      : '1.1.0',
-      androidx_hilt_lib                      : '1.0.0-alpha01',
-      androidx_lifecycle_lib                 : '2.2.0',
-      androidx_navigation_lib                : '2.2.1',
-      androidx_recycleview_lib               : '1.1.0',
-      androidx_room_lib                      : '2.2.5',
-      androidx_test_lib                      : '1.1.0',
-      androidx_test_ext_lib                  : '1.1.0',
-      androidx_test_espresso_lib             : '3.1.1',
+      androidx_appcompat_lib       : '1.0.2',
+      androidx_fragment_lib        : '1.3.0-alpha06',
+      androidx_arch_core_lib       : '2.1.0',
+      androidx_biometric_lib       : '1.0.1',
+      androidx_constraintlayout_lib: '1.1.3',
+      androidx_core_lib            : '1.1.0',
+      androidx_hilt_lib            : '1.0.0-alpha01',
+      androidx_lifecycle_lib       : '2.2.0',
+      androidx_navigation_lib      : '2.2.1',
+      androidx_recycleview_lib     : '1.1.0',
+      androidx_room_lib            : '2.2.5',
+      androidx_test_lib            : '1.1.0',
+      androidx_test_ext_lib        : '1.1.0',
+      androidx_test_espresso_lib   : '3.1.1',
 
-      google_dagger_lib                      : '2.28-alpha',
-      google_gson_lib                        : '2.8.2',
-      google_matrial_lib                     : '1.2.0-alpha03',
+      google_dagger_lib            : '2.28-alpha',
+      google_gson_lib              : '2.8.2',
+      google_matrial_lib           : '1.2.0-alpha03',
 
-      jetbrains_dokka_lib                    : '0.10.1',
-      jetbrains_kotlin_lib                   : '1.3.61',
+      jetbrains_dokka_lib          : '0.10.1',
+      jetbrains_kotlin_lib         : '1.3.61',
 
-      squareup_retrofit_lib                  : '2.6.0',
+      squareup_retrofit_lib        : '2.6.0',
 
-      jakewharton_timber_lib                 : '4.7.1',
+      jakewharton_timber_lib       : '4.7.1',
 
-      junit_lib                              : '4.12',
+      junit_lib                    : '4.12',
 
-      javax_inject_lib                       : '1',
+      javax_inject_lib             : '1',
 
-      jiangyang5157_adapter_lib              : '1.0.2',
-      jiangyang5157_android_kit_lib          : '1.1.3',
-      jiangyang5157_auto_fit_texture_view_lib: '1.1.2',
-      jiangyang5157_core_lib                 : '1.1.8',
-      jiangyang5157_kit_lib                  : '1.2.3',
-      jiangyang5157_render_view_lib          : '1.1.4',
-      jiangyang5157_square_frame_layout_lib  : '1.1.2',
-      jiangyang5157_router_lib               : '1.0.4',
+      jiangyang5157_kit_lib        : '1.0',
+      jiangyang5157_common_lib     : '1.0',
+      jiangyang5157_adapter_lib    : '1.0',
+      jiangyang5157_router_lib     : '1.0',
     ]
     libs = [
       android_gradle_plugin    : "com.android.tools.build:gradle:${versions.android_tools_build_lib}",
@@ -112,14 +108,10 @@ buildscript {
 
       inject                   : "javax.inject:javax.inject:${versions.javax_inject_lib}",
 
-      kit                      : "com.gmail.jiangyang5157:kotlin-kit:${versions.jiangyang5157_kit_lib}",
-      android_kit              : "com.gmail.jiangyang5157:kotlin-android-kit:${versions.jiangyang5157_android_kit_lib}",
-      core                     : "com.gmail.jiangyang5157:core:${versions.jiangyang5157_core_lib}",
+      kit                      : "com.gmail.jiangyang5157:kit:${versions.jiangyang5157_kit_lib}",
+      common                   : "com.gmail.jiangyang5157:common:${versions.jiangyang5157_common_lib}",
       router                   : "com.gmail.jiangyang5157:router:${versions.jiangyang5157_router_lib}",
       adapter                  : "com.gmail.jiangyang5157:adapter:${versions.jiangyang5157_adapter_lib}",
-      render_view              : "com.gmail.jiangyang5157:RenderView:${versions.jiangyang5157_render_view_lib}",
-      auto_fit_texture_view    : "com.gmail.jiangyang5157:AutoFitTextureView:${versions.jiangyang5157_auto_fit_texture_view_lib}",
-      square_frame_layout      : "com.gmail.jiangyang5157:SquareFrameLayout:${versions.jiangyang5157_square_frame_layout_lib}",
     ]
   }
 

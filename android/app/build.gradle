@@ -65,7 +65,7 @@ dependencies {
   implementation libs.lifecycle_ext
   implementation libs.router
   implementation libs.kit
-  implementation libs.core
+  implementation libs.common
   implementation libs.adapter
   implementation libs.dagger_hilt
   implementation libs.hilt_lifecycle_vm

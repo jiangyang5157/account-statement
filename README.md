@@ -41,8 +41,4 @@ Android:
   - ANZ Credit csv downloaded from ANZ desktop online banking: "Card,Type,Amount,Details,TransactionDate,ProcessedDate,ForeignCurrencyAmount,ConversionCharge"
   - ASB Saving csv downloaded from ASB desktop online banking: "Date,Unique Id,Tran Type,Cheque Number,Payee,Memo,Amount"
 
-## Demo:
-
-###### [GIF](https://github.com/jiangyang5157/account-statement/blob/master/android/app/assets/demo.gif)
-
 <img src="https://github.com/jiangyang5157/account-statement/blob/master/android/app/assets/demo.gif" width=320/>
