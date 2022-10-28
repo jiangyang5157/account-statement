@@ -5,12 +5,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 class Nav {
-  Router _router;
+  FluroRouter _router;
 
-  Router get router => _router;
+  FluroRouter get router => _router;
 
   Nav() {
-    _router = Router()
+    _router = FluroRouter()
       ..define('SplashPage', handler: Handler(
           handlerFunc: (BuildContext context, Map<String, dynamic> params) {
         return SplashPage();
