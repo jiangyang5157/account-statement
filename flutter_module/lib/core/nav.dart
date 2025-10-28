@@ -1,4 +1,4 @@
-import 'package:account_statement/chart/chart_page.dart';
+import 'package:account_statement/chart/presentation/chart_page.dart';
 import 'package:account_statement/startup/splash_page.dart';
 import 'package:fluro/fluro.dart';
 import 'package:flutter/material.dart';
