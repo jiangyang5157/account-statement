@@ -7,6 +7,10 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'cubit/chart_cubit.dart';
 import 'cubit/chart_state.dart';
 
+/// The page that displays the chart of account transactions.
+///
+/// This widget is a [StatelessWidget] that listens to the [ChartCubit] for its
+/// state and builds the UI accordingly.
 class ChartPage extends StatelessWidget {
   const ChartPage({Key? key}) : super(key: key);
 
