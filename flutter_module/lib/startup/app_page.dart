@@ -1,6 +1,4 @@
-import 'package:account_statement/core/injection.dart';
-import 'package:account_statement/core/nav.dart';
-import 'package:account_statement/startup/splash_page.dart';
+import 'package:account_statement/core/app_router.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
@@ -28,11 +26,10 @@ class _AppPageState extends State<AppPage> {
   Widget build(BuildContext context) {
     print('#### _AppPageState - build');
 
-    return MaterialApp(
+    return MaterialApp.router(
+      routerConfig: router,
       localizationsDelegates: AppLocalizations.localizationsDelegates,
       supportedLocales: AppLocalizations.supportedLocales,
-      home: SplashPage(),
-      onGenerateRoute: locator<Nav>().router.generator,
     );
   }
 }
