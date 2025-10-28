@@ -1,12 +1,11 @@
 import 'package:account_statement/core/injection.dart';
 import 'package:account_statement/core/nav.dart';
-import 'package:account_statement/core/string_localization.dart';
 import 'package:account_statement/startup/splash_page.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class AppPage extends StatefulWidget {
-  AppPage({Key key}) : super(key: key);
+  const AppPage({Key? key}) : super(key: key);
 
   @override
   _AppPageState createState() => _AppPageState();
@@ -30,13 +29,8 @@ class _AppPageState extends State<AppPage> {
     print('#### _AppPageState - build');
 
     return MaterialApp(
-      localizationsDelegates: [
-        const StringDelegate(),
-        GlobalMaterialLocalizations.delegate,
-        GlobalWidgetsLocalizations.delegate,
-      ],
-      supportedLocales: StringDelegate.supportedLanguageCodes
-          .map<Locale>((languageCode) => Locale(languageCode)),
+      localizationsDelegates: AppLocalizations.localizationsDelegates,
+      supportedLocales: AppLocalizations.supportedLocales,
       home: SplashPage(),
       onGenerateRoute: locator<Nav>().router.generator,
     );

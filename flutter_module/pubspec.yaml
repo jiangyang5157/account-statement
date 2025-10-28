@@ -31,9 +31,9 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+  generate: true
 
   assets:
-    - res/values/strings.json
 
   module:
     androidX: true
